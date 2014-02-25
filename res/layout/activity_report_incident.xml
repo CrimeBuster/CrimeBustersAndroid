@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/main_activity_header" />
 
-  
- <requestFocus />
+    <requestFocus />
 
     <EditText
         android:id="@+id/editText2"
