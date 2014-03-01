@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 public class MainFormActivity extends Activity {
 
-	
-
-
 	public static final String panic_message = "Panic Message";
 	public static final String report_message = "Report Message";
 
@@ -39,9 +36,6 @@ public class MainFormActivity extends Activity {
 	}
 		
 		
-		
-		
-		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -49,9 +43,6 @@ public class MainFormActivity extends Activity {
 		return true;
 	}
 
-	
-	
-	
 	
 	/** Called when the user clicks the Send button */
 	public void panic(View view) {
@@ -62,7 +53,6 @@ public class MainFormActivity extends Activity {
 	}
 	
 	
-	
 	/** Called when the user clicks the Send button */
 	public void report(View view) {
 		Intent intent = new Intent(this, ReportIncidentActivity.class);
@@ -70,10 +60,4 @@ public class MainFormActivity extends Activity {
 		intent.putExtra(report_message, report_message);
 		startActivity(intent);
 	}
-	
-	
-	
-	
-	
-	
 }
