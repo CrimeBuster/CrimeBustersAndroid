@@ -15,5 +15,6 @@
     <string name="time">Current Time</string>
     <string name="date">Date</string>
     <string name="desc">Description of Incident</string>
+    <string name="submit">Submit Report</string>
 
 </resources>
