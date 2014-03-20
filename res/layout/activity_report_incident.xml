@@ -16,12 +16,32 @@
 
     <requestFocus />
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_gps" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText3"
+        android:layout_marginTop="106dp"
+        android:layout_toLeftOf="@+id/imageButton1"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="@string/desc" />
+
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/activity_report_header"
+        android:layout_below="@+id/activity_report_header"
+        android:layout_marginTop="34dp"
         android:ems="10"
         android:hint="@string/location"
         android:inputType="textPostalAddress" />
@@ -32,27 +52,43 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText2"
+        android:layout_marginTop="130dp"
         android:ems="10"
         android:hint="@string/time"
         android:inputType="time" />
 
-    <EditText
-        android:id="@+id/editText1"
+    <TextView
+        android:id="@+id/longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="@string/desc" />
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/editText2"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="22dp"
+        android:text="Longitude" />
 
-    <ImageButton
-        android:id="@+id/imageButton1"
+    <TextView
+        android:id="@+id/Latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_gps" />
+        android:layout_alignLeft="@+id/longitude"
+        android:layout_below="@+id/longitude"
+        android:layout_marginTop="26dp"
+        android:text="Latitude" />
+
+    <TextView
+        android:id="@+id/longText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/longitude"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_marginRight="15dp" />
+
+    <TextView
+        android:id="@+id/latiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Latitude"
+        android:layout_alignLeft="@+id/longText" />
 
 </RelativeLayout>
