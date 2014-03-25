@@ -8,6 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -35,6 +37,10 @@
         <activity
             android:name="com.crime.crimebusters.ReportIncidentActivity"
             android:label="@string/title_activity_report_incident" >
+        </activity>
+        <activity
+            android:name="com.crime.crimebusters.HTTPSubmitReportActivity"
+            android:label="@string/title_activity_httpsubmit_report" >
         </activity>
     </application>
 

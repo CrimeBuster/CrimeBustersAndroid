@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,42 +18,65 @@
     <requestFocus />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_currentTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/locationGPS"
+        android:layout_below="@+id/locationGPS"
         android:ems="10"
-        android:hint="@string/location"
+        android:hint="@string/time"
+        android:editable="false" />
+
+    <EditText
+        android:id="@+id/locationGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_report_header"
+        android:layout_below="@+id/activity_report_header"
+        android:layout_marginTop="14dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/location_gps"
+        android:text="40.110370, -88.226766" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_currentTime"
+        android:layout_below="@+id/editText_currentTime"
+        android:ems="10"
+        android:hint="@string/location_human"
         android:inputType="textPostalAddress" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/location"
+        android:layout_centerVertical="true"
         android:ems="10"
-        android:hint="@string/time"
-        android:inputType="time" />
+        android:hint="@string/desc"
+        android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="@string/desc" />
+        android:layout_alignLeft="@+id/message"
+        android:layout_alignParentBottom="true"
+        android:onClick="submitReport"
+       
+       
+        android:text="@string/submitReportButton" />
 
     <ImageButton
         android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_alignParentRight="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/locationGPS"
+        android:layout_toRightOf="@+id/locationGPS"
+        android:contentDescription="@string/gpsButton"
         android:src="@drawable/ic_gps" />
 
 </RelativeLayout>

@@ -59,5 +59,8 @@ public class MainFormActivity extends Activity {
 
 		intent.putExtra(report_message, report_message);
 		startActivity(intent);
+		
+		
+		
 	}
 }
