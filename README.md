@@ -8,7 +8,9 @@ Main Form Activity ->
 
 Report Form Activity ->
   -->Camera Activity
+  
 or
+
 Update Profile Activity ->
 
 
