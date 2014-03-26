@@ -44,6 +44,9 @@ public class ReportIncidentActivity extends Activity implements LocationListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report_incident);
+		
+		latitudeField = (TextView) findViewById(R.id.lonText);
+		longitudeField = (TextView) findViewById(R.id.latText);
 
 	    // Get the location manager
 	    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
