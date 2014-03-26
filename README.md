@@ -6,8 +6,7 @@ Login ->
 
 Main Form Activity ->
 
-Report Form Activity ->
-  -->Camera Activity
+Report Form Activity ->  -->Camera Activity
   
 or
 
