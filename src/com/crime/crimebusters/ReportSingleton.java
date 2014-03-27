@@ -2,10 +2,14 @@ package com.crime.crimebusters;
 
 import java.util.HashMap;
 
+import android.widget.ImageView;
+
 public class ReportSingleton {
-	private String url = "http://sadkhin.net/crimebusters/test_post.php?";
+	private String url = "http://illinoiscrimebusters.com/services/PostReport.ashx";
 	private String username ="test";
-	private String reportType ="1";
+	private int reportType = 0;
+	private String imageLocation;
+	
 	
 	private HashMap<String,String> report = new HashMap<String,String>();
 	
@@ -21,6 +25,11 @@ public class ReportSingleton {
 	public String getName(){
 		return username;
 		
+	}
+	
+	
+	public HashMap<String, String> copyReport(){
+		return this.report;
 	}
 	
 	
@@ -50,14 +59,20 @@ public class ReportSingleton {
 	/**
 	 * @return the reportType
 	 */
-	public String getReportType() {
+	public int getReportType() {
 		return reportType;
 	}
 	/**
 	 * @param reportType the reportType to set
 	 */
-	public void setReportType(String reportType) {
+	public void setReportType(int reportType) {
 		this.reportType = reportType;
+	}
+	public String getImageLocation() {
+		return imageLocation;
+	}
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
 	}
 
 	

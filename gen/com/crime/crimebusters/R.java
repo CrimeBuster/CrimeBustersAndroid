@@ -27,91 +27,126 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_gps=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_panic=0x7f020002;
-        public static final int ic_red_panic=0x7f020003;
+        public static final int gradient=0x7f020000;
+        public static final int gradient_background=0x7f020001;
+        public static final int gradient_background1=0x7f020002;
+        public static final int handcuffs=0x7f020003;
+        public static final int ic_gps=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int ic_panic=0x7f020006;
+        public static final int ic_red_panic=0x7f020007;
+        public static final int page2=0x7f020008;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f0a0014;
-        public static final int action_settings=0x7f0a0013;
-        public static final int activity_report_header=0x7f0a000b;
-        public static final int button1=0x7f0a0010;
-        public static final int editText_currentTime=0x7f0a000c;
-        public static final int email=0x7f0a0003;
-        public static final int imageButton1=0x7f0a0008;
-        public static final int imageButton2=0x7f0a0009;
-        public static final int location=0x7f0a000e;
-        public static final int locationGPS=0x7f0a000d;
-        public static final int login=0x7f0a0005;
-        public static final int login_form=0x7f0a0002;
-        public static final int login_status=0x7f0a0000;
-        public static final int login_status_message=0x7f0a0001;
-        public static final int main_activity_header=0x7f0a0007;
-        public static final int message=0x7f0a000f;
-        public static final int password=0x7f0a0004;
-        public static final int report_button=0x7f0a000a;
-        public static final int sign_in_button=0x7f0a0006;
-        public static final int textView1=0x7f0a0012;
-        public static final int textView2=0x7f0a0011;
+        public static final int action_forgot_password=0x7f0a0015;
+        public static final int action_settings=0x7f0a0014;
+        public static final int editText_currentTime=0x7f0a0000;
+        public static final int email=0x7f0a0009;
+        public static final int imageView1=0x7f0a0011;
+        public static final int location=0x7f0a0002;
+        public static final int locationGPS_lat=0x7f0a0001;
+        public static final int locationGPS_long=0x7f0a0005;
+        public static final int login=0x7f0a000b;
+        public static final int login_form=0x7f0a0008;
+        public static final int login_status=0x7f0a0006;
+        public static final int login_status_message=0x7f0a0007;
+        public static final int main_activity_header=0x7f0a000d;
+        public static final int message=0x7f0a0003;
+        public static final int password=0x7f0a000a;
+        public static final int report_button=0x7f0a000f;
+        public static final int report_ongoing_incident=0x7f0a0010;
+        public static final int settings=0x7f0a000e;
+        public static final int sign_in_button=0x7f0a000c;
+        public static final int submitReport=0x7f0a0004;
+        public static final int takePhoto=0x7f0a0012;
+        public static final int textView2=0x7f0a0013;
     }
     public static final class layout {
-        public static final int activity_login=0x7f030000;
-        public static final int activity_main_form=0x7f030001;
-        public static final int activity_report_incident=0x7f030002;
-        public static final int activity_submit_report=0x7f030003;
+        public static final int activity_high_priority_incident=0x7f030000;
+        public static final int activity_login=0x7f030001;
+        public static final int activity_main_form=0x7f030002;
+        public static final int activity_report_incident=0x7f030003;
+        public static final int activity_submit_report=0x7f030004;
+        public static final int activity_update_profile=0x7f030005;
     }
     public static final class menu {
-        public static final int httpsubmit_report=0x7f090000;
-        public static final int login=0x7f090001;
-        public static final int main_form=0x7f090002;
-        public static final int report_incident=0x7f090003;
+        public static final int high_priority_incident=0x7f090000;
+        public static final int httpsubmit_report=0x7f090001;
+        public static final int login=0x7f090002;
+        public static final int main_form=0x7f090003;
+        public static final int report_incident=0x7f090004;
+        public static final int update_profile=0x7f090005;
     }
     public static final class string {
-        public static final int action_forgot_password=0x7f060019;
+        public static final int action_forgot_password=0x7f06003e;
         public static final int action_settings=0x7f060001;
-        public static final int action_sign_in_register=0x7f060017;
-        public static final int action_sign_in_short=0x7f060018;
+        public static final int action_sign_in_register=0x7f06003c;
+        public static final int action_sign_in_short=0x7f06003d;
         public static final int app_name=0x7f060000;
+        public static final int button_clickPictures=0x7f060032;
+        public static final int button_createAudio=0x7f060034;
+        public static final int button_createReport=0x7f06001c;
+        public static final int button_createVideo=0x7f060036;
+        public static final int button_highPriority=0x7f060022;
+        public static final int button_login=0x7f060018;
+        public static final int button_lowPriority=0x7f060023;
+        public static final int button_saveChanges=0x7f060028;
+        public static final int button_submitHighPriorityReport=0x7f06002f;
+        public static final int button_submitLowPriorityReport=0x7f060030;
+        public static final int button_updateProfile=0x7f06001d;
+        public static final int click_pictures=0x7f060031;
+        public static final int create_audio=0x7f060033;
+        public static final int create_report=0x7f06001a;
+        public static final int create_video=0x7f060035;
+        public static final int crime_desc=0x7f06002b;
         public static final int date=0x7f06000c;
         public static final int desc=0x7f06000d;
-        public static final int error_field_required=0x7f06001e;
-        public static final int error_incorrect_password=0x7f06001d;
-        public static final int error_invalid_email=0x7f06001b;
-        public static final int error_invalid_password=0x7f06001c;
+        public static final int email=0x7f060026;
+        public static final int error_field_required=0x7f060043;
+        public static final int error_incorrect_password=0x7f060042;
+        public static final int error_invalid_email=0x7f060040;
+        public static final int error_invalid_password=0x7f060041;
+        public static final int first_name=0x7f060024;
         public static final int gpsButton=0x7f06000f;
         public static final int hello_world=0x7f060002;
+        public static final int high_priority=0x7f060020;
+        public static final int last_name=0x7f060025;
         public static final int location=0x7f06000a;
+        public static final int locationX=0x7f06002d;
+        public static final int locationY=0x7f06002e;
+        public static final int location_desc=0x7f06002c;
         public static final int location_gps=0x7f060011;
         public static final int location_human=0x7f060012;
-        public static final int login_progress_signing_in=0x7f06001a;
+        public static final int login_progress_signing_in=0x7f06003f;
+        public static final int low_priority=0x7f060021;
         public static final int main_activity_header=0x7f060005;
         public static final int panic=0x7f060008;
-        public static final int pref_default_display_name=0x7f060024;
-        public static final int pref_description_social_recommendations=0x7f060022;
+        public static final int phone=0x7f060027;
+        public static final int pref_default_display_name=0x7f060049;
+        public static final int pref_description_social_recommendations=0x7f060047;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f060026;
+        public static final int pref_header_data_sync=0x7f06004b;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f060020;
+        public static final int pref_header_general=0x7f060045;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f060029;
-        public static final int pref_ringtone_silent=0x7f06002c;
-        public static final int pref_title_add_friends_to_messages=0x7f060025;
-        public static final int pref_title_display_name=0x7f060023;
-        public static final int pref_title_new_message_notifications=0x7f06002a;
-        public static final int pref_title_ringtone=0x7f06002b;
-        public static final int pref_title_social_recommendations=0x7f060021;
-        public static final int pref_title_sync_frequency=0x7f060027;
-        public static final int pref_title_system_sync_settings=0x7f060028;
-        public static final int pref_title_vibrate=0x7f06002d;
+        public static final int pref_header_notifications=0x7f06004e;
+        public static final int pref_ringtone_silent=0x7f060051;
+        public static final int pref_title_add_friends_to_messages=0x7f06004a;
+        public static final int pref_title_display_name=0x7f060048;
+        public static final int pref_title_new_message_notifications=0x7f06004f;
+        public static final int pref_title_ringtone=0x7f060050;
+        public static final int pref_title_social_recommendations=0x7f060046;
+        public static final int pref_title_sync_frequency=0x7f06004c;
+        public static final int pref_title_system_sync_settings=0x7f06004d;
+        public static final int pref_title_vibrate=0x7f060052;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f060015;
-        public static final int prompt_password=0x7f060016;
+        public static final int prompt_email=0x7f06003a;
+        public static final int prompt_password=0x7f06003b;
         public static final int register=0x7f060007;
         public static final int report=0x7f060009;
         public static final int report_header=0x7f060004;
@@ -119,10 +154,22 @@ public final class R {
         public static final int submit=0x7f06000e;
         public static final int submitReportButton=0x7f060013;
         public static final int time=0x7f06000b;
+        public static final int title_activity_display_message=0x7f060019;
+        public static final int title_activity_high_priority_incident=0x7f060037;
+        public static final int title_activity_high_priority_report=0x7f060029;
         public static final int title_activity_httpsubmit_report=0x7f060010;
-        public static final int title_activity_login=0x7f060014;
+        public static final int title_activity_login=0x7f060039;
+        public static final int title_activity_low_priority_report=0x7f06002a;
+        public static final int title_activity_main=0x7f060014;
+        public static final int title_activity_profile=0x7f06001f;
+        public static final int title_activity_report=0x7f06001e;
         public static final int title_activity_report_incident=0x7f060003;
-        public static final int title_activity_settings=0x7f06001f;
+        public static final int title_activity_settings=0x7f060044;
+        public static final int title_activity_update_profile=0x7f060038;
+        public static final int update_profile=0x7f06001b;
+        public static final int user_name=0x7f060016;
+        public static final int user_password=0x7f060017;
+        public static final int welcome=0x7f060015;
     }
     public static final class style {
         /** 

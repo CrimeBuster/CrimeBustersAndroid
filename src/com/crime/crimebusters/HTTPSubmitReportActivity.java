@@ -30,8 +30,8 @@ public class HTTPSubmitReportActivity extends Activity {
 		
 		String nameReturn;
 		try {
-			nameReturn = h.execute("go").get();
-			nameView.setText("" + nameReturn);
+			nameReturn = h.execute("").get();
+			nameView.setText("HTTPREQUEST" + nameReturn);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
