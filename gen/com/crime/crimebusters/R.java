@@ -1017,7 +1017,7 @@ containing a value of this type.
         public static final int button1=0x7f060053;
         public static final int checkbox=0x7f06002d;
         public static final int collapseActionView=0x7f06000d;
-        public static final int createUserButton=0x7f06004d;
+        public static final int createUser_button=0x7f06004d;
         public static final int createUser_email=0x7f06004c;
         public static final int createUser_firstName=0x7f06004a;
         public static final int createUser_lastName=0x7f06004b;
