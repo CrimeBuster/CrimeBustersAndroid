@@ -47,7 +47,7 @@ public class RegisterUserActivity extends Activity {
 		String email = editEmail.getText().toString();
 		
 		Button buttonCreateUser = (Button) findViewById(R.id.createUser_button);
-		buttonCreateUser.setText("Creating user...");
+		buttonCreateUser.setText("Creating User...");
 		
 		Login login = new Login(buttonCreateUser);
 		String createUserStatus = login
