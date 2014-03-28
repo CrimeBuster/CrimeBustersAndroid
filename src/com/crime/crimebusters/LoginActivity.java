@@ -40,23 +40,28 @@ public class LoginActivity extends Activity {
 		buttonLogin.setText("Logging in...");
 		
 		EditText editUserName = (EditText) findViewById(R.id.email);
-		String username = editUserName.getText().toString();
+		String userName = editUserName.getText().toString();
 		
 		EditText editPassword = (EditText) findViewById(R.id.password);
 		String password = editPassword.getText().toString();
 		
-		Login login = new Login();
-		String loginStatus = login.validateCredentials(username, password);
+		Login login = new Login(buttonLogin);
+		String loginStatus = login.validateCredentials(userName, password);
 	
-		buttonLogin.setText("Log in");
-		if (loginStatus.startsWith("success")) {
+		if (loginStatus.equals("success")) {
 			Intent intent = new Intent(this, MainFormActivity.class);
-			intent.putExtra(EXTRA_MESSAGE, loginStatus);
+			intent.putExtra(EXTRA_MESSAGE, userName);
 			startActivity(intent);
 		} else {
 			Toast.makeText(getApplicationContext(), "Login failed! " + loginStatus, Toast.LENGTH_LONG).show();
 		}
 	}
 	
-
+	/**
+	 * Starts the create account activity
+	 * @param view
+	 */
+	public void createAccount(View view) {
+		startActivity(new Intent(this, RegisterUserActivity.class));
+	}	
 }
