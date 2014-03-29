@@ -3,7 +3,6 @@ package com.crime.crimebusters;
 import java.util.concurrent.ExecutionException;
 
 import com.crime.crimebusters.login.Login;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+/**
+ * Activity that register a user to our application.
+ * @author Chris
+ *
+ */
 public class RegisterUserActivity extends Activity {
 
 	@Override
@@ -30,6 +33,12 @@ public class RegisterUserActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Event handler for the Create User button
+	 * @param view The object that throws the event.
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	public void createUser(View view) throws InterruptedException, ExecutionException {
 		EditText editUserName = (EditText)findViewById(R.id.createUser_userName);
 		String userName = editUserName.getText().toString();
@@ -46,6 +55,13 @@ public class RegisterUserActivity extends Activity {
 		EditText editEmail = (EditText)findViewById(R.id.createUser_email);
 		String email = editEmail.getText().toString();
 		
+		if (!validateFields(userName, password, firstName, lastName, email)) {
+			Toast.makeText(this, 
+					"All fields are required. Please ensure that the email address is a valid Illinois address.", 
+					Toast.LENGTH_LONG).show();	
+			return;
+		}
+		
 		Button buttonCreateUser = (Button) findViewById(R.id.createUser_button);
 		buttonCreateUser.setText("Creating User...");
 		
@@ -58,7 +74,51 @@ public class RegisterUserActivity extends Activity {
 			Intent intent = new Intent(this, LoginActivity.class);
 			startActivity(intent);
 		} else {
-			Toast.makeText(this, "Login failed! " + createUserStatus, Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Create user failed! " + createUserStatus, Toast.LENGTH_LONG).show();
 		}
+	}
+
+	/**
+	 * Validates the fields before sending a web service call.
+	 * @param userName UserName of the account
+	 * @param password Password of the account 
+	 * @param firstName First name of the user
+	 * @param lastName Last name of the user
+	 * @param email a valid University of Illinois email.
+	 * @return true if validation is successful.
+	 */
+	private Boolean validateFields(String userName, String password, String firstName, String lastName, String email) {
+		
+		if (isFieldEmpty(userName, password, firstName, lastName, email)
+				|| isNotIllinoisEmail(email)) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Validates if the email is a University of Illinois email address.
+	 * @param email email address of the account
+	 * @return true if not an illinois email address.
+	 */
+	private boolean isNotIllinoisEmail(String email) {
+		return !email.substring(email.indexOf("@")).equals("@illinois.edu") &&
+				!email.substring(email.indexOf("@")).equals("@uiuc.com");
+	}
+
+	/**
+	 * Validates for empty fields.
+	 * @param userName UserName of the account
+	 * @param password Password of the account 
+	 * @param firstName First name of the user
+	 * @param lastName Last name of the user
+	 * @param email a valid University of Illinois email.
+	 * @return true if one field is empty.
+	 */
+	private boolean isFieldEmpty(String userName, String password,
+			String firstName, String lastName, String email) {
+		return userName.equals("") || password.equals("") || firstName.equals("") 
+				|| lastName.equals("") || email.equals("");
 	}
 }
