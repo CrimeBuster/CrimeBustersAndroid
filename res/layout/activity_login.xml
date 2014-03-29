@@ -47,8 +47,7 @@
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:text="crime.buster" />
+                android:singleLine="true" />
 
             <EditText
                 android:id="@+id/password"
@@ -60,8 +59,7 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:text="test123" />
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/sign_in_button"

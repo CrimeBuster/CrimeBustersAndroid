@@ -21,6 +21,8 @@ public class Login {
 			"http://illinoiscrimebusters.com/Services/ValidateUser.ashx";
 	private final String CREATE_USER_SERVICE = 
 			"http://illinoiscrimebusters.com/Services/CreateUser.ashx";
+	private final String DELETE_USER_SERVICE = 
+			"http://illinoiscrimebusters.com/Services/DeleteUser.ashx";
 	
 	public Login(Button loginButton) {
 		this._actionButton = loginButton;
@@ -78,6 +80,28 @@ public class Login {
 	}
 	
 	/**
+	 * Deletes a user from the online database. 
+	 * Mainly used for testing.
+	 * @param userName UserName of the user to be deleted.
+	 * @return status of deletion. "success" for successful deletion.
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
+	 */
+	public String deleteUser(String userName) throws InterruptedException, ExecutionException {
+		AsyncTask<String, Void, String> task = 
+				new DeleteUserTask().execute(userName);		
+		JSONObject jsonObject;
+		try {
+			jsonObject = new JSONObject(task.get());
+			return jsonObject.getString("result");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "failed";
+	}
+	
+	/**
 	 * Validates the user credentials asynchronously.
 	 * @author Chris
 	 *
@@ -127,6 +151,26 @@ public class Login {
 
 		protected void onPostExecute(String result) {
 			_actionButton.setText("Create User");
+		}
+	}
+	
+	/**
+	 * Deletes a user to the online database. 
+	 * Mainly used for unit testing.
+	 * @author Chris
+	 *
+	 */
+	private class DeleteUserTask extends AsyncTask<String, Void, String> {
+		protected String doInBackground(String... params) {
+			RestClient client = new RestClient(DELETE_USER_SERVICE);
+			client.AddParam("userName", params[0]);
+			try {
+			    client.Execute(RequestMethod.POST);
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
+
+			return client.getResponse();	
 		}
 	}
 }
