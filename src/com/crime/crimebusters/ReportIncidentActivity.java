@@ -187,7 +187,7 @@ public class ReportIncidentActivity extends Activity implements
 		reportSingleton.setKey("desc", message);
 		reportSingleton.setKey("lat", latitude);
 		reportSingleton.setKey("lng", longitude);
-		reportSingleton.setKey("timeStamp", "Feb");
+		reportSingleton.setKey("timeStamp", timestamp);
 	
 
 		int reportType = reportSingleton.getReportType();

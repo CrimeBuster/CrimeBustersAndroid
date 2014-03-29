@@ -71,7 +71,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 					.getValue()));
 		}
 		
-		parameters.add(new BasicNameValuePair("reportType", reportTypeString));
+		parameters.add(new BasicNameValuePair("reportTypeId", reportTypeString));
 		parameters.add(new BasicNameValuePair("userName", "boris.sadkhin"));
 
 		// Make it into a post

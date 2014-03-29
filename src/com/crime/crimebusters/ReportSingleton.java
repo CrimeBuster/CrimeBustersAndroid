@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 public class ReportSingleton {
 	private String url = "http://illinoiscrimebusters.com/services/PostReport.ashx";
+
+//	private String  url ="http://sadkhin.net/crimebusters/test_post.php";
 	private String username ="test";
 	private int reportType = 0;
 	private String imageLocation;
