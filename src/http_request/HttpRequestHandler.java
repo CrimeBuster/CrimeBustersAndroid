@@ -65,24 +65,29 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		// Map hashmap to arrayList for URLENCODEDENTITTY
 
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
+	
 		for (Map.Entry<String, String> entry : report.entrySet()) {
 			parameters.add(new BasicNameValuePair(entry.getKey(), entry
 					.getValue()));
 		}
+		
 		parameters.add(new BasicNameValuePair("reportType", reportTypeString));
 		parameters.add(new BasicNameValuePair("userName", "boris.sadkhin"));
 
 		// Make it into a post
 		UrlEncodedFormEntity post;
 		try {
+			//Encode it
 			post = new UrlEncodedFormEntity(parameters, "UTF-8");
-			
-			
-			System.out.println(post.toString());
+		
+			//Do the post
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(reportSingleton.getUrl());
 			httppost.setEntity(post);
 
+			
+			
+			//Get response
 			HttpResponse response = httpClient.execute(httppost);
 			HttpEntity entity = response.getEntity();
 

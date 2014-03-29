@@ -43,8 +43,8 @@ public class MainFormActivity extends Activity {
 
 	/** Called when the user clicks the Profile button */
 	public void profile(View view) {
-		Intent intent = new Intent(this, UpdateProfileActivity.class);
-		startActivity(intent);
+	//	Intent intent = new Intent(this, UpdateProfileActivity.class);
+//		startActivity(intent);
 	}
 	
 	
