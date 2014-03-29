@@ -64,7 +64,8 @@ public class LoginActivity extends Activity {
 			intent.putExtra(EXTRA_MESSAGE, userName);
 			startActivity(intent);
 		} else {
-			Toast.makeText(getApplicationContext(), "Login failed! " + loginStatus, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Login failed! " + 
+					loginStatus, Toast.LENGTH_LONG).show();
 		}
 	}
 	

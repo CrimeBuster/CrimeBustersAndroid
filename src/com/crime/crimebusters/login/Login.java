@@ -16,14 +16,14 @@ import android.widget.Button;
  *
  */
 public class Login {
-	private Button actionButton;
+	private Button _actionButton;
 	private final String VALIDATE_CREDENTIALS_SERVICE = 
 			"http://illinoiscrimebusters.com/Services/ValidateUser.ashx";
 	private final String CREATE_USER_SERVICE = 
 			"http://illinoiscrimebusters.com/Services/CreateUser.ashx";
 	
 	public Login(Button loginButton) {
-		this.actionButton = loginButton;
+		this._actionButton = loginButton;
 	}
 	
 	public Login() {
@@ -98,7 +98,7 @@ public class Login {
 		}
 
 		protected void onPostExecute(String result) {
-			actionButton.setText("Log in");
+			_actionButton.setText("Log in");
 		}
 	}
 	
@@ -126,7 +126,7 @@ public class Login {
 		}
 
 		protected void onPostExecute(String result) {
-			actionButton.setText("Create User");
+			_actionButton.setText("Create User");
 		}
 	}
 }
