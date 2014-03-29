@@ -55,11 +55,12 @@ public class ReportIncidentActivity extends Activity implements
 		if (reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
 			Intent intent = getIntent();
-			iv = (ImageView) findViewById(R.id.imageView1);
+			
 
 		} else {
 			setContentView(R.layout.activity_report_incident);
 			Intent intent = getIntent();
+			iv = (ImageView) findViewById(R.id.imageView1);
 
 		}
 
