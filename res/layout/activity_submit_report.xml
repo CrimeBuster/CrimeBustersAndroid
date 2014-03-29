@@ -14,13 +14,4 @@
         android:layout_height="wrap_content"
         android:text="Waiting for report" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="33dp"
-        android:text="TextView" />
-
 </RelativeLayout>

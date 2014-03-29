@@ -14,36 +14,40 @@
         android:layout_height="wrap_content"
         android:text="@string/main_activity_header" />
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/settings"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/main_activity_header"
-        android:layout_below="@+id/main_activity_header"
-        android:layout_marginTop="20dp"
-        android:onClick="panic"
-        android:src="@drawable/ic_panic" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/imageButton1"
+        android:layout_alignLeft="@+id/report_button"
+        android:layout_alignParentBottom="true"
         android:layout_weight="1"
-        android:onClick="panic"
-        android:src="@drawable/ic_red_panic" />
+        android:onClick="profile"
+        android:text="Update Your Profile" />
 
     <Button
         android:id="@+id/report_button"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton1"
-        android:layout_marginTop="39dp"
+        android:layout_above="@+id/settings"
+        android:layout_alignLeft="@+id/report_ongoing_incident"
+        android:layout_marginBottom="79dp"
         android:layout_weight="1"
         android:onClick="report"
-        android:text="report" />
+        android:text="Report Crime " />
+
+    <Button
+        android:id="@+id/report_ongoing_incident"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/report_button"
+        android:layout_alignLeft="@+id/main_activity_header"
+        android:layout_marginBottom="61dp"
+        android:layout_weight="1"
+        android:onClick="incident"
+        
+        android:text="Report Ongoing Incident" />
 
 </RelativeLayout>

@@ -1,19 +1,26 @@
 package http_request;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import com.crime.crimebusters.ReportSingleton;
-
 import android.os.AsyncTask;
+
+import com.crime.crimebusters.ReportSingleton;
 
 //AsyncTask <TypeOfVarArgParams , ProgressValue , ResultValue> .\\
 /*
@@ -35,35 +42,63 @@ import android.os.AsyncTask;
  This method is called by the framework once the doInBackground() method finishes.
  */
 
-public class HttpRequestHandler extends
-		AsyncTask<String, Void, String> {
+public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
-	private ReportSingleton reportSingleton =  ReportSingleton.getInstance();
-	@Override
-	protected String doInBackground(String... args) {
-		
-	
-		
-	//	DefaultHttpClient client
-		HttpGet httpGet = new HttpGet(
-				"http://illinoiscrimebusters.com/Services/PostReport.ashx?" +
-				"userName=chris.ababan" +
-				"&reportTypeId=1" +
-				"&latitude=40.106869" +
-				 "&longitude=-88.223755" +
-				 "&message=" + reportSingleton.returnKey("message") +
-				"&resourceUrl=testResourceUrl" +
-				"&timeStamp=2010-02-09%2018:06:20");
-		
+	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	private String responseString = "failure";
 
-		
-		String status=" AND THE HTTP WAS SUCCESSFULL";
-		
-		
-		DefaultHttpClient httpClient  = new DefaultHttpClient();
-		HttpResponse response = null;
+	/**
+	 * @return the success of failure of the post result of the report
+	 */
+	private String submitReport() {
+
+		HashMap<String, String> report = reportSingleton.copyReport();
+		int reportType = reportSingleton.getReportType();
+		String reportTypeString = String.valueOf(reportType);
+
+		if (reportType == 1) { // High Priority
+
+		} else {
+
+		}
+
+		// Map hashmap to arrayList for URLENCODEDENTITTY
+
+		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		for (Map.Entry<String, String> entry : report.entrySet()) {
+			parameters.add(new BasicNameValuePair(entry.getKey(), entry
+					.getValue()));
+		}
+		parameters.add(new BasicNameValuePair("reportType", reportTypeString));
+		parameters.add(new BasicNameValuePair("userName", "boris.sadkhin"));
+
+		// Make it into a post
+		UrlEncodedFormEntity post;
 		try {
-			response = httpClient.execute(httpGet);
+			post = new UrlEncodedFormEntity(parameters, "UTF-8");
+			
+			
+			System.out.println(post.toString());
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(reportSingleton.getUrl());
+			httppost.setEntity(post);
+
+			HttpResponse response = httpClient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+
+			if (response.getEntity().getContentLength() != 0) {
+			  responseString += EntityUtils.toString(entity, "UTF-8");
+				
+				//responseString = "ENTITY=" + entity.toString() + "POST=" + post.toString() +  " string="+		parameters.toString();
+				
+			} else {
+				responseString += "failure2";
+
+			}
+
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,79 +106,22 @@ public class HttpRequestHandler extends
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		HttpEntity entity = response.getEntity();
-		String responseString = "Nothing happened";
-		try {
-			responseString = EntityUtils.toString(entity, "UTF-8");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
 		return responseString;
-		
-	}
-	/*@Override
-	protected void onPostExecute(String result) {
-		// textView.setText(result);
-		   // TODO: check this.exception 
-        // TODO: check this.exception 
-        // TODO: do something with the feed
-        super.onPostExecute(result);
-        response("ONPOSTEXECUTE" + result);
-		
-	}
-	
-	private String response(String response){
-		return response;
-		
+
 	}
 
-	*/
-	
+	@Override
+	protected String doInBackground(String... args) {
+
+		/*
+		 * if (args[0].equals("report")){
+		 * 
+		 * return submitReport(); } else{ submitProfile();
+		 * 
+		 * }
+		 */
+		
+		return submitReport();
+
+	}
 }
-
-/*
- * 
- * public class HttpRequest extends AsyncTask<URL, String, Long> {
- * 
- * public boolean isConnected() { ConnectivityManager connectivityManager =
- * null; // NetworkInfo wifiNetwork = //
- * connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI); //
- * NetworkInfo mobileNetwork = connectivityManager //
- * .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
- * 
- * NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
- * 
- * return true;
- * 
- * 
- * // if (activeNetwork.isConnected()) { return true; } else { return // false;
- * // Connection unavailable }
- * 
- * }
- * 
- * protected Long doInBackground(URL... urls) { if (!isConnected()) { return
- * (long) 0.0; } else {
- * 
- * }
- * 
- * int count = urls.length; long totalSize = 0; for (int i = 0; i < count; i++)
- * { // // totalSize += Downloader.downloadFile(urls[i]); //
- * publishProgress((int) ((i / (float) count) * 100)); // Escape early if
- * cancel() is called if (isCancelled()) break; } return totalSize; }
- * 
- * protected void onProgressUpdate(String... progress) { //
- * setProgressPercent(progress[0]); }
- * 
- * protected void onPostExecute(String result) { // showDialog("Downloaded " +
- * result + " bytes"); }
- * 
- * 
- * }
- */
