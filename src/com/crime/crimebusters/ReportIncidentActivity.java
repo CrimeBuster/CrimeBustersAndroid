@@ -43,7 +43,7 @@ public class ReportIncidentActivity extends Activity implements
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 			iv.setImageBitmap(photo);
 			SaveImage savefile = new SaveImage();
-			savefile.SaveImage(this, photo);
+			savefile.SavePic(this, photo);
 		}
 	}
 	

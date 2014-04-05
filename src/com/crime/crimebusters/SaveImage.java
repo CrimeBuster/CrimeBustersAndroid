@@ -22,7 +22,7 @@ public class SaveImage {
 	private String NameOfFolder = "/CB_Folder";
 	private String NameOfFile = "CBImage"; //Prefix to each file
 	
-	public void SaveImage(Context context, Bitmap ImageToSave){
+	public void SavePic(Context context, Bitmap ImageToSave){
 		TheThis = context;
 		String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder;
 		String CurrentDateAndTime= getCurrentDateAndTime();
@@ -31,7 +31,7 @@ public class SaveImage {
 		if(!dir.exists()){
 			dir.mkdirs();
 		}
-		
+
 		File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
 		
 		try{
@@ -46,13 +46,13 @@ public class SaveImage {
 		catch(IOException e){UnableToSave();}
 	}
 	
+	//Android needs to scan directory and see what kind of files are available
 	private void MakeSureFileWasCreatedThenMakeAvailable(File file){
 		MediaScannerConnection.scanFile(TheThis, 
 										new String[] {file.toString()}, 
 										null, 
 										new MediaScannerConnection.OnScanCompletedListener() {
 											
-											//@Override
 											public void onScanCompleted(String path, Uri uri) {
 												Log.e("ExternalStorage","Scanned" + path + ":");
 												Log.e("ExternalStorage","-> uri=" + uri);
