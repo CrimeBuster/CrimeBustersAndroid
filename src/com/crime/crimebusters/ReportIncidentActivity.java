@@ -1,5 +1,8 @@
 package com.crime.crimebusters;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +11,10 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +34,7 @@ public class ReportIncidentActivity extends Activity implements
 	private LocationManager locationManager;
 	private String provider;
 	private ImageView iv;
+	private String ivString;
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -36,8 +42,19 @@ public class ReportIncidentActivity extends Activity implements
 		if (data != null) {
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 			iv.setImageBitmap(photo);
+			SaveImage savefile = new SaveImage();
+			savefile.SaveImage(this, photo);
 		}
 	}
+	
+	//Bitmap to String
+	public String BitMapToString(Bitmap iv){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        iv.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] arr=baos.toByteArray();
+        String result=Base64.encodeToString(arr, Base64.DEFAULT);
+        return ivString;
+  }
 
 	/**
 	 * @param v
@@ -45,7 +62,7 @@ public class ReportIncidentActivity extends Activity implements
 	public void takePicture(View v) {
 		Intent intent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(intent, 0);
+		startActivityForResult(intent, 0);		
 	}
 
 	@Override
