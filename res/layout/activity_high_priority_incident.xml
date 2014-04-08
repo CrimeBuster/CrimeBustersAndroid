@@ -12,61 +12,79 @@
 
     <EditText
         android:id="@+id/locationGPS_lat"
-        android:layout_width="125dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:editable="false"
         android:ems="10"
         android:hint="@string/location_gps"
-        android:text="lat" />
+        android:text="Latitude"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editText_currentTime"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/submitReport"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/locationGPS_lat"
-        android:layout_below="@+id/locationGPS_lat"
-        android:editable="false"
-        android:ems="10"
-        android:hint="@string/time" />
-
-    <EditText
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText_currentTime"
-        android:layout_below="@+id/editText_currentTime"
-        android:ems="10"
-        android:hint="@string/location_human"
-        android:inputType="textPostalAddress" />
+        android:layout_alignLeft="@+id/message"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:onClick="submitReport"
+        android:text="Submit Report"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_alignLeft="@+id/location"
-        android:layout_below="@+id/location"
+        android:layout_above="@+id/submitReport"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:hint="@string/desc"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/submitReport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/message"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="36dp"
-        android:onClick="submitReport"
-        android:text="submit report" />
+    <EditText
+        android:id="@+id/editText_currentTime"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/location"
+        android:layout_alignLeft="@+id/location"
+        android:layout_marginBottom="16dp"
+        android:editable="false"
+        android:ems="10"
+        android:textColor="#A0522D"
+        android:hint="@string/time"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/locationGPS_long"
-        android:layout_width="125dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_toRightOf="@+id/locationGPS_lat"
+        android:layout_above="@+id/editText_currentTime"
+        android:layout_alignLeft="@+id/editText_currentTime"
+        android:layout_marginBottom="16dp"
         android:editable="false"
         android:ems="10"
         android:hint="@string/location_gps"
-        android:text="long" />
+        android:text="Longitude"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/submitReport"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="@string/location_human"
+        android:inputType="textPostalAddress"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
