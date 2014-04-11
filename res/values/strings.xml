@@ -22,19 +22,16 @@
     <string name="location_human">Location , eg Top Floor</string>
     <string name="submitReportButton">Submit Report</string>
     <string name="title_activity_main">Main Menu</string>
-    <string name="welcome">Welcome to Crimebusters!</string>
+    <string name="welcome">Welcome </string>
     <string name="user_name">User Name</string>
     <string name="user_password">User Password</string>
     <string name="button_login">Log In</string>
     <string name="title_activity_display_message">DisplayMessageActivity</string>
     <string name="create_report">Click here to create report</string>
-    <string name="update_profile">Click here to update profile</string>
     <string name="button_createReport">Create Report</string>
     <string name="button_updateProfile">Update Profile</string>
     <string name="title_activity_report">Report</string>
     <string name="title_activity_profile">Profile</string>
-    <string name="high_priority">Click the below button if the crime is occurring currently</string>
-    <string name="low_priority">Click the below button if the crime has already occurred</string>
     <string name="button_highPriority">High Priority Report</string>
     <string name="button_lowPriority">Low Priority Report</string>
     <string name="first_name">First Name</string>
@@ -58,7 +55,7 @@
     <string name="button_createVideo">Capture Video</string>
     <string name="title_activity_high_priority_incident">HighPriorityIncidentActivity</string>
     <string name="title_activity_update_profile">UpdateProfileActivity</string>
-
+	<string name="updateUserButton">Update User</string>
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="hint_userName">Username</string>
     <string name="hint_password">Password</string>
@@ -66,5 +63,18 @@
     <string name="hint_lastName">Last Name</string>
     <string name="hint_email">Illinois Email Address</string>
     <string name="createUserButton">Create User</string>
+    <string name="changeThemeButton">Change Theme</string>
     <string name="action_create_account">Create Account</string>
+    <string name="default_email">crime.buster</string>
+    <string name="default_password">test123</string>
+    <string name="welocme">Welcome to Crime Busters</string>
+    <string name="update_profile">Update Your Profile</string>
+    <string name="low_priority">Report Low Priority Crime</string>
+    <string name="high_priority">Report High Priority Crime</string>
+    <string name="default_latitude">Latitude</string>
+    <string name="default_longitude">Longitude</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="submit_report">Submit Report</string>
+    <string name="wait_report">Waiting for Report</string>
+    <string name="changeLanguageButton">Change Language</string>
 </resources>

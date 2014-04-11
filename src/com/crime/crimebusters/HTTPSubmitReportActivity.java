@@ -16,6 +16,10 @@ public class HTTPSubmitReportActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		int theme= ((MyApplication) this.getApplication()).setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
+		
 		setContentView(R.layout.activity_submit_report);
 		Intent intent = getIntent();
 	
@@ -23,7 +27,7 @@ public class HTTPSubmitReportActivity extends Activity {
 		String name = r.getName();
 		 
 		TextView nameView = (TextView) findViewById(R.id.textView2);
-		
+		nameView.setTextSize(24);
 
 		HttpRequestHandler h = new HttpRequestHandler();
 		

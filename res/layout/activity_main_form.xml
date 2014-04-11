@@ -12,8 +12,8 @@
         android:id="@+id/main_activity_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Welcome to Crime Busters"
+        android:layout_marginTop="10dp"
+        android:text="@string/welcome"
         android:textSize="24dp"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
@@ -27,7 +27,7 @@
         android:layout_alignParentBottom="true"
         android:layout_weight="1"
         android:onClick="profile"
-        android:text="Update Your Profile"
+        android:text="@string/update_profile"
         android:textSize="24dp"
         android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
         android:layout_toRightOf="@+id/imageView1"
         android:layout_weight="1"
         android:onClick="report"
-        android:text="Report Low Priority Crime "
+        android:text="@string/low_priority"
         android:textSize="24dp"
         android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
         android:layout_marginBottom="60dp"
         android:layout_weight="1"
         android:onClick="incident"
-        android:text="Report High Priority Crime"
+        android:text="@string/high_priority"
         android:textSize="24dp"
         android:textStyle="bold" />
 

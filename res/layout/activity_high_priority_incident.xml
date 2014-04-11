@@ -21,6 +21,20 @@
         android:textSize="24dp"
         android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/locationGPS_long"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/editText_currentTime"
+        android:layout_alignLeft="@+id/editText_currentTime"
+        android:layout_marginBottom="16dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/location_gps"
+        android:text="Longitude"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    
     <Button
         android:id="@+id/submitReport"
         android:layout_width="match_parent"
@@ -60,19 +74,7 @@
         android:textSize="24dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/locationGPS_long"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_above="@+id/editText_currentTime"
-        android:layout_alignLeft="@+id/editText_currentTime"
-        android:layout_marginBottom="16dp"
-        android:editable="false"
-        android:ems="10"
-        android:hint="@string/location_gps"
-        android:text="Longitude"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+
 
     <EditText
         android:id="@+id/location"

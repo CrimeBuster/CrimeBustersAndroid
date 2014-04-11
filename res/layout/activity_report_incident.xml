@@ -15,27 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:editable="false"
-        android:textSize="24dp"
-        android:textStyle="bold"
         android:ems="10"
         android:hint="@string/location_gps"
-        android:text="Latitude" />
-
-    <Button
-        android:id="@+id/takePhoto"
-        android:layout_width="fill_parent"
-        android:layout_height="10dp"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_toRightOf="@+id/imageView1"
-        android:onClick="takePicture"
-        android:text="Take photo"
+        android:text="@string/default_latitude"
         android:textSize="24dp"
-        android:paddingLeft="0dp"
-        android:gravity="center"
         android:textStyle="bold" />
 
-    <EditText
+
+     <EditText
         android:id="@+id/locationGPS_long"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -46,7 +33,22 @@
         android:textSize="24dp"
         android:textStyle="bold"
         android:hint="@string/location_gps"
-        android:text="Longitude" />
+        android:text="@string/default_longitude" />
+    
+    
+    <Button
+        android:id="@+id/takePhoto"
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_toRightOf="@+id/imageView1"
+        android:onClick="takePicture"
+        android:text="@string/take_photo"
+        android:textSize="24dp"
+        android:paddingLeft="0dp"
+        android:gravity="center"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/submitReport"
@@ -55,9 +57,8 @@
         android:layout_alignLeft="@+id/imageView1"
         android:layout_alignParentBottom="true"
         android:onClick="submitReport"
-        android:text="Submit Report"
+        android:text="@string/submit_report"
         android:textSize="24dp"
-        android:paddingLeft="0dp"
         android:textStyle="bold" />
 
     <EditText

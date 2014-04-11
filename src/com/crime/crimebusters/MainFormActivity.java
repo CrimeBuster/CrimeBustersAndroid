@@ -18,6 +18,8 @@ public class MainFormActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_form);
+		int theme= ((MyApplication) this.getApplication()).setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
 
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
@@ -26,9 +28,10 @@ public class MainFormActivity extends Activity {
 		TextView textView = (TextView) findViewById(R.id.main_activity_header);
 		// EditText editText = (EditText) findViewById(R.id.editText1);
 
-		textView.setTextSize(30);
+		textView.setTextSize(24);
 
-		textView.setText(textView.getText() + "\n" + message);
+		if (message != null)
+		textView.setText(textView.getText() + " " + message);
 
 		// Set the text view as the activity layout
 		// setContentView(textView);
@@ -43,8 +46,8 @@ public class MainFormActivity extends Activity {
 
 	/** Called when the user clicks the Profile button */
 	public void profile(View view) {
-	//	Intent intent = new Intent(this, UpdateProfileActivity.class);
-//		startActivity(intent);
+		Intent intent = new Intent(this, UpdateProfileActivity.class);
+		startActivity(intent);
 	}
 	
 	

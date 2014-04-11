@@ -58,7 +58,7 @@
                 android:singleLine="true"
                 android:textStyle="bold"
                 android:textSize="24dp"
-                android:text="crime.buster" />
+                android:text="@string/default_email" />
 
             <EditText
                 android:id="@+id/password"
@@ -73,7 +73,7 @@
                 android:textStyle="bold"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="test123" />
+                android:text="@string/default_password" />
 
             <Button
                 android:id="@+id/sign_in_button"

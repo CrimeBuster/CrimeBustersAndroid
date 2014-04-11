@@ -68,7 +68,9 @@ public class ReportIncidentActivity extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		int theme= ((MyApplication) this.getApplication()).setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
+		
 		if (reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
 			Intent intent = getIntent();
