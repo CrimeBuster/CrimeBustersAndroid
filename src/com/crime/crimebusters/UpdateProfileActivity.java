@@ -16,8 +16,8 @@ public class UpdateProfileActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update_profile);
-		int theme= ((MyApplication) this.getApplication()).setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
+//		int theme= ((MyApplication) this.getApplication()).setTheme();
+//		getWindow().setBackgroundDrawableResource(theme);
 	}
 
 	@Override

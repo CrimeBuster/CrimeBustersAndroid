@@ -1,11 +1,8 @@
 package com.crime.crimebusters;
 
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -28,8 +25,8 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		int theme= ((MyApplication) this.getApplication()).setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
+//		int theme = ((MyApplication) this.getApplication()).setTheme();
+//		getWindow().setBackgroundDrawableResource(theme);
 		
        // Setting the layout for the activity
         setContentView(R.layout.activity_login);

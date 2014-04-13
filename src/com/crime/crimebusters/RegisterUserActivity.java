@@ -24,8 +24,8 @@ public class RegisterUserActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_user);
-		int theme= ((MyApplication) this.getApplication()).setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
+//		int theme= ((MyApplication) this.getApplication()).setTheme();
+//		getWindow().setBackgroundDrawableResource(theme);
 	}
 
 	@Override

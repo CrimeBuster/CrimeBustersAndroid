@@ -18,8 +18,8 @@ public class MainFormActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_form);
-		int theme= ((MyApplication) this.getApplication()).setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
+//		int theme= ((MyApplication) this.getApplication()).setTheme();
+//		getWindow().setBackgroundDrawableResource(theme);
 
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
