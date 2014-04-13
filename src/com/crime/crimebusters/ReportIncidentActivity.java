@@ -1,7 +1,6 @@
 package com.crime.crimebusters;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,13 +10,11 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;

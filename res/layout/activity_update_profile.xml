@@ -10,46 +10,77 @@
     tools:context=".RegisterUserActivity" >
 
     <EditText
-        android:id="@+id/createUser_password"
+        android:id="@+id/updateProfile_firstName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="@string/hint_password"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:layout_marginTop="40dp"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/createUser_firstName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold"
         android:hint="@string/hint_firstName"
-        android:inputType="text" />
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/createUser_lastName"
+        android:id="@+id/updateProfile_lastName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:hint="@string/hint_lastName"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:inputType="text" />
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/updateUser_button"
+    <EditText
+        android:id="@+id/updateProfile_phoneNumber"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="createUser"
+        android:hint="@string/hint_phoneNumber"
+        android:inputType="phone"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/updateProfile_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_address"
+        android:inputType="textPostalAddress"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/updateProfile_zipCode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_zipCode"
+        android:inputType="text"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+	<RadioGroup
+	    android:id="@+id/updateProfile_gender"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male" />
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female" />
+    </RadioGroup>
+    
+    <Button
+        android:id="@+id/updateProfile_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:textSize="24dp"
-        android:textStyle="bold"
+        android:onClick="onUpdateProfile"
+        android:text="@string/updateUserButton"
         android:textAlignment="4"
-        android:text="@string/updateUserButton" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/changeTheme_button"
@@ -59,7 +90,7 @@
         android:tag="1"
         android:text="@string/changeThemeButton"
         android:textAlignment="4"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
@@ -71,7 +102,7 @@
         android:tag="1"
         android:text="@string/changeLanguageButton"
         android:textAlignment="4"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold" />
-    
+
 </LinearLayout>

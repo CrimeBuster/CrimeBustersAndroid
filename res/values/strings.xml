@@ -54,8 +54,8 @@
     <string name="create_video">Click here to capture video</string>
     <string name="button_createVideo">Capture Video</string>
     <string name="title_activity_high_priority_incident">HighPriorityIncidentActivity</string>
-    <string name="title_activity_update_profile">UpdateProfileActivity</string>
-	<string name="updateUserButton">Update User</string>
+    <string name="title_activity_update_profile">Update Profile</string>
+	<string name="updateUserButton">Update Profile</string>
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="hint_userName">Username</string>
     <string name="hint_password">Password</string>
@@ -77,4 +77,9 @@
     <string name="submit_report">Submit Report</string>
     <string name="wait_report">Waiting for Report</string>
     <string name="changeLanguageButton">Change Language</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="hint_zipCode">Zip Code</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_phoneNumber">Phone Number</string>
 </resources>

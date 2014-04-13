@@ -3,19 +3,31 @@ package com.crime.crimebusters;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
+import com.crime.crimebusters.user.User;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class UpdateProfileActivity extends Activity{
-		
+	private String _userName;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update_profile);
+		_userName = getIntent().getStringExtra("userName");
+		
+		initializeFields();
+		
 //		int theme= ((MyApplication) this.getApplication()).setTheme();
 //		getWindow().setBackgroundDrawableResource(theme);
 	}
@@ -60,7 +72,6 @@ public class UpdateProfileActivity extends Activity{
 		startActivity(intent);
 	}
 	
-
 	/**
 	 * Event handler for the Change Language button
 	 * @param view The object that throws the event.
@@ -99,12 +110,110 @@ public class UpdateProfileActivity extends Activity{
 	}
 
 	/**
+	 * Initialize fields based from the data retrieved from the web service.
+	 */
+	private void initializeFields() {
+		User user = new User(_userName);
+		try {
+			user.getUserProfile();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		EditText editFirstName = (EditText) findViewById(R.id.updateProfile_firstName);
+		editFirstName.setText(user.getFirstName());
+		
+		EditText editLastName = (EditText) findViewById(R.id.updateProfile_lastName);
+		editLastName.setText(user.getLastName());
+		
+		EditText editPhoneNumber = (EditText) findViewById(R.id.updateProfile_phoneNumber);
+		editPhoneNumber.setText(user.getPhoneNumber());
+		
+		EditText editAddress = (EditText) findViewById(R.id.updateProfile_address);
+		editAddress.setText(user.getPhoneNumber());
+		
+		EditText editZipCode = (EditText) findViewById(R.id.updateProfile_zipCode);
+		editZipCode.setText(user.getZipCode());
+		
+		RadioGroup radioGender = (RadioGroup) findViewById(R.id.updateProfile_gender);
+
+		RadioButton selectedRadioButton = (RadioButton)radioGender.findViewById(
+				user.getGender().equals("M") ? R.id.male : R.id.female
+		);
+		selectedRadioButton.setChecked(true);
+	}
+	
+	/**
 	 * Event handler for the Update User button
 	 * @param view The object that throws the event.
-	 * @throws InterruptedException
-	 * @throws ExecutionException
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
 	 */
-	public void updateUser(View view) throws InterruptedException, ExecutionException {
+	public void onUpdateProfile(View view) throws InterruptedException, ExecutionException {
+		EditText editFirstName = (EditText) findViewById(R.id.updateProfile_firstName);
+		String firstName = editFirstName.getText().toString();
+		
+		EditText editLastName = (EditText) findViewById(R.id.updateProfile_lastName);
+		String lastName = editLastName.getText().toString();
+		
+		EditText editPhoneNumber = (EditText) findViewById(R.id.updateProfile_phoneNumber);
+		String phoneNumber = editPhoneNumber.getText().toString();
+		
+		EditText editAddress = (EditText) findViewById(R.id.updateProfile_address);
+		String address = editAddress.getText().toString();
+		
+		EditText editZipCode = (EditText) findViewById(R.id.updateProfile_zipCode);
+		String zipCode = editZipCode.getText().toString();
+		
+		RadioGroup radioGender = (RadioGroup) findViewById(R.id.updateProfile_gender);
+		int checkedGenderId = radioGender.getCheckedRadioButtonId();
+		String gender = checkedGenderId == R.id.male ? "M" : "F";
+		
+		if (!validateFields(firstName, lastName, checkedGenderId)) {
+			Toast.makeText(this, 
+					"First, last name and gender fields are required.", 
+					Toast.LENGTH_LONG).show();	
+			return;
+		}
+		
+		Button buttonUpdateProfile = (Button) findViewById(R.id.updateProfile_button);
+		buttonUpdateProfile.setText("Updating Profile...");
+		
+		User user = new User(_userName, firstName, lastName, gender, phoneNumber, address, zipCode, buttonUpdateProfile);
+		String updateStatus = user.updateProfile();
+		
+		if (updateStatus.equals("success")) {
+			Toast.makeText(this, "Successfully updated user profile", Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(this, "Error in updating user profile. Error Details: " + updateStatus, Toast.LENGTH_LONG).show();
+		}
+	}
 	
+	/**
+	 * Validates the firstName, lastName and gender before calling the web service
+	 * @param firstName First name of the user
+	 * @param lastName Last name of the user.
+	 * @param selectedGenderId ID of the selected gender
+	 * @return true if validation succeeds.
+	 */
+	private boolean validateFields(String firstName, String lastName, int selectedGenderId) {
+		if (isFieldEmpty(firstName, lastName) || selectedGenderId == -1) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Validates empty fields
+	 * @param firstName First name of the user
+	 * @param lastName Last name of the user.
+	 * @return true if both fields are non empty
+	 */
+	private boolean isFieldEmpty(String firstName, String lastName) {
+		return firstName.equals("") || lastName.equals("");
 	}
 }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainFormActivity extends Activity {
@@ -13,6 +12,7 @@ public class MainFormActivity extends Activity {
 	public static final String panic_message = "Panic Message";
 	public static final String report_message = "Report Message";
 	ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	private String _userName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,20 +21,13 @@ public class MainFormActivity extends Activity {
 //		int theme= ((MyApplication) this.getApplication()).setTheme();
 //		getWindow().setBackgroundDrawableResource(theme);
 
-		Intent intent = getIntent();
-		String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
-
-		// Create the text view
 		TextView textView = (TextView) findViewById(R.id.main_activity_header);
-		// EditText editText = (EditText) findViewById(R.id.editText1);
-
 		textView.setTextSize(24);
 
-		if (message != null)
-		textView.setText(textView.getText() + " " + message);
-
-		// Set the text view as the activity layout
-		// setContentView(textView);
+		_userName = getIntent().getStringExtra(LoginActivity.EXTRA_MESSAGE);
+		if (_userName != null) {
+			textView.setText(textView.getText() + " " + _userName);
+		}
 	}
 
 	@Override
@@ -47,6 +40,7 @@ public class MainFormActivity extends Activity {
 	/** Called when the user clicks the Profile button */
 	public void profile(View view) {
 		Intent intent = new Intent(this, UpdateProfileActivity.class);
+		intent.putExtra("userName", _userName);
 		startActivity(intent);
 	}
 	
