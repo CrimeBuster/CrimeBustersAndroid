@@ -26,6 +26,12 @@ public class UpdateProfileActivity extends Activity{
 		setContentView(R.layout.activity_update_profile);
 		_userName = getIntent().getStringExtra("userName");
 		
+		// TODO: Chris: Not a good code. For testing.
+		// Need to refactor.
+		if (_userName == null) {
+			_userName = "crime.buster"; 
+		}
+		
 		initializeFields();
 		
 //		int theme= ((MyApplication) this.getApplication()).setTheme();
@@ -215,5 +221,21 @@ public class UpdateProfileActivity extends Activity{
 	 */
 	private boolean isFieldEmpty(String firstName, String lastName) {
 		return firstName.equals("") || lastName.equals("");
+	}
+
+	/**
+	 * Gets the username for UI testing
+	 * @return 
+	 */
+	public String getUserName() {
+		return _userName;
+	}
+	
+	/**
+	 * Sets the userName for UI testing
+	 * @param userName
+	 */
+	public void setUserName(String userName) {
+		_userName = userName;
 	}
 }
