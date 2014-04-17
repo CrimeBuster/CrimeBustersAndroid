@@ -19,13 +19,16 @@ import android.widget.Toast;
  *
  */
 public class RegisterUserActivity extends Activity {
+	
+	ReportSingleton reportSingleton = ReportSingleton.getInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_user);
-//		int theme= ((MyApplication) this.getApplication()).setTheme();
-//		getWindow().setBackgroundDrawableResource(theme);
+
+		int theme = reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
 	}
 
 	@Override

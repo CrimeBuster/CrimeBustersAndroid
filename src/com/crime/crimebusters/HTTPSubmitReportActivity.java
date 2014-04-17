@@ -12,12 +12,13 @@ import android.view.Menu;
 import android.widget.TextView;
 
 public class HTTPSubmitReportActivity extends Activity {
-
+	ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		int theme= ((MyApplication) this.getApplication()).setTheme();
+		int theme= reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 		
 		setContentView(R.layout.activity_submit_report);

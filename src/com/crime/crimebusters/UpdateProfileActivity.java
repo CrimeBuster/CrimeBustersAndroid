@@ -20,6 +20,8 @@ import android.widget.Toast;
 public class UpdateProfileActivity extends Activity{
 	private String _userName;
 	
+	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,8 +36,8 @@ public class UpdateProfileActivity extends Activity{
 		
 		initializeFields();
 		
-//		int theme= ((MyApplication) this.getApplication()).setTheme();
-//		getWindow().setBackgroundDrawableResource(theme);
+		int theme= reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
 	}
 
 	@Override
@@ -54,24 +56,24 @@ public class UpdateProfileActivity extends Activity{
 	 */
 	public void changeTheme(View view) throws InterruptedException, ExecutionException {
 		
-		int theme= ((MyApplication) this.getApplication()).getThemeNumber();
+		int theme= reportSingleton.getThemeNumber();
 		
 		if (theme==R.style.MyTheme)
 		{
 			getWindow().setBackgroundDrawableResource(R.drawable.b6);
-			((MyApplication) this.getApplication()).setThemeNumber(R.style.MyTheme2);
+			reportSingleton.setThemeNumber(R.style.MyTheme2);
 		}
 		
 		else if (theme==R.style.MyTheme2)
 		{
 			getWindow().setBackgroundDrawableResource(R.drawable.g1);
-			((MyApplication) this.getApplication()).setThemeNumber(R.style.MyTheme3);
+			reportSingleton.setThemeNumber(R.style.MyTheme3);
 		}
 		
 		else if (theme==R.style.MyTheme3)
 		{
 			getWindow().setBackgroundDrawableResource(R.drawable.c4);
-			((MyApplication) this.getApplication()).setThemeNumber(R.style.MyTheme);
+			reportSingleton.setThemeNumber(R.style.MyTheme);
 		}
 		
 		Intent intent = new Intent(this, MainFormActivity.class);

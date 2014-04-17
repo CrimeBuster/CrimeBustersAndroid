@@ -70,11 +70,16 @@
     <string name="welocme">bjɛ̃vəny vers Crimebusters!</string>
     <string name="update_profile">actualiser ta profil</string>
     <string name="low_priority">apprendre à bas priorité Crime</string>
-    <string name="high_priority">apprendre à élevé priorité</string>
+    <string name="high_priority">apprendre à élevé priorité Crime</string>
     <string name="default_latitude">Latitude</string>
     <string name="default_longitude">Longitude</string>
     <string name="take_photo">conduire photo</string>
     <string name="submit_report">soumettre apprendre à</string>
     <string name="wait_report">attente durant apprendre à</string>
     <string name="changeLanguageButton">changer langue</string>
+    <string name="male">Mâle</string>
+    <string name="female">Femelle</string>
+    <string name="hint_zipCode">Code postal</string>
+    <string name="hint_address">Adresse</string>
+    <string name="hint_phoneNumber">Numéro de téléphone</string>
 </resources>

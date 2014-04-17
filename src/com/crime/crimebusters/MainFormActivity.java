@@ -18,8 +18,9 @@ public class MainFormActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_form);
-//		int theme= ((MyApplication) this.getApplication()).setTheme();
-//		getWindow().setBackgroundDrawableResource(theme);
+		
+		int theme = reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
 
 		TextView textView = (TextView) findViewById(R.id.main_activity_header);
 		textView.setTextSize(24);
