@@ -1,4 +1,4 @@
-package com.crime.crimebusters.user;
+package com.illinoiscrimebusters.user;
 
 import java.util.concurrent.ExecutionException;
 
@@ -8,8 +8,8 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.widget.Button;
 
-import com.crime.crimebusters.util.RequestMethod;
-import com.crime.crimebusters.util.RestClient;
+import com.illinoiscrimebusters.util.RequestMethod;
+import com.illinoiscrimebusters.util.RestClient;
 
 /**
  * Contains the business logic for the User module.

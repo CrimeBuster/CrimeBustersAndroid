@@ -1,4 +1,4 @@
-package http_request;
+package com.illinoiscrimebusters.httpRequest;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -20,7 +20,7 @@ import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
 
-import com.crime.crimebusters.ReportSingleton;
+import com.illinoiscrimebusters.crimebusters.ReportSingleton;
 
 //AsyncTask <TypeOfVarArgParams , ProgressValue , ResultValue> .\\
 /*

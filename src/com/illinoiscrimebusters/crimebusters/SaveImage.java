@@ -1,4 +1,4 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.io.File;
 import java.io.FileNotFoundException;

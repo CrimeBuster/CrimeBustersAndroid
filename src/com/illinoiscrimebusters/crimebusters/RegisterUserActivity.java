@@ -1,8 +1,9 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.util.concurrent.ExecutionException;
 
-import com.crime.crimebusters.login.Login;
+import com.crime.crimebusters.R;
+import com.illinoiscrimebusters.login.Login;
 
 import android.app.Activity;
 import android.content.Intent;

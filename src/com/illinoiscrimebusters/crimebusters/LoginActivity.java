@@ -1,4 +1,4 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.util.concurrent.ExecutionException;
 
@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.crime.crimebusters.login.Login;
+import com.crime.crimebusters.R;
+import com.illinoiscrimebusters.login.Login;
 
 /**
  * Activity for the Login page.

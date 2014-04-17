@@ -1,6 +1,8 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.io.ByteArrayOutputStream;
+
+import com.crime.crimebusters.R;
 
 import android.app.Activity;
 import android.content.Context;

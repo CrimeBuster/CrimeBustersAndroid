@@ -25,12 +25,12 @@
         android:theme="@style/AppTheme" >
 <!--         android:name="MyApplication"> -->
         <activity
-            android:name="com.crime.crimebusters.MainFormActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.MainFormActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.crime.crimebusters.LoginActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateVisible" >
@@ -41,43 +41,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.crime.crimebusters.SettingsActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.crime.crimebusters.ReportIncidentActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.ReportIncidentActivity"
             android:label="@string/title_activity_report_incident"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.crime.crimebusters.HTTPSubmitReportActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.HTTPSubmitReportActivity"
             android:label="@string/title_activity_httpsubmit_report"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.crime.crimebusters.MainActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.crime.crimebusters.HighPriorityIncidentActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.HighPriorityIncidentActivity"
             android:label="@string/title_activity_high_priority_incident"
-            android:parentActivityName="com.crime.crimebusters.MainFormActivity" >
+            android:parentActivityName="com.illinoiscrimebusters.crimebusters.MainFormActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.crime.crimebusters.MainFormActivity" />
         </activity>
         <activity
-            android:name="com.crime.crimebusters.UpdateProfileActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.UpdateProfileActivity"
             android:label="@string/title_activity_update_profile"
-            android:parentActivityName="com.crime.crimebusters.MainFormActivity" >
+            android:parentActivityName="com.illinoiscrimebusters.crimebusters.MainFormActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.crime.crimebusters.MainFormActivity" />
         </activity>
         <activity
-            android:name="com.crime.crimebusters.RegisterUserActivity"
+            android:name="com.illinoiscrimebusters.crimebusters.RegisterUserActivity"
             android:label="@string/title_activity_register_user" >
         </activity>
     </application>

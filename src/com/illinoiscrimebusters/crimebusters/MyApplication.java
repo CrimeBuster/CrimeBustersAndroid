@@ -1,4 +1,6 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
+
+import com.crime.crimebusters.R;
 
 import android.app.Application;
 

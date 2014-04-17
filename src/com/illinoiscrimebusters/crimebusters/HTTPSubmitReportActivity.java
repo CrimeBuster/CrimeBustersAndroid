@@ -1,9 +1,10 @@
-package com.crime.crimebusters;
-
-import http_request.HttpRequestHandler;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
+
+import com.crime.crimebusters.R;
+import com.illinoiscrimebusters.httpRequest.HttpRequestHandler;
 
 import android.app.Activity;
 import android.content.Intent;

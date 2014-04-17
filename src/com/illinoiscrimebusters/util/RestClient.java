@@ -1,4 +1,4 @@
-package com.crime.crimebusters.util;
+package com.illinoiscrimebusters.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

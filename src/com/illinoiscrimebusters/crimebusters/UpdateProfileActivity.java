@@ -1,9 +1,10 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-import com.crime.crimebusters.user.User;
+import com.crime.crimebusters.R;
+import com.illinoiscrimebusters.user.User;
 
 import android.app.Activity;
 import android.content.Intent;

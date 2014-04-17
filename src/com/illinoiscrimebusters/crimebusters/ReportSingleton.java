@@ -1,6 +1,8 @@
-package com.crime.crimebusters;
+package com.illinoiscrimebusters.crimebusters;
 
 import java.util.HashMap;
+
+import com.crime.crimebusters.R;
 
 import android.widget.ImageView;
 
