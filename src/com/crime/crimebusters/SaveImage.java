@@ -33,6 +33,8 @@ public class SaveImage {
 		}
 
 		File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
+		String imageLocation = file_path + NameOfFile + CurrentDateAndTime + ".jpg";
+		ReportSingleton.getInstance().setImageLocation(imageLocation);
 		
 		try{
 			FileOutputStream fOut = new FileOutputStream(file);

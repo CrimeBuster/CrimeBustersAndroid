@@ -45,8 +45,11 @@ import com.crime.crimebusters.ReportSingleton;
 public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
 	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
-	private String responseString = "failure";
+	private String responseString = "";
 
+	
+	
+	
 	/**
 	 * @return the success of failure of the post result of the report
 	 */
@@ -56,13 +59,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		int reportType = reportSingleton.getReportType();
 		String reportTypeString = String.valueOf(reportType);
 
-		if (reportType == 1) { // High Priority
-
-		} else {
-
-		}
-
-		// Map hashmap to arrayList for URLENCODEDENTITTY
+	
 
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
 	
@@ -94,7 +91,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 			if (response.getEntity().getContentLength() != 0) {
 			  responseString += EntityUtils.toString(entity, "UTF-8");
 				
-				//responseString = "ENTITY=" + entity.toString() + "POST=" + post.toString() +  " string="+		parameters.toString();
+			
 				
 			} else {
 				responseString += "failure2";
@@ -118,14 +115,6 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... args) {
 
-		/*
-		 * if (args[0].equals("report")){
-		 * 
-		 * return submitReport(); } else{ submitProfile();
-		 * 
-		 * }
-		 */
-		
 		return submitReport();
 
 	}
