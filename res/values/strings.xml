@@ -82,4 +82,5 @@
     <string name="hint_zipCode">Zip Code</string>
     <string name="hint_address">Address</string>
     <string name="hint_phoneNumber">Phone Number</string>
+    <string name="illinois_logo">Illinois Logo</string>
 </resources>

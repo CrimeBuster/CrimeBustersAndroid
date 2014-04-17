@@ -16,7 +16,7 @@ import android.widget.Button;
  * @author Chris
  *
  */
-public class Login {
+public class Login {	
 	private Button _actionButton;
 	private final String VALIDATE_CREDENTIALS_SERVICE = 
 			"http://illinoiscrimebusters.com/Services/ValidateUser.ashx";
@@ -120,10 +120,6 @@ public class Login {
 			}
 
 			return client.getResponse();	
-		}
-
-		protected void onPostExecute(String result) {
-			_actionButton.setText("Log in");
 		}
 	}
 	

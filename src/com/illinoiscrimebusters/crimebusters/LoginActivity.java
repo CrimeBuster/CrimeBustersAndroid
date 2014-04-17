@@ -3,11 +3,13 @@ package com.illinoiscrimebusters.crimebusters;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class LoginActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 	
 	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	private SharedPreferences preference;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +35,25 @@ public class LoginActivity extends Activity {
 		int theme = reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 		
-       // Setting the layout for the activity
-        setContentView(R.layout.activity_login);
+		setContentView(R.layout.activity_login);   
 	}
+	
+	/**
+	 * If the user has been authenticated before, 
+	 * redirect the user to the Main Form
+	 */
+	protected void onResume() {
+		super.onResume();
+		preference = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean isAuthenticated = preference.getBoolean("isAuthenticated", false);
+		
+		if (isAuthenticated) {
+			String userName = preference.getString("userName", "");
+			redirectToMainForm(userName);
+			LoginActivity.this.finish();
+		}
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,7 +66,10 @@ public class LoginActivity extends Activity {
 	 * Event handler for the login button 
 	 * @throws ExecutionException 
 	 * @throws InterruptedException */
-	public void sendMessage(View view) throws InterruptedException, ExecutionException {		
+	public void loginUser(View view) throws InterruptedException, ExecutionException {	
+		ProgressDialog dialog = 
+				ProgressDialog.show(this, "Logging in", "Please wait...", true);
+		
 		EditText editUserName = (EditText) findViewById(R.id.email);
 		String userName = editUserName.getText().toString();
 		
@@ -57,23 +79,23 @@ public class LoginActivity extends Activity {
 		if (!validateFields(userName, password)) {
 			Toast.makeText(this, 
 					"Username and password required.", 
-					Toast.LENGTH_LONG).show();	
+					Toast.LENGTH_LONG).show();
+			dialog.dismiss();
 			return;
 		}
 		
-		Button buttonLogin = (Button) findViewById(R.id.sign_in_button);
-		buttonLogin.setText("Logging in...");
-		
-		Login login = new Login(buttonLogin);
+		Login login = new Login();
 		String loginStatus = login.validateCredentials(userName, password);
 	
-		if (loginStatus.equals("success")) {
-			Intent intent = new Intent(this, MainFormActivity.class);
-			intent.putExtra(EXTRA_MESSAGE, userName);
-			startActivity(intent);
+		if (loginStatus.equals("success")) {			
+			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+			pref.edit().putBoolean("isAuthenticated", true).putString("userName", userName).commit();
+			
+			redirectToMainForm(userName);
 		} else {
 			Toast.makeText(getApplicationContext(), "Login failed! " + 
 					loginStatus, Toast.LENGTH_LONG).show();
+			dialog.dismiss();
 		}
 	}
 	
@@ -108,4 +130,15 @@ public class LoginActivity extends Activity {
 	public void createAccount(View view) {
 		startActivity(new Intent(this, RegisterUserActivity.class));
 	}	
+
+	/**
+	 * Redirects the user to the MainFormActivity 
+	 * if the user has been authenticated previously.
+	 * @param userName userName of the user.
+	 */
+	private void redirectToMainForm(String userName) {
+		Intent intent = new Intent(this, MainFormActivity.class);
+		intent.putExtra(EXTRA_MESSAGE, userName);		
+		startActivity(intent);
+	}
 }
