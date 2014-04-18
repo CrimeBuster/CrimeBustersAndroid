@@ -4,13 +4,15 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import com.crime.crimebusters.R;
+import com.illinoiscrimebusters.login.Login;
 import com.illinoiscrimebusters.user.User;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,14 +41,6 @@ public class UpdateProfileActivity extends Activity{
 		
 		int theme= reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.update_profile, menu);
-		return true;
 	}
 
 	/**
@@ -240,5 +234,25 @@ public class UpdateProfileActivity extends Activity{
 	 */
 	public void setUserName(String userName) {
 		_userName = userName;
+	}
+	
+	public void onLogoutClick(View view) {		
+		new AlertDialog.Builder(this)
+	    .setTitle("Logout")
+	    .setMessage("Are you sure you want to log out?")
+	    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	    		Login login = new Login();
+	    		login.logOut(UpdateProfileActivity.this);
+	    		Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+	    		startActivity(intent);
+	        }
+	     })
+	    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	           dialog.cancel();
+	        }
+	     })
+	    .setIcon(android.R.drawable.ic_dialog_alert).show();
 	}
 }

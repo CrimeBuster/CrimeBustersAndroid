@@ -8,7 +8,10 @@ import org.json.JSONObject;
 import com.illinoiscrimebusters.util.RequestMethod;
 import com.illinoiscrimebusters.util.RestClient;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 
 /**
@@ -18,6 +21,7 @@ import android.widget.Button;
  */
 public class Login {	
 	private Button _actionButton;
+	private SharedPreferences _preference;
 	private final String VALIDATE_CREDENTIALS_SERVICE = 
 			"http://illinoiscrimebusters.com/Services/ValidateUser.ashx";
 	private final String CREATE_USER_SERVICE = 
@@ -100,6 +104,12 @@ public class Login {
 			e.printStackTrace();
 		}
 		return "failed";
+	}
+	
+	public void logOut(Activity activity) {
+		_preference = 
+				PreferenceManager.getDefaultSharedPreferences(activity);
+		_preference.edit().clear().commit();
 	}
 	
 	/**

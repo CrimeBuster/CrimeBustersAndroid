@@ -79,7 +79,7 @@
         android:onClick="onUpdateProfile"
         android:text="@string/updateUserButton"
         android:textAlignment="4"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
@@ -90,7 +90,7 @@
         android:tag="1"
         android:text="@string/changeThemeButton"
         android:textAlignment="4"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
@@ -102,7 +102,19 @@
         android:tag="1"
         android:text="@string/changeLanguageButton"
         android:textAlignment="4"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
+    
+	<Button
+        android:id="@+id/updateProfile_logout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLogoutClick"
+        android:tag="1"
+        android:text="@string/logout"
+        android:textAlignment="4"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>

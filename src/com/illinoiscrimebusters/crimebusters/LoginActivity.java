@@ -89,6 +89,7 @@ public class LoginActivity extends Activity {
 			pref.edit().putBoolean("isAuthenticated", true).putString("userName", userName).commit();
 			
 			redirectToMainForm(userName);
+			dialog.dismiss();
 		} else {
 			Toast.makeText(getApplicationContext(), "Login failed! " + 
 					loginStatus, Toast.LENGTH_LONG).show();
