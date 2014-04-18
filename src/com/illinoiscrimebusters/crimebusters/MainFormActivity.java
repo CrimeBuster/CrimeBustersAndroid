@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 public class MainFormActivity extends Activity {
 
-	public static final String panic_message = "Panic Message";
-	public static final String report_message = "Report Message";
-	ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	public static final String PANIC_MESSAGE = "Panic Message";
+	public static final String REPORT_MESSAGE = "Report Message";
+	ReportSingleton _reportSingleton = ReportSingleton.getInstance();
 	private String _userName;
 
 	@Override
@@ -21,13 +21,13 @@ public class MainFormActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_form);
 		
-		int theme = reportSingleton.setTheme();
+		int theme = _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 
 		TextView textView = (TextView) findViewById(R.id.main_activity_header);
 		textView.setTextSize(24);
 
-		_userName = getIntent().getStringExtra(LoginActivity.EXTRA_MESSAGE);
+		_userName = getIntent().getStringExtra("userName");
 		if (_userName != null) {
 			textView.setText(textView.getText() + " " + _userName);
 		}
@@ -51,14 +51,14 @@ public class MainFormActivity extends Activity {
 	/** Called when the user clicks the Incident button */
 	public void incident(View view) {
 		Intent intent = new Intent(this, ReportIncidentActivity.class);
-		reportSingleton.setReportType(1); //high
+		_reportSingleton.setReportType(1); //high
 		startActivity(intent);
 	}
 
 	/** Called when the user clicks the Report button */
 	public void report(View view) {
 		Intent intent = new Intent(this, ReportIncidentActivity.class);
-		reportSingleton.setReportType(2); //low priority
+		_reportSingleton.setReportType(2); //low priority
 		startActivity(intent);
 	}
 }

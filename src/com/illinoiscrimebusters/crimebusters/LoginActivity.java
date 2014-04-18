@@ -21,18 +21,15 @@ import com.illinoiscrimebusters.login.Login;
  * @author Chris
  *
  */
-public class LoginActivity extends Activity {
-
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-	
-	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
-	private SharedPreferences preference;
+public class LoginActivity extends Activity {	
+	private ReportSingleton _reportSingleton = ReportSingleton.getInstance();
+	private SharedPreferences _preference;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		int theme = reportSingleton.setTheme();
+		int theme = _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 		
 		setContentView(R.layout.activity_login);   
@@ -44,11 +41,11 @@ public class LoginActivity extends Activity {
 	 */
 	protected void onResume() {
 		super.onResume();
-		preference = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean isAuthenticated = preference.getBoolean("isAuthenticated", false);
+		_preference = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean isAuthenticated = _preference.getBoolean("isAuthenticated", false);
 		
 		if (isAuthenticated) {
-			String userName = preference.getString("userName", "");
+			String userName = _preference.getString("userName", "");
 			redirectToMainForm(userName);
 			LoginActivity.this.finish();
 		}
@@ -138,7 +135,7 @@ public class LoginActivity extends Activity {
 	 */
 	private void redirectToMainForm(String userName) {
 		Intent intent = new Intent(this, MainFormActivity.class);
-		intent.putExtra(EXTRA_MESSAGE, userName);		
+		intent.putExtra("userName", userName);		
 		startActivity(intent);
 	}
 }
