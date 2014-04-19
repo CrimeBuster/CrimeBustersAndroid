@@ -9,12 +9,13 @@ import com.illinoiscrimebusters.user.User;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,8 +23,7 @@ import android.widget.Toast;
 
 public class UpdateProfileActivity extends Activity{
 	private String _userName;
-	
-	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
+	private ReportSingleton _reportSingleton = ReportSingleton.getInstance();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +31,14 @@ public class UpdateProfileActivity extends Activity{
 		setContentView(R.layout.activity_update_profile);
 		_userName = getIntent().getStringExtra("userName");
 		
-		// TODO: Chris: Not a good code. For testing.
-		// Need to refactor.
-		if (_userName == null) {
-			_userName = "crime.buster"; 
-		}
-		
-		initializeFields();
-		
-		int theme= reportSingleton.setTheme();
+		int theme= _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		initializeFields();
 	}
 
 	/**
@@ -51,24 +49,24 @@ public class UpdateProfileActivity extends Activity{
 	 */
 	public void changeTheme(View view) throws InterruptedException, ExecutionException {
 		
-		int theme= reportSingleton.getThemeNumber();
+		int theme= _reportSingleton.getThemeNumber();
 		
 		if (theme==R.style.MyTheme)
 		{
 			getWindow().setBackgroundDrawableResource(R.drawable.b6);
-			reportSingleton.setThemeNumber(R.style.MyTheme2);
+			_reportSingleton.setThemeNumber(R.style.MyTheme2);
 		}
 		
 		else if (theme==R.style.MyTheme2)
 		{
 			getWindow().setBackgroundDrawableResource(R.drawable.g1);
-			reportSingleton.setThemeNumber(R.style.MyTheme3);
+			_reportSingleton.setThemeNumber(R.style.MyTheme3);
 		}
 		
 		else if (theme==R.style.MyTheme3)
 		{
 			getWindow().setBackgroundDrawableResource(R.drawable.c4);
-			reportSingleton.setThemeNumber(R.style.MyTheme);
+			_reportSingleton.setThemeNumber(R.style.MyTheme);
 		}
 		
 		Intent intent = new Intent(this, MainFormActivity.class);
@@ -98,6 +96,11 @@ public class UpdateProfileActivity extends Activity{
 		startActivity(intent);
 	}
 	
+	/**
+	 * Event handler for the change language button
+	 * @param name
+	 * @param config
+	 */
 	private void changeLocale(String name, Configuration config) {
 		// Creating an instance of Locale for French language
         Locale locale = new Locale(name);
@@ -115,7 +118,24 @@ public class UpdateProfileActivity extends Activity{
 	/**
 	 * Initialize fields based from the data retrieved from the web service.
 	 */
-	private void initializeFields() {
+	private void initializeFields() {		
+		EditText editFirstName = (EditText) findViewById(R.id.updateProfile_firstName);
+		EditText editLastName = (EditText) findViewById(R.id.updateProfile_lastName);
+		EditText editPhoneNumber = (EditText) findViewById(R.id.updateProfile_phoneNumber);
+		EditText editAddress = (EditText) findViewById(R.id.updateProfile_address);
+		EditText editZipCode = (EditText) findViewById(R.id.updateProfile_zipCode);
+		RadioGroup radioGender = (RadioGroup) findViewById(R.id.updateProfile_gender);
+		
+		SharedPreferences preference = 
+				getSharedPreferences("cbPreference", MODE_PRIVATE);
+		String firstName = preference.getString("firstName", "");
+		
+		if (!firstName.equals("")) {		
+			initializeFromPreference(editFirstName, editLastName,
+					editPhoneNumber, editAddress, editZipCode, radioGender,
+					preference);
+			return;
+		}
 		User user = new User(_userName);
 		try {
 			user.getUserProfile();
@@ -127,27 +147,63 @@ public class UpdateProfileActivity extends Activity{
 			e.printStackTrace();
 		}
 		
-		EditText editFirstName = (EditText) findViewById(R.id.updateProfile_firstName);
+		initializeFromDatabase(editFirstName, editLastName, editPhoneNumber,
+				editAddress, editZipCode, radioGender, user);
+	}
+
+	/**
+	 * Initialize the values from the database
+	 * @param editFirstName FirstName Edit Text
+	 * @param editLastName LastNameName Edit Text
+	 * @param editPhoneNumber PhoneNumber Edit Text
+	 * @param editAddress Address Edit Text
+	 * @param editZipCode ZipCode Edit Text
+	 * @param radioGender Gender Radio button
+	 * @param user User object from the database
+	 */
+	private void initializeFromDatabase(EditText editFirstName,
+			EditText editLastName, EditText editPhoneNumber,
+			EditText editAddress, EditText editZipCode, RadioGroup radioGender,
+			User user) {
 		editFirstName.setText(user.getFirstName());
-		
-		EditText editLastName = (EditText) findViewById(R.id.updateProfile_lastName);
 		editLastName.setText(user.getLastName());
-		
-		EditText editPhoneNumber = (EditText) findViewById(R.id.updateProfile_phoneNumber);
 		editPhoneNumber.setText(user.getPhoneNumber());
-		
-		EditText editAddress = (EditText) findViewById(R.id.updateProfile_address);
-		editAddress.setText(user.getPhoneNumber());
-		
-		EditText editZipCode = (EditText) findViewById(R.id.updateProfile_zipCode);
+		editAddress.setText(user.getAddress());
 		editZipCode.setText(user.getZipCode());
-		
-		RadioGroup radioGender = (RadioGroup) findViewById(R.id.updateProfile_gender);
 
 		RadioButton selectedRadioButton = (RadioButton)radioGender.findViewById(
 				user.getGender().equals("M") ? R.id.male : R.id.female
 		);
 		selectedRadioButton.setChecked(true);
+	}
+
+	/**
+	 * Initialize the values from the sharedPreference 
+	 * to eliminate the need to query the database everytime a user access the update profile.
+	 * @param editFirstName FirstName Edit Text
+	 * @param editLastName LastNameName Edit Text
+	 * @param editPhoneNumber PhoneNumber Edit Text
+	 * @param editAddress Address Edit Text
+	 * @param editZipCode ZipCode Edit Text
+	 * @param radioGender Gender Radio button
+	 * @param preference Shared preference object.
+	 */
+	private void initializeFromPreference(EditText editFirstName,
+			EditText editLastName, EditText editPhoneNumber,
+			EditText editAddress, EditText editZipCode, RadioGroup radioGender,
+			SharedPreferences preference) {
+		editFirstName.setText(preference.getString("firstName", ""));
+		editLastName.setText(preference.getString("lastName", ""));
+		editPhoneNumber.setText(preference.getString("phoneNumber", ""));
+		editAddress.setText(preference.getString("address", ""));
+		editZipCode.setText(preference.getString("zipCode", ""));
+
+		RadioButton selectedRadioButton = (RadioButton)radioGender.findViewById(
+				preference.getString("zipCode", "").equals("M") ? R.id.male : R.id.female
+		);
+		selectedRadioButton.setChecked(true);
+		
+		return;
 	}
 	
 	/**
@@ -157,6 +213,9 @@ public class UpdateProfileActivity extends Activity{
 	 * @throws InterruptedException 
 	 */
 	public void onUpdateProfile(View view) throws InterruptedException, ExecutionException {
+		ProgressDialog dialog = 
+				ProgressDialog.show(this, "Updating profile", "Please wait...", true);
+		
 		EditText editFirstName = (EditText) findViewById(R.id.updateProfile_firstName);
 		String firstName = editFirstName.getText().toString();
 		
@@ -180,19 +239,20 @@ public class UpdateProfileActivity extends Activity{
 			Toast.makeText(this, 
 					"First, last name and gender fields are required.", 
 					Toast.LENGTH_LONG).show();	
+			dialog.dismiss();
 			return;
 		}
 		
-		Button buttonUpdateProfile = (Button) findViewById(R.id.updateProfile_button);
-		buttonUpdateProfile.setText("Updating Profile...");
-		
-		User user = new User(_userName, firstName, lastName, gender, phoneNumber, address, zipCode, buttonUpdateProfile);
-		String updateStatus = user.updateProfile();
+		User user = new User(_userName, firstName, lastName, gender, phoneNumber, address, zipCode);
+		String updateStatus = user.updateProfile(UpdateProfileActivity.this);
 		
 		if (updateStatus.equals("success")) {
 			Toast.makeText(this, "Successfully updated user profile", Toast.LENGTH_LONG).show();
+			dialog.dismiss();
+			
 		} else {
 			Toast.makeText(this, "Error in updating user profile. Error Details: " + updateStatus, Toast.LENGTH_LONG).show();
+			dialog.dismiss();
 		}
 	}
 	
@@ -219,23 +279,11 @@ public class UpdateProfileActivity extends Activity{
 	private boolean isFieldEmpty(String firstName, String lastName) {
 		return firstName.equals("") || lastName.equals("");
 	}
-
-	/**
-	 * Gets the username for UI testing
-	 * @return 
-	 */
-	public String getUserName() {
-		return _userName;
-	}
 	
 	/**
-	 * Sets the userName for UI testing
-	 * @param userName
+	 * Event handler for the logout button.
+	 * @param view
 	 */
-	public void setUserName(String userName) {
-		_userName = userName;
-	}
-	
 	public void onLogoutClick(View view) {		
 		new AlertDialog.Builder(this)
 	    .setTitle("Logout")

@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -41,9 +40,9 @@ public class LoginActivity extends Activity {
 	 */
 	protected void onResume() {
 		super.onResume();
-		_preference = PreferenceManager.getDefaultSharedPreferences(this);
+		_preference = getSharedPreferences("cbPreference", MODE_PRIVATE);
 		boolean isAuthenticated = _preference.getBoolean("isAuthenticated", false);
-		
+				
 		if (isAuthenticated) {
 			String userName = _preference.getString("userName", "");
 			redirectToMainForm(userName);
@@ -84,8 +83,8 @@ public class LoginActivity extends Activity {
 		Login login = new Login();
 		String loginStatus = login.validateCredentials(userName, password);
 	
-		if (loginStatus.equals("success")) {			
-			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+		if (loginStatus.equals("success")) {	
+			SharedPreferences pref = getSharedPreferences("cbPreference", MODE_PRIVATE);
 			pref.edit().putBoolean("isAuthenticated", true).putString("userName", userName).commit();
 			
 			redirectToMainForm(userName);

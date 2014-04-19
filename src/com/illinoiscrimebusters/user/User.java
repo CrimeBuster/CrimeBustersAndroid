@@ -5,8 +5,10 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.widget.Button;
 
 import com.illinoiscrimebusters.util.RequestMethod;
 import com.illinoiscrimebusters.util.RestClient;
@@ -25,8 +27,7 @@ public class User {
 	private String _phoneNumber;
 	private String _address;
 	private String _zipCode;
-
-	private Button _actionButton;
+	private SharedPreferences _preference;
 	private final String UPDATE_PROFILE_SERVICE = "http://illinoiscrimebusters.com/Services/UpdateProfile.ashx";
 	private final String USER_INFO_SERVICE = "http://illinoiscrimebusters.com/Services/GetUserInfo.ashx";
 	
@@ -39,8 +40,7 @@ public class User {
 	}
 
 	public User(String userName, String firstName, String lastName,
-			String gender, String phoneNumber, String address, String zipCode,
-			Button updateUserButton) {
+			String gender, String phoneNumber, String address, String zipCode) {
 		_userName = userName;
 		_firstName = firstName;
 		_lastName = lastName;
@@ -48,7 +48,6 @@ public class User {
 		_phoneNumber = phoneNumber;
 		_address = address;
 		_zipCode = zipCode;
-		_actionButton = updateUserButton;
 	}
 
 	/**
@@ -56,14 +55,26 @@ public class User {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public String updateProfile() throws InterruptedException, ExecutionException {
+	public String updateProfile(Activity activity) throws InterruptedException, ExecutionException {
 		AsyncTask<String, Void, String> task = new UpdateUserTask().execute(
 				_firstName, _lastName, _gender, _phoneNumber, _address,
 				_zipCode, _userName);
-		JSONObject jsonObject;
 		try {
-			jsonObject = new JSONObject(task.get());
-			return jsonObject.getString("result");
+			JSONObject jsonObject = new JSONObject(task.get());
+			String result = jsonObject.getString("result");
+			
+			if (result.equals("success")) {
+				activity.getApplicationContext();
+				_preference = activity.getSharedPreferences("cbPreference", Context.MODE_PRIVATE);
+				_preference.edit().putString("firstName", _firstName)
+				.putString("lastName", _lastName)
+				.putString("phoneNumber", _phoneNumber)
+				.putString("address", _address)
+				.putString("zipCode", _zipCode)
+				.putString("gender", _gender).commit();
+			}
+			
+			return result;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,10 +129,6 @@ public class User {
 			}
 
 			return client.getResponse();
-		}
-
-		protected void onPostExecute(String result) {
-			_actionButton.setText("Update Profile");
 		}
 	}
 	

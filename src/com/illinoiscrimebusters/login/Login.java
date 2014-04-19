@@ -9,9 +9,9 @@ import com.illinoiscrimebusters.util.RequestMethod;
 import com.illinoiscrimebusters.util.RestClient;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.widget.Button;
 
 /**
@@ -107,8 +107,8 @@ public class Login {
 	}
 	
 	public void logOut(Activity activity) {
-		_preference = 
-				PreferenceManager.getDefaultSharedPreferences(activity);
+		activity.getApplicationContext();
+		_preference = activity.getSharedPreferences("cbPreference", Context.MODE_PRIVATE);
 		_preference.edit().clear().commit();
 	}
 	
