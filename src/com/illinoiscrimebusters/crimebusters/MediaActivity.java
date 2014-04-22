@@ -83,8 +83,8 @@ public class MediaActivity extends Activity  {
 	      stop = (Button)findViewById(R.id.button2);
 	      play = (Button)findViewById(R.id.button3);
 	      
-//	      stop.setEnabled(false);
-//	      play.setEnabled(false);
+	      stop.setEnabled(false);
+	      play.setEnabled(false);
 	      outputFile = Environment.getExternalStorageDirectory().
 	      getAbsolutePath() + "/myrecording.3gp";;
 
@@ -138,8 +138,8 @@ public class MediaActivity extends Activity  {
 	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }
-//	      start.setEnabled(false);
-//	      stop.setEnabled(true);
+	      start.setEnabled(false);
+	      stop.setEnabled(true);
 	      Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_LONG).show();
 
 	   }
@@ -149,8 +149,8 @@ public class MediaActivity extends Activity  {
 	      myAudioRecorder.stop();
 	      myAudioRecorder.release();
 	      myAudioRecorder  = null;
-//	      stop.setEnabled(false);
-//	      play.setEnabled(true);
+	      stop.setEnabled(false);
+	      play.setEnabled(true);
 	      Toast.makeText(getApplicationContext(), "Audio recorded successfully",
 	      Toast.LENGTH_LONG).show();
 	   }
