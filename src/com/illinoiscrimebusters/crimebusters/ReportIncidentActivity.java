@@ -34,6 +34,7 @@ public class ReportIncidentActivity extends Activity implements
 	private String provider;
 	private ImageView iv;
 	private String ivString;
+	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -175,6 +176,12 @@ public class ReportIncidentActivity extends Activity implements
 		longitudeField.setText(String.valueOf(lng));
 
 	}
+	
+	/** Called when the user clicks the record video button */
+	public void video(View view) {
+		Intent intent = new Intent(this, VideoRecorderActivity.class);
+		startActivity(intent);
+	}
 
 	public void populateReport() {
 
@@ -220,4 +227,6 @@ public class ReportIncidentActivity extends Activity implements
 		}
 
 	}
+	
+	
 }
