@@ -19,7 +19,7 @@
     <string name="gpsButton">gpsButton</string>
     <string name="title_activity_httpsubmit_report">Report Submission Status</string>
     <string name="location_gps">Current GPS / Triangulation Position</string>
-    <string name="location_human">Location , eg Top Floor</string>
+    <string name="location_human">Location, eg Top Floor</string>
     <string name="submitReportButton">Submit Report</string>
     <string name="title_activity_main">Main Menu</string>
     <string name="welcome">Welcome </string>
@@ -55,7 +55,7 @@
     <string name="button_createVideo">Capture Video</string>
     <string name="title_activity_high_priority_incident">HighPriorityIncidentActivity</string>
     <string name="title_activity_update_profile">Update Profile</string>
-	<string name="updateUserButton">Update Profile</string>
+    <string name="updateUserButton">Update Profile</string>
     <string name="title_activity_register_user">RegisterUser</string>
     <string name="hint_userName">Username</string>
     <string name="hint_password">Password</string>
@@ -84,4 +84,16 @@
     <string name="hint_phoneNumber">Phone Number</string>
     <string name="illinois_logo">Illinois Logo</string>
     <string name="logout">Log out</string>
+    <string name="add_media">Add Media</string>
+    <string name="title_activity_media">Media</string>
+    <string name="click_picture1">Click first picture</string>
+    <string name="click_picture2">Click second picture</string>
+    <string name="click_picture3">Click third picture</string>
+    <string name="returnToSubmit">Return to Submission</string>
+    <string name="Recording">Record Audio</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="play">play</string>
+    <string name="button_video">Record Video</string>
+
 </resources>

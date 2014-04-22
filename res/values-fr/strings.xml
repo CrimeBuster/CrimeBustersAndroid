@@ -18,7 +18,7 @@
     <string name="submit">soumettre</string>
     <string name="gpsButton">gpsbouton</string>
     <string name="title_activity_httpsubmit_report">apprendre à soumission statut</string>
-    <string name="location_gps">courant GPS / triangulation position</string>
+    <string name="location_gps">courant GPS/triangulation position</string>
     <string name="location_human"> localité, exemple capote étage</string>
     <string name="submitReportButton">soumettre apprendre à</string>
     <string name="title_activity_main">principal carte</string>
@@ -82,4 +82,17 @@
     <string name="hint_zipCode">Code postal</string>
     <string name="hint_address">Adresse</string>
     <string name="hint_phoneNumber">Numéro de téléphone</string>
+    <string name="illinois_logo">Illinois Logo</string>
+    <string name="logout">ˈlɒg Out</string>
+    <string name="add_media">ajouter des médias</string>
+    <string name="title_activity_media">médias</string>
+    <string name="click_picture1">Cliquez sur Première image</string>
+    <string name="click_picture2">Cliquez deuxième image</string>
+    <string name="click_picture3">Cliquez troisième photo</string>
+    <string name="returnToSubmit">revenir à la soumission</string>
+    <string name="Recording">enregistrement audio</string>
+    <string name="start">Démarrer</string>
+    <string name="stop">stop</string>
+    <string name="play">Lecture</string>
+    <string name="button_video">enregistrement vidéo</string>
 </resources>

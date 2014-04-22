@@ -1,12 +1,14 @@
 package com.illinoiscrimebusters.crimebusters;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Locale;
 
 import com.crime.crimebusters.R;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
@@ -63,6 +65,15 @@ public class ReportIncidentActivity extends Activity implements
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(intent, 0);		
 	}
+	
+
+	/**
+	 * @param v
+	 */
+	public void addMedia(View v) {
+		Intent intent = new Intent(this, MediaActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +81,20 @@ public class ReportIncidentActivity extends Activity implements
 		
 		int theme= reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
+		
+		String lang = reportSingleton.getLanguage();
+		if (lang!=null)
+		{
+			if (lang.equalsIgnoreCase("English"))
+				changeLocale("en");
+			
+			if (lang.equalsIgnoreCase("French"))
+				changeLocale("fr");
+			
+			if (lang.equalsIgnoreCase("Spanish"))
+				changeLocale("es");
+			
+		}
 		
 		if (reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
@@ -88,6 +113,28 @@ public class ReportIncidentActivity extends Activity implements
 
 	}
 
+	/**
+	 * Event handler for the change language button
+	 * @param language
+	 */
+	private void changeLocale(String language) {
+		
+		Configuration config = getResources().getConfiguration();
+		
+		// Creating an instance of Locale for French language
+        Locale locale = new Locale(language);
+ 
+        // Setting locale of the configuration to French language
+        config.locale = locale;
+ 
+        // Updating the application configuration
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+ 
+        // Setting the title for the activity, after configuration change
+        setTitle(R.string.app_name);
+        
+	}
+	
 	private void time() {
 		Time now = new Time();
 		now.setToNow();
@@ -130,6 +177,10 @@ public class ReportIncidentActivity extends Activity implements
 
 	public void submitReport(View view) {
 		populateReport();
+		reportSingleton.setIv1Done(false);
+		reportSingleton.setIv2Done(false);
+		reportSingleton.setIv3Done(false);
+		
 		Intent intent = new Intent(this, HTTPSubmitReportActivity.class);
 		startActivity(intent);
 	}

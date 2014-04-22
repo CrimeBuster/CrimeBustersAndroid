@@ -3,10 +3,6 @@ package com.illinoiscrimebusters.crimebusters;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-import com.crime.crimebusters.R;
-import com.illinoiscrimebusters.login.Login;
-import com.illinoiscrimebusters.user.User;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -16,14 +12,31 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class UpdateProfileActivity extends Activity{
+import com.crime.crimebusters.R;
+import com.illinoiscrimebusters.login.Login;
+import com.illinoiscrimebusters.user.User;
+
+/**
+ * 
+ * @author Khushbu
+ * Activity for the UpdateProfile page
+ *
+ */
+public class UpdateProfileActivity extends Activity implements OnItemSelectedListener{
 	private String _userName;
 	private ReportSingleton _reportSingleton = ReportSingleton.getInstance();
+	Spinner spinnerLanguage;
+    EditText selLanguage;
+	private String[] language= {"English", "French", "Spanish"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +46,82 @@ public class UpdateProfileActivity extends Activity{
 		
 		int theme= _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
+
+		spinnerLanguage = (Spinner) findViewById(R.id.spinnerlanguage);
+		
+		ArrayAdapter<String> adapter_language = new ArrayAdapter<String>(this,
+			    android.R.layout.simple_spinner_item, language);
+		adapter_language.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		
+		spinnerLanguage.setAdapter(adapter_language);
+		spinnerLanguage.setOnItemSelectedListener(this);
+		spinnerLanguage.setSelection(_reportSingleton.getPosition(), false);
+		
+		languagePreference();
+		
 	}
+
+	private void languagePreference() {
+		String selLang = (String) spinnerLanguage.getSelectedItem();
+		if (selLang.equalsIgnoreCase("English"))
+			changeLocale("en");
+		
+		if (selLang.equalsIgnoreCase("French"))
+			changeLocale("fr");
+		
+		if (selLang.equalsIgnoreCase("Spanish"))
+			changeLocale("es");
+	}
+
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			   long id) 
+	{
+		spinnerLanguage.setSelection(position);
+	
+		String selLang = (String) spinnerLanguage.getSelectedItem();
+		
+		for (int i=0; i<3; i++)
+		{
+			if (language[i].equalsIgnoreCase(selLang))
+			{
+				_reportSingleton.setPosition(i);
+			}
+					
+		}	
+	}
+	
+	 @Override
+	 public void onNothingSelected(AdapterView<?> arg0) {
+	  // TODO Auto-generated method stub
+
+	  }
+
+
+	 /**
+		 * Event handler for the Change Theme button
+		 * @param view The object that throws the event.
+		 * @throws InterruptedException
+		 * @throws ExecutionException
+     */
+	public void changeLanguage(View view) throws InterruptedException, ExecutionException {
+		
+		languagePreference();
+		String selLang = (String) spinnerLanguage.getSelectedItem();		
+		_reportSingleton.setLanguage(selLang);
+		
+		onCreate(null); 
+		onResume();
+			
+		}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
+		languagePreference();
 		initializeFields();
+		
+		spinnerLanguage.setSelection(_reportSingleton.getPosition(), false);
+		languagePreference();
 	}
 
 	/**
@@ -59,53 +142,31 @@ public class UpdateProfileActivity extends Activity{
 		
 		else if (theme==R.style.MyTheme2)
 		{
-			getWindow().setBackgroundDrawableResource(R.drawable.g1);
+			getWindow().setBackgroundDrawableResource(R.drawable.orange);
 			_reportSingleton.setThemeNumber(R.style.MyTheme3);
 		}
 		
 		else if (theme==R.style.MyTheme3)
 		{
-			getWindow().setBackgroundDrawableResource(R.drawable.c4);
+			getWindow().setBackgroundDrawableResource(R.drawable.c8);
 			_reportSingleton.setThemeNumber(R.style.MyTheme);
 		}
-		
-		Intent intent = new Intent(this, MainFormActivity.class);
-		startActivity(intent);
 	}
 	
-	/**
-	 * Event handler for the Change Language button
-	 * @param view The object that throws the event.
-	 * @throws InterruptedException
-	 * @throws ExecutionException
-	 */
-	public void changeLanguage(View view) throws InterruptedException, ExecutionException {
-
-        Configuration config = getResources().getConfiguration();
-		
-        if ("en".equalsIgnoreCase(config.locale.getLanguage()))
-        {
-        	changeLocale("fr", config);
-        }
-        else if ("fr".equalsIgnoreCase(config.locale.getLanguage()))
-        {
-        	changeLocale("en", config);
-        }
-        
-        Intent intent = new Intent(this, MainFormActivity.class);
-		startActivity(intent);
-	}
 	
 	/**
 	 * Event handler for the change language button
-	 * @param name
+	 * @param language
 	 * @param config
 	 */
-	private void changeLocale(String name, Configuration config) {
-		// Creating an instance of Locale for French language
-        Locale locale = new Locale(name);
+	private void changeLocale(String language) {
+		
+		Configuration config = getResources().getConfiguration();
+		
+		// Creating an instance of Locale 
+        Locale locale = new Locale(language);
  
-        // Setting locale of the configuration to French language
+        // Setting locale of the configuration 
         config.locale = locale;
  
         // Updating the application configuration
@@ -113,6 +174,7 @@ public class UpdateProfileActivity extends Activity{
  
         // Setting the title for the activity, after configuration change
         setTitle(R.string.app_name);
+        
 	}
 
 	/**

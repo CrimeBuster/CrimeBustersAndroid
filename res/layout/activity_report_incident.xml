@@ -35,16 +35,15 @@
         android:hint="@string/location_gps"
         android:text="@string/default_longitude" />
     
-    
     <Button
-        android:id="@+id/takePhoto"
+        android:id="@+id/addMedia"
         android:layout_width="fill_parent"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
         android:layout_alignTop="@+id/imageView1"
         android:layout_toRightOf="@+id/imageView1"
-        android:onClick="takePicture"
-        android:text="@string/take_photo"
+        android:onClick="addMedia"
+        android:text="@string/add_media"
         android:textSize="24dp"
         android:paddingLeft="0dp"
         android:gravity="center"
@@ -85,17 +84,6 @@
         android:textSize="24dp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignLeft="@+id/message"
-        android:layout_below="@+id/message"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_launcher"
-        android:textSize="24dp"
-        android:textStyle="bold" />
-
     <EditText
         android:id="@+id/editText_currentTime"
         android:layout_width="match_parent"
@@ -108,6 +96,16 @@
         android:textColorHighlight="#000000"
         android:ems="10"
         android:hint="@string/time"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignLeft="@+id/message"
+        android:layout_below="@+id/message"
+        android:src="@drawable/ic_launcher"
         android:textSize="24dp"
         android:textStyle="bold" />
 

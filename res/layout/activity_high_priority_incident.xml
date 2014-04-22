@@ -43,7 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:onClick="submitReport"
-        android:text="Submit Report"
+        android:text="@string/submit_report"
         android:textSize="24dp"
         android:textStyle="bold" />
 

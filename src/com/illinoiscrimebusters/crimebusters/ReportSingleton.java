@@ -13,11 +13,63 @@ public class ReportSingleton {
 	private String username ="test";
 	private int reportType = 0;
 	private String imageLocation;
+
+	private boolean iv1Done = false;
+	private boolean iv2Done = false;
+	private boolean iv3Done = false;
 	
+	public boolean isIv1Done() {
+		return iv1Done;
+	}
+
+	public void setIv1Done(boolean iv1Done) {
+		this.iv1Done = iv1Done;
+	}
+
+	public boolean isIv2Done() {
+		return iv2Done;
+	}
+
+	public void setIv2Done(boolean iv2Done) {
+		this.iv2Done = iv2Done;
+	}
+
+	public boolean isIv3Done() {
+		return iv3Done;
+	}
+
+	public void setIv3Done(boolean iv3Done) {
+		this.iv3Done = iv3Done;
+	}
+
+	private String language;
 	
+	public String getLanguage() {
+		if (language == null)
+		{
+			language = "English";
+		}
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public int position;
+
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
 	private HashMap<String,String> report = new HashMap<String,String>();
 	
-	private int themeNumber = R.style.MyTheme;
+	private int themeNumber ;
 
     public int getThemeNumber() {
         return themeNumber;
@@ -29,23 +81,31 @@ public class ReportSingleton {
 
     public int setTheme()
     {
-	    if (themeNumber==R.style.MyTheme)
+    	
+    	int th = 0;
+    	if (themeNumber==0)
+    	{
+    		themeNumber = R.style.MyTheme;
+    	}
+    	
+    	if (themeNumber==R.style.MyTheme)
 		{
-			return R.drawable.c4;
+			th = R.drawable.c8;
 			
 		}
 		
 		else if (themeNumber==R.style.MyTheme2)
 		{
-			return R.drawable.b6;
+			th = R.drawable.b6;
 			
 		}
 	    
 		else if (themeNumber==R.style.MyTheme3)
 		{
-			return R.drawable.g1;
+			th = R.drawable.orange;
 		}
-	    return 0;
+	    
+    	return th;
     }
 	
 	public String returnKey(String key){

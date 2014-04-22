@@ -1,6 +1,7 @@
 package com.illinoiscrimebusters.crimebusters;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import com.crime.crimebusters.R;
@@ -8,6 +9,7 @@ import com.illinoiscrimebusters.httpRequest.HttpRequestHandler;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
@@ -22,6 +24,20 @@ public class HTTPSubmitReportActivity extends Activity {
 		int theme = reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 
+		String lang = reportSingleton.getLanguage();
+		if (lang!=null)
+		{
+			if (lang.equalsIgnoreCase("English"))
+				changeLocale("en");
+			
+			if (lang.equalsIgnoreCase("French"))
+				changeLocale("fr");
+			
+			if (lang.equalsIgnoreCase("Spanish"))
+				changeLocale("es");
+			
+		}
+		
 		setContentView(R.layout.activity_submit_report);
 		Intent intent = getIntent();
 
@@ -62,4 +78,26 @@ public class HTTPSubmitReportActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Event handler for the change language button
+	 * @param language
+	 */
+	private void changeLocale(String language) {
+		
+		Configuration config = getResources().getConfiguration();
+		
+		// Creating an instance of Locale for French language
+        Locale locale = new Locale(language);
+ 
+        // Setting locale of the configuration to French language
+        config.locale = locale;
+ 
+        // Updating the application configuration
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+ 
+        // Setting the title for the activity, after configuration change
+        setTitle(R.string.app_name);
+        
+	}
+	
 }
