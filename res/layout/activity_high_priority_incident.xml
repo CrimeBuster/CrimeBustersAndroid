@@ -18,12 +18,13 @@
         android:ems="10"
         android:hint="@string/location_gps"
         android:text="Latitude"
+        android:textColorHint="#200772"
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/locationGPS_long"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_above="@+id/editText_currentTime"
         android:layout_alignLeft="@+id/editText_currentTime"
@@ -32,6 +33,7 @@
         android:ems="10"
         android:hint="@string/location_gps"
         android:text="Longitude"
+        android:textColorHint="#200772"
         android:textSize="24dp"
         android:textStyle="bold" />
     
@@ -49,7 +51,7 @@
 
     <EditText
         android:id="@+id/message"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_above="@+id/submitReport"
         android:layout_centerHorizontal="true"
@@ -57,28 +59,28 @@
         android:ems="10"
         android:hint="@string/desc"
         android:inputType="textMultiLine"
+        android:textColorHint="#200772"
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText_currentTime"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_above="@+id/location"
         android:layout_alignLeft="@+id/location"
         android:layout_marginBottom="16dp"
         android:editable="false"
         android:ems="10"
-        android:textColor="#A0522D"
         android:hint="@string/time"
+        android:textColor="#000000"
+        android:textColorHint="#200772"
         android:textSize="24dp"
         android:textStyle="bold" />
 
-
-
     <EditText
         android:id="@+id/location"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/submitReport"
         android:layout_centerVertical="true"
@@ -86,6 +88,7 @@
         android:hint="@string/location_human"
         android:inputType="textPostalAddress"
         android:textColor="#FFFFFF"
+        android:textColorHint="#200772"
         android:textSize="24dp"
         android:textStyle="bold" />
 

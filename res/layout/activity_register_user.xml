@@ -16,6 +16,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
+		android:textColorHint="#200772"
         android:hint="@string/hint_userName"
         android:layout_marginTop="20dp"
         android:inputType="text"
@@ -28,6 +29,7 @@
         android:layout_marginBottom="20dp"
         android:hint="@string/hint_password"
         android:textSize="24sp"
+        android:textColorHint="#200772"
         android:textStyle="bold"
         android:inputType="textPassword" />
 
@@ -35,6 +37,7 @@
         android:id="@+id/createUser_firstName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+		android:textColorHint="#200772"
         android:textSize="24sp"
         android:layout_marginBottom="20dp"
         android:textStyle="bold"
@@ -49,6 +52,7 @@
         android:hint="@string/hint_lastName"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColorHint="#200772"
         android:inputType="text" />
 
     <EditText
@@ -58,6 +62,7 @@
         android:layout_marginBottom="40dp"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColorHint="#200772"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress" />
 
