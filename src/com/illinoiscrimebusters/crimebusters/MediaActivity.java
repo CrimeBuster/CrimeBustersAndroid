@@ -234,8 +234,22 @@ public class MediaActivity extends Activity  {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		//Video
+		  if (requestCode == VIDEO_CAPTURE) {
+		        if (resultCode == RESULT_OK) {
+		             Toast.makeText(this, "Video has been saved to:\n" +
+		                data.getData(), Toast.LENGTH_LONG).show();
+		        } else if (resultCode == RESULT_CANCELED) {
+		        	Toast.makeText(this, "Video recording cancelled.", 
+	                      Toast.LENGTH_LONG).show();
+		        } else {
+		        	Toast.makeText(this, "Failed to record video", 
+	                      Toast.LENGTH_LONG).show();
+		        }
+		    }
 
-		if (data != null) {
+		  else if (data != null) {
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 			
 			if (!_reportSingleton.isIv1Done())
@@ -263,19 +277,6 @@ public class MediaActivity extends Activity  {
 			}
 		}
 		
-		//Video
-		  if (requestCode == VIDEO_CAPTURE) {
-		        if (resultCode == RESULT_OK) {
-		             Toast.makeText(this, "Video has been saved to:\n" +
-		                data.getData(), Toast.LENGTH_LONG).show();
-		        } else if (resultCode == RESULT_CANCELED) {
-		        	Toast.makeText(this, "Video recording cancelled.", 
-	                      Toast.LENGTH_LONG).show();
-		        } else {
-		        	Toast.makeText(this, "Failed to record video", 
-	                      Toast.LENGTH_LONG).show();
-		        }
-		    }
 	}
 	
 	/**
