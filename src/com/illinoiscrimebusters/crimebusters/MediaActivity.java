@@ -165,6 +165,13 @@ public class MediaActivity extends Activity  {
 	   m.start();
 	   Toast.makeText(getApplicationContext(), "Playing audio", Toast.LENGTH_LONG).show();
 
+	   start.setEnabled(true);
+	   
+	   myAudioRecorder = new MediaRecorder();
+	   myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+	   myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+	   myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+	   myAudioRecorder.setOutputFile(outputFile);
 	   }
 	/**
 	 * Event handler for the change language button
