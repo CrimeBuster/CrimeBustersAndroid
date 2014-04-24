@@ -95,5 +95,10 @@
     <string name="stop">Deténgase</string>
     <string name="play">Juego</string>
     <string name="button_video">Grabar Vídeo</string>
+    <string name="pic1">Pic 1</string>
+	<string name="pic2">Pic 2</string>
+	<string name="pic3">Pic 3</string>
+	<string name="audiopath">Ruta de audio</string>
+	<string name="videopath">Ruta de video</string>
     
 </resources>

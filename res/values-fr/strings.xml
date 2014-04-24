@@ -95,4 +95,9 @@
     <string name="stop">stop</string>
     <string name="play">Lecture</string>
     <string name="button_video">enregistrement vidéo</string>
+    <string name="pic1">Pic 1</string>
+	<string name="pic2">Pic 2</string>
+	<string name="pic3">Pic 3</string>
+	<string name="audiopath">Chemin de la audio</string>
+	<string name="videopath">Chemin de la vidéo</string>
 </resources>
