@@ -53,7 +53,7 @@ public class HTTPSubmitReportActivity extends Activity {
 		try {
 			nameReturn = h.execute("").get();
 			if (nameReturn.contains("success")) {
-				nameView.setText("Thank you for your report. Your submission has been successfully received");
+				nameView.setText("Thank you for your report. Your submission has been successfully received" + reportSingleton.getImageLocation());
 				//maybe show a form with the submitted info, or have it emailed to you
 			}
 			 else {

@@ -106,6 +106,8 @@ public class LoginActivity extends Activity {
 		EditText editUserName = (EditText) findViewById(R.id.email);
 		String userName = editUserName.getText().toString();
 		
+		_reportSingleton.setName(userName);
+		
 		EditText editPassword = (EditText) findViewById(R.id.password);
 		String password = editPassword.getText().toString();
 		

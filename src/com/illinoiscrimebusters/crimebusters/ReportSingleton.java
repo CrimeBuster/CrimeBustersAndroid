@@ -188,6 +188,11 @@ public class ReportSingleton {
 		this.imageLocation = imageLocation;
 	}
 
+	public void setName(String username2) {
+		username = username2;
+		
+	}
+
 	
 
 }

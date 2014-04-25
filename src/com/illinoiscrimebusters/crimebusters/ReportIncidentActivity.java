@@ -254,21 +254,13 @@ public class ReportIncidentActivity extends Activity implements
 				.getText().toString();
 				
 				
-
+		reportSingleton.setKey("location", location);
 		reportSingleton.setKey("desc", message);
 		reportSingleton.setKey("lat", latitude);
 		reportSingleton.setKey("lng", longitude);
 		reportSingleton.setKey("timeStamp", timestamp);
 	
 
-		int reportType = reportSingleton.getReportType();
-		if (reportType != 1) {
-			reportSingleton.setImageLocation("somehowgetthis");
-		}
-		else{
-			
-			
-		}
 
 	}
 }

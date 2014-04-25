@@ -1,5 +1,6 @@
 package com.illinoiscrimebusters.httpRequest;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -45,21 +49,108 @@ import com.illinoiscrimebusters.crimebusters.ReportSingleton;
 public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
 	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
-	private String responseString = "";
+	private String responseString =  "";
 
 	
+	
+	
+	private String submitReport2(){
+			 HttpClient client = new DefaultHttpClient();
+		    HttpPost post = new HttpPost("url" + "uploadFile");
+		    MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create(); 
+		return "";
+		
+	}
+	
+	private String submitReport() {
+		// Get Data
+		HashMap<String, String> report = reportSingleton.copyReport();
+		// Get Report type
+		int reportType = reportSingleton.getReportType();
+		String username = reportSingleton.getName();
+		String reportTypeString = String.valueOf(reportType);
+		String url = reportSingleton.getUrl();
+
+
+		
+		MultipartEntityBuilder multipartEntity = MultipartEntityBuilder
+				.create(); 
+		multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+	/*	if (reportSingleton.getImage1() != null) {
+			multipartEntity.addPart("photo1", new FileBody(new File(
+					reportSingleton.getImage1())));
+
+		}
+		if (reportSingleton.getImage1() != null) {
+			multipartEntity.addPart("photo2", new FileBody(new File(
+					reportSingleton.getImage2())));
+
+		}
+		if (reportSingleton.getImage1() != null) {
+			multipartEntity.addPart("photo3", new FileBody(new File(
+					reportSingleton.getImage3())));
+
+		}
+*/
+		//
+		if(reportSingleton.getImageLocation() != null){
+			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImageLocation() )));
+		}
+		
+		for (String name : report.keySet()) {
+			String xtra = "";
+			if(name.equals("desc")){
+				xtra = "Location=" + reportSingleton.getImageLocation();
+			
+			}
+			
+			multipartEntity.addTextBody(name, report.get(name) + xtra);
+		}
+		multipartEntity.addTextBody("reportTypeId", reportTypeString);
+		multipartEntity.addTextBody("userName", username);
+
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpPost post = new HttpPost(url);
+		post.setEntity(multipartEntity.build());
+		HttpEntity entity;
+		HttpResponse response = null;
+		try {
+			response = httpClient.execute(post);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		entity = response.getEntity();
+
+		String returnString = "";
+		try {
+			returnString =  EntityUtils.toString(entity, "UTF-8");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return returnString;
+
+	}
 	
 	
 	/**
 	 * @return the success of failure of the post result of the report
 	 */
-	private String submitReport() {
+	private String submitReport22() {
 
 		HashMap<String, String> report = reportSingleton.copyReport();
 		int reportType = reportSingleton.getReportType();
 		String reportTypeString = String.valueOf(reportType);
 
-	
+		
 
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
 	
@@ -69,7 +160,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		}
 		
 		parameters.add(new BasicNameValuePair("reportTypeId", reportTypeString));
-		parameters.add(new BasicNameValuePair("userName", "boris.sadkhin"));
+		parameters.add(new BasicNameValuePair("userName", reportSingleton.getName()));
 
 		// Make it into a post
 		UrlEncodedFormEntity post;
