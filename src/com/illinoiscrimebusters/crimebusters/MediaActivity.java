@@ -1,7 +1,12 @@
 package com.illinoiscrimebusters.crimebusters;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Locale;
 
 import com.crime.crimebusters.R;
@@ -164,6 +169,8 @@ public class MediaActivity extends Activity  {
 	   m.prepare();
 	   m.start();
 	   Toast.makeText(getApplicationContext(), "Playing audio", Toast.LENGTH_LONG).show();
+	   File audFile = new File(outputFile);
+	   saveAudio(audFile);
 
 	   start.setEnabled(true);
 	   
@@ -247,6 +254,7 @@ public class MediaActivity extends Activity  {
 		        if (resultCode == RESULT_OK) {
 		             Toast.makeText(this, "Video has been saved to:\n" +
 		                data.getData(), Toast.LENGTH_LONG).show();
+		             	savefile(data.getData());
 		        } else if (resultCode == RESULT_CANCELED) {
 		        	Toast.makeText(this, "Video recording cancelled.", 
 	                      Toast.LENGTH_LONG).show();
@@ -284,6 +292,64 @@ public class MediaActivity extends Activity  {
 			}
 		}
 		
+	}
+	
+	void savefile(Uri uri)
+	{
+	    String sourceFilename= uri.getPath();
+	    String destinationFilename = android.os.Environment.getExternalStorageDirectory().getPath()+File.separatorChar+"cb_vid.mp4";
+
+	    BufferedInputStream bis = null;
+	    BufferedOutputStream bos = null;
+
+	    try {
+	      bis = new BufferedInputStream(new FileInputStream(sourceFilename));
+	      bos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
+	      byte[] buf = new byte[1024];
+	      bis.read(buf);
+	      do {
+	        bos.write(buf);
+	      } while(bis.read(buf) != -1);
+	      _reportSingleton.setBos(bos);
+	    } catch (IOException e) {
+
+	    } finally {
+	      try {
+	        if (bis != null) bis.close();
+	        if (bos != null) bos.close();
+	      } catch (IOException e) {
+
+	      }
+	    }
+	}
+	
+	void saveAudio(File outputFile)
+	{
+	    String sourceFilename= outputFile.getPath();
+	    String destinationFilename = android.os.Environment.getExternalStorageDirectory().getPath()+File.separatorChar+"cb_audio.3gp";
+
+	    BufferedInputStream bis = null;
+	    BufferedOutputStream audBos = null;
+
+	    try {
+	      bis = new BufferedInputStream(new FileInputStream(sourceFilename));
+	      audBos = new BufferedOutputStream(new FileOutputStream(destinationFilename, false));
+	      byte[] buf = new byte[1024];
+	      bis.read(buf);
+	      do {
+	        audBos.write(buf);
+	      } while(bis.read(buf) != -1);
+	      _reportSingleton.setAudBos(audBos);
+	    } catch (IOException e) {
+
+	    } finally {
+	      try {
+	        if (bis != null) bis.close();
+	        if (audBos != null) audBos.close();
+	      } catch (IOException e) {
+
+	      }
+	    }
 	}
 	
 	/**

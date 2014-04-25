@@ -1,5 +1,6 @@
 package com.illinoiscrimebusters.crimebusters;
 
+import java.io.BufferedOutputStream;
 import java.util.HashMap;
 
 import com.crime.crimebusters.R;
@@ -13,6 +14,24 @@ public class ReportSingleton {
 	private String username ="test";
 	private int reportType = 0;
 	private String imageLocation;
+	private BufferedOutputStream bos;
+	private BufferedOutputStream audBos;
+
+	public BufferedOutputStream getBos() {
+		return bos;
+	}
+
+	public void setBos(BufferedOutputStream bos) {
+		this.bos = bos;
+	}
+
+	public BufferedOutputStream getAudBos() {
+		return audBos;
+	}
+
+	public void setAudBos(BufferedOutputStream audBos) {
+		this.audBos = audBos;
+	}
 
 	private boolean iv1Done = false;
 	private boolean iv2Done = false;
