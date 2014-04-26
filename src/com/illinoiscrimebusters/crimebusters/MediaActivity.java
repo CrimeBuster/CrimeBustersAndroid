@@ -6,15 +6,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Locale;
-
-import com.crime.crimebusters.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -26,7 +24,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.crime.crimebusters.R;
 
 /**
  * Activity for the Media page.
@@ -47,13 +48,21 @@ public class MediaActivity extends Activity  {
 	 //Video
 	 private static final int VIDEO_CAPTURE = 101;
      private Uri fileUri;
+
 		
+		
+	private static TextView textView2;
+	private static TextView textView3;
+     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		int theme = _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
+
+		
+		setContentView(R.layout.activity_media);
 		
 		String lang = _reportSingleton.getLanguage();
 		if (lang!=null)
@@ -68,7 +77,7 @@ public class MediaActivity extends Activity  {
 				changeLocale("es");
 			
 		}
-		setContentView(R.layout.activity_media);
+		
 		
 		if (_reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
@@ -171,7 +180,11 @@ public class MediaActivity extends Activity  {
 	   Toast.makeText(getApplicationContext(), "Playing audio", Toast.LENGTH_LONG).show();
 	   File audFile = new File(outputFile);
 	   saveAudio(audFile);
-
+	  
+//	   textView2.invalidate();
+	   textView2 = (TextView) findViewById(R.id.textView2);
+	   textView2.setText(outputFile);
+	  
 	   start.setEnabled(true);
 	   
 	   myAudioRecorder = new MediaRecorder();
@@ -180,6 +193,8 @@ public class MediaActivity extends Activity  {
 	   myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
 	   myAudioRecorder.setOutputFile(outputFile);
 	   }
+	   
+	   
 	/**
 	 * Event handler for the change language button
 	 * @param language
@@ -255,6 +270,9 @@ public class MediaActivity extends Activity  {
 		             Toast.makeText(this, "Video has been saved to:\n" +
 		                data.getData(), Toast.LENGTH_LONG).show();
 		             	savefile(data.getData());
+		             	textView3 = (TextView) findViewById(R.id.textView3);
+		             	textView3.setText(data.getData().getPath());
+		             	
 		        } else if (resultCode == RESULT_CANCELED) {
 		        	Toast.makeText(this, "Video recording cancelled.", 
 	                      Toast.LENGTH_LONG).show();
