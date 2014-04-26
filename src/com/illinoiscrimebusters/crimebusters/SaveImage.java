@@ -27,6 +27,9 @@ public class SaveImage {
 		String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder;
 		String CurrentDateAndTime= getCurrentDateAndTime();
 		
+		
+		
+		
 		File dir = new File(file_path);
 		if(!dir.exists()){
 			dir.mkdirs();
@@ -34,7 +37,25 @@ public class SaveImage {
 
 		File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
 		String imageLocation = file_path + NameOfFile + CurrentDateAndTime + ".jpg";
+		
 		ReportSingleton.getInstance().setImageLocation(imageLocation);
+		
+		String image1 = ReportSingleton.getInstance().getImage1();
+		String image2 = ReportSingleton.getInstance().getImage2();
+		String image3 = ReportSingleton.getInstance().getImage3();
+
+		if(image1 == null){
+			ReportSingleton.getInstance().setImage1(imageLocation);
+		}
+		else if(image2 == null){
+			ReportSingleton.getInstance().setImage2(imageLocation);
+		}
+		else{
+			ReportSingleton.getInstance().setImage3(imageLocation);
+		
+		}
+		
+		
 		
 		try{
 			FileOutputStream fOut = new FileOutputStream(file);

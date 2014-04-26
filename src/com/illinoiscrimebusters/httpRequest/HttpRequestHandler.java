@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import android.content.Context;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,6 +23,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.illinoiscrimebusters.crimebusters.ReportSingleton;
@@ -68,10 +70,22 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		// Get Report type
 		int reportType = reportSingleton.getReportType();
 		String username = reportSingleton.getName();
+		username = "crime.buster";
 		String reportTypeString = String.valueOf(reportType);
 		String url = reportSingleton.getUrl();
-
-
+		
+		
+	//	activity.getApplicationContext();
+	//	_preference = activity.getSharedPreferences("cbPreference", Context.MODE_PRIVATE);
+	///	_preference.edit().clear().commit();
+		
+		
+		
+	//	SharedPreferences _preference ; 
+	//	_preference = getSharedPreferences("cbPreference", MODE_PRIVATE);
+		
+	//	username =_preference.getString("userName","crime.buster");
+	//
 		
 		MultipartEntityBuilder multipartEntity = MultipartEntityBuilder
 				.create(); 
@@ -97,16 +111,34 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		if(reportSingleton.getImageLocation() != null){
 			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImageLocation() )));
 		}
+		if(reportSingleton.getImage1() != null){
+			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImage1() )));
+		}
+		if(reportSingleton.getImage2() != null){
+			multipartEntity.addPart("photo2", new FileBody(new File(reportSingleton.getImage2() )));
+		}
+		if(reportSingleton.getImage3() != null){
+			multipartEntity.addPart("photo3", new FileBody(new File(reportSingleton.getImage3() )));
+		}
+		
+		
+		if(reportSingleton.getAudioPath() != null){
+			multipartEntity.addPart("audio", new FileBody(new File(reportSingleton.getAudioPath() )));
+		}
+		if(reportSingleton.getVideoPath() != null){
+			multipartEntity.addPart("video", new FileBody(new File(reportSingleton.getVideoPath() )));
+		}
+		
+		
 		
 		for (String name : report.keySet()) {
-			String xtra = "";
-			if(name.equals("desc")){
-				xtra = "Location=" + reportSingleton.getImageLocation();
+		
 			
-			}
-			
-			multipartEntity.addTextBody(name, report.get(name) + xtra);
+			multipartEntity.addTextBody(name, report.get(name) );
 		}
+		
+	
+		
 		multipartEntity.addTextBody("reportTypeId", reportTypeString);
 		multipartEntity.addTextBody("userName", username);
 

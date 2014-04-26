@@ -101,6 +101,9 @@ public class MediaActivity extends Activity  {
 	      play.setEnabled(false);
 	      outputFile = Environment.getExternalStorageDirectory().
 	      getAbsolutePath() + "/myrecording.3gp";;
+	      
+	      _reportSingleton.setAudioPath(outputFile);
+	      
 
 	      myAudioRecorder = new MediaRecorder();
 	      myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -270,6 +273,9 @@ public class MediaActivity extends Activity  {
 		             Toast.makeText(this, "Video has been saved to:\n" +
 		                data.getData(), Toast.LENGTH_LONG).show();
 		             	savefile(data.getData());
+		             	
+		             	_reportSingleton.setAudioPath(data.getData().getPath());
+		             	
 		             	textView3 = (TextView) findViewById(R.id.textView3);
 		             	textView3.setText(data.getData().getPath());
 		             	
