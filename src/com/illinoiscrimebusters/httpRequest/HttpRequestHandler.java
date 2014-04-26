@@ -113,10 +113,11 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost post = new HttpPost(url);
 		post.setEntity(multipartEntity.build());
-		HttpEntity entity;
+		HttpEntity entity = null;
 		HttpResponse response = null;
 		try {
 			response = httpClient.execute(post);
+			entity = response.getEntity();
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,7 +125,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		entity = response.getEntity();
+		
 
 		String returnString = "";
 		try {

@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class SaveImage {
 	
 	private Context TheThis;
-	private String NameOfFolder = "/CB_Folder";
+	private String NameOfFolder = "/CB_Folder/";
 	private String NameOfFile = "CBImage"; //Prefix to each file
 	
 	public void SavePic(Context context, Bitmap ImageToSave){
