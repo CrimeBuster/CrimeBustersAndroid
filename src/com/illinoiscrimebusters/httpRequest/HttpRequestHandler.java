@@ -108,9 +108,9 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		}
 */
 		//
-		if(reportSingleton.getImageLocation() != null){
-			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImageLocation() )));
-		}
+//		if(reportSingleton.getImageLocation() != null){
+	//		multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImageLocation() )));
+	//	}
 		if(reportSingleton.getImage1() != null){
 			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImage1() )));
 		}

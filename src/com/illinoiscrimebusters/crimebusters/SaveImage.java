@@ -38,7 +38,7 @@ public class SaveImage {
 		File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
 		String imageLocation = file_path + NameOfFile + CurrentDateAndTime + ".jpg";
 		
-		ReportSingleton.getInstance().setImageLocation(imageLocation);
+	//	ReportSingleton.getInstance().setImageLocation(imageLocation);
 		
 		String image1 = ReportSingleton.getInstance().getImage1();
 		String image2 = ReportSingleton.getInstance().getImage2();
