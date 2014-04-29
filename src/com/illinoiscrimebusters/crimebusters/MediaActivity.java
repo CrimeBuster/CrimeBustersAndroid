@@ -109,8 +109,16 @@ public class MediaActivity extends Activity {
 		// Video
 		Button recBtn = (Button) findViewById(R.id.recordButton);
 
-		if (!hasCamera())
+		Button pic1Btn = (Button) findViewById(R.id.Picture1);
+		Button pic2Btn = (Button) findViewById(R.id.Picture2);
+		Button pic3Btn = (Button) findViewById(R.id.Picture3);
+
+		if (!hasCamera()) {
 			recBtn.setEnabled(false);
+			pic1Btn.setEnabled(false);
+			pic2Btn.setEnabled(false);
+			pic3Btn.setEnabled(false);
+		}
 	}
 
 	// Video
