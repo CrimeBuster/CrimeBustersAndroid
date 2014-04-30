@@ -325,8 +325,22 @@ public class MediaActivity extends Activity {
 		}
 
 	}
+	
+	
+	public String getPath(Uri contentUri) {
+	    String res = null;
+	    String[] proj = { MediaStore.Images.Media.DATA };
+	    Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+	    if(cursor.moveToFirst()){;
+	       int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+	       res = cursor.getString(column_index);
+	    }
+	    cursor.close();
+	    return res;
+	}
+	
 
-	public String getPath(Uri uri) 
+	public String getPath2(Uri uri) 
     {
         String[] projection = { MediaStore.Images.Media.DATA };
         Cursor cursor = managedQuery(uri, projection, null, null, null);

@@ -53,17 +53,6 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
 	private String responseString =  "";
 
-	
-	
-	
-	private String submitReport2(){
-			 HttpClient client = new DefaultHttpClient();
-		    HttpPost post = new HttpPost("url" + "uploadFile");
-		    MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create(); 
-		return "";
-		
-	}
-	
 	private String submitReport() {
 		// Get Data
 		HashMap<String, String> report = reportSingleton.copyReport();
@@ -91,26 +80,6 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 				.create(); 
 		multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
-	/*	if (reportSingleton.getImage1() != null) {
-			multipartEntity.addPart("photo1", new FileBody(new File(
-					reportSingleton.getImage1())));
-
-		}
-		if (reportSingleton.getImage1() != null) {
-			multipartEntity.addPart("photo2", new FileBody(new File(
-					reportSingleton.getImage2())));
-
-		}
-		if (reportSingleton.getImage1() != null) {
-			multipartEntity.addPart("photo3", new FileBody(new File(
-					reportSingleton.getImage3())));
-
-		}
-*/
-		//
-//		if(reportSingleton.getImageLocation() != null){
-	//		multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImageLocation() )));
-	//	}
 		if(reportSingleton.getImage1() != null){
 			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImage1() )));
 		}
@@ -173,68 +142,6 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
 	}
 	
-	
-	/**
-	 * @return the success of failure of the post result of the report
-	 */
-	private String submitReport22() {
-
-		HashMap<String, String> report = reportSingleton.copyReport();
-		int reportType = reportSingleton.getReportType();
-		String reportTypeString = String.valueOf(reportType);
-
-		
-
-		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
-	
-		for (Map.Entry<String, String> entry : report.entrySet()) {
-			parameters.add(new BasicNameValuePair(entry.getKey(), entry
-					.getValue()));
-		}
-		
-		parameters.add(new BasicNameValuePair("reportTypeId", reportTypeString));
-		parameters.add(new BasicNameValuePair("userName", reportSingleton.getName()));
-
-		// Make it into a post
-		UrlEncodedFormEntity post;
-		try {
-			//Encode it
-			post = new UrlEncodedFormEntity(parameters, "UTF-8");
-		
-			//Do the post
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(reportSingleton.getUrl());
-			httppost.setEntity(post);
-
-			
-			
-			//Get response
-			HttpResponse response = httpClient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-
-			if (response.getEntity().getContentLength() != 0) {
-			  responseString += EntityUtils.toString(entity, "UTF-8");
-				
-			
-				
-			} else {
-				responseString += "failure2";
-
-			}
-
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return responseString;
-
-	}
 
 	@Override
 	protected String doInBackground(String... args) {
