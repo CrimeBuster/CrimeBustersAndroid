@@ -59,7 +59,7 @@
         android:id="@+id/createUser_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="25dp"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColorHint="#200772"
