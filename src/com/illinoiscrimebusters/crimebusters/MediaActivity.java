@@ -53,6 +53,7 @@ public class MediaActivity extends Activity {
 	private static TextView textView2;
 	private static TextView textView3;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -469,6 +470,25 @@ public class MediaActivity extends Activity {
 	 */
 	protected void onResume() {
 		super.onResume();
+		
+		iv1 = (ImageView) findViewById(R.id.imageView1);
+		iv2 = (ImageView) findViewById(R.id.imageView2);
+		iv3 = (ImageView) findViewById(R.id.imageView3);
+		
+		
+		String image1 = _reportSingleton.getImage1();
+		String image2 = _reportSingleton.getImage2();
+		String image3 = _reportSingleton.getImage3();
+		if(image1 != null){
+			iv1.setImageURI(Uri.fromFile(new File(image1)));
+		}
+		if(image2 != null){
+			iv2.setImageURI(Uri.fromFile(new File(image2)));
+		}
+		if(image3 != null){
+			iv3.setImageURI(Uri.fromFile(new File(image3)));
+		}
+		
 	}
 
 	@Override
