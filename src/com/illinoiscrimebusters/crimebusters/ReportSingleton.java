@@ -53,6 +53,15 @@ public class ReportSingleton {
 		
 	}
 	
+	
+	public void clearAudioVideoPaths()
+	{
+		
+		audioPath = null;
+		videoPath = null;
+		audioPathDisplay = null;
+		videoPathDisplay = null;
+	}
 	private BufferedOutputStream bos;
 	private BufferedOutputStream audBos;
 

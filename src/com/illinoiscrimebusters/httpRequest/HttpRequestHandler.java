@@ -85,8 +85,6 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 			multipartEntity.addPart("video", new FileBody(new File(reportSingleton.getVideoPath() )));
 		}
 		
-		
-		
 		for (String name : report.keySet()) {
 	
 			multipartEntity.addTextBody(name, report.get(name) );
@@ -126,8 +124,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		}
 		
 		reportSingleton.clearImages();
-		reportSingleton.setAudioPathDisplay(null);
-		reportSingleton.setVideoPathDisplay(null);
+		reportSingleton.clearAudioVideoPaths();
 		return returnString;
 
 	}
