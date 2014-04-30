@@ -194,6 +194,7 @@ public class MediaActivity extends Activity {
 		// textView2.invalidate();
 		textView2 = (TextView) findViewById(R.id.textView2);
 		textView2.setText(outputFile);
+		_reportSingleton.setAudioPathDisplay(outputFile);
 
 		start.setEnabled(true);
 
@@ -307,7 +308,7 @@ public class MediaActivity extends Activity {
 
 			
 				_reportSingleton.setVideoPath(getPath(videoUri));
-				
+				_reportSingleton.setVideoPathDisplay(path);
 				
 				// / _reportSingleton.setVideoPath(data.getData().getPath());
 			
@@ -489,6 +490,12 @@ public class MediaActivity extends Activity {
 			iv3.setImageURI(Uri.fromFile(new File(image3)));
 		}
 		
+		
+		textView3 = (TextView) findViewById(R.id.textView3);
+		textView3.setText(_reportSingleton.getVideoPathDisplay());
+		
+		textView2 = (TextView) findViewById(R.id.textView2);
+		textView2.setText(_reportSingleton.getAudioPathDisplay());
 	}
 
 	@Override

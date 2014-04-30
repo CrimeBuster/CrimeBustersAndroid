@@ -20,7 +20,25 @@ public class ReportSingleton {
 	private String image3;
 	private String audioPath;
 	private String videoPath;
-	
+
+	private String audioPathDisplay;
+	private String videoPathDisplay;
+	public String getAudioPathDisplay() {
+		return audioPathDisplay;
+	}
+
+	public void setAudioPathDisplay(String audioPathDisplay) {
+		this.audioPathDisplay = audioPathDisplay;
+	}
+
+	public String getVideoPathDisplay() {
+		return videoPathDisplay;
+	}
+
+	public void setVideoPathDisplay(String videoPathDisplay) {
+		this.videoPathDisplay = videoPathDisplay;
+	}
+
 	private String temp_desc;
 	private String temp_location;
 	

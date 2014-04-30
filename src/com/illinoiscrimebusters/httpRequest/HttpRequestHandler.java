@@ -126,6 +126,8 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		}
 		
 		reportSingleton.clearImages();
+		reportSingleton.setAudioPathDisplay(null);
+		reportSingleton.setVideoPathDisplay(null);
 		return returnString;
 
 	}
