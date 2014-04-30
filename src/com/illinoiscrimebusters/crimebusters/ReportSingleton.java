@@ -21,6 +21,10 @@ public class ReportSingleton {
 	private String audioPath;
 	private String videoPath;
 	
+	private String temp_desc;
+	private String temp_location;
+	
+	
 	private String whichButton;
 	
 	
@@ -257,6 +261,22 @@ public class ReportSingleton {
 
 	public void setWhichButton(String i) {
 		this.whichButton = i;
+	}
+
+	public String getTemp_desc() {
+		return temp_desc;
+	}
+
+	public void setTemp_desc(String temp_desc) {
+		this.temp_desc = temp_desc;
+	}
+
+	public String getTemp_location() {
+		return temp_location;
+	}
+
+	public void setTemp_location(String temp_location) {
+		this.temp_location = temp_location;
 	}
 
 	
