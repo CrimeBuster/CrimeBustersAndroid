@@ -59,23 +59,10 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		// Get Report type
 		int reportType = reportSingleton.getReportType();
 		String username = reportSingleton.getName();
-		username = "crime.buster";
+		//username = "crime.buster";
 		String reportTypeString = String.valueOf(reportType);
 		String url = reportSingleton.getUrl();
-		
-		
-	//	activity.getApplicationContext();
-	//	_preference = activity.getSharedPreferences("cbPreference", Context.MODE_PRIVATE);
-	///	_preference.edit().clear().commit();
-		
-		
-		
-	//	SharedPreferences _preference ; 
-	//	_preference = getSharedPreferences("cbPreference", MODE_PRIVATE);
-		
-	//	username =_preference.getString("userName","crime.buster");
-	//
-		
+
 		MultipartEntityBuilder multipartEntity = MultipartEntityBuilder
 				.create(); 
 		multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -101,8 +88,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		
 		
 		for (String name : report.keySet()) {
-		
-			
+	
 			multipartEntity.addTextBody(name, report.get(name) );
 		}
 		

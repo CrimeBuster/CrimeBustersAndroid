@@ -37,36 +37,6 @@ public class ReportIncidentActivity extends Activity implements
 	private ImageView iv;
 	private String ivString;
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		if (data != null) {
-			Bitmap photo = (Bitmap) data.getExtras().get("data");
-			iv.setImageBitmap(photo);
-			SaveImage savefile = new SaveImage();
-			savefile.SavePic(this, photo);
-		}
-	}
-	
-	//Bitmap to String
-	public String BitMapToString(Bitmap iv){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        iv.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] arr=baos.toByteArray();
-        String result=Base64.encodeToString(arr, Base64.DEFAULT);
-        return ivString;
-  }
-
-	/**
-	 * @param v
-	 */
-	public void takePicture(View v) {
-		Intent intent = new Intent(
-				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(intent, 0);		
-	}
-	
-
 	/**
 	 * @param v
 	 */

@@ -44,10 +44,12 @@ public class SaveImage {
 		String image2 = ReportSingleton.getInstance().getImage2();
 		String image3 = ReportSingleton.getInstance().getImage3();
 
-		if(image1 == null){
+		String whichButton = ReportSingleton.getInstance().getWhichButton();
+		
+		if(whichButton == "1"){
 			ReportSingleton.getInstance().setImage1(imageLocation);
 		}
-		else if(image2 == null){
+		else if(whichButton == "2"){
 			ReportSingleton.getInstance().setImage2(imageLocation);
 		}
 		else{

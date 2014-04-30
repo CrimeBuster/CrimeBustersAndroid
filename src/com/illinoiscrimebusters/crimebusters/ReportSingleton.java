@@ -21,7 +21,7 @@ public class ReportSingleton {
 	private String audioPath;
 	private String videoPath;
 	
-	
+	private String whichButton;
 	
 	
 	
@@ -243,6 +243,14 @@ public class ReportSingleton {
 
 	public void setImage3(String image3) {
 		this.image3 = image3;
+	}
+
+	public String getWhichButton() {
+		return whichButton;
+	}
+
+	public void setWhichButton(String i) {
+		this.whichButton = i;
 	}
 
 	

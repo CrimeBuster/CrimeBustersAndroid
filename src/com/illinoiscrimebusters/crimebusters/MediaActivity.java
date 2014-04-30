@@ -139,8 +139,11 @@ public class MediaActivity extends Activity {
 		Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 		// fileUri = Uri.fromFile(mediaFile);
 
+		intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 30);
 		// intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 		startActivityForResult(intent, VIDEO_CAPTURE);
+		
+		
 
 	}
 
@@ -235,10 +238,23 @@ public class MediaActivity extends Activity {
 	/**
 	 * @param v
 	 */
-	public void takePicture(View v) {
+	public void takePicture1(View v) {
 		Intent intent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(intent, 0);
+		_reportSingleton.setWhichButton("1");
+	}
+	public void takePicture2(View v) {
+		Intent intent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent, 0);
+		_reportSingleton.setWhichButton("2");
+	}
+	public void takePicture3(View v) {
+		Intent intent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent, 0);
+		_reportSingleton.setWhichButton("3");
 	}
 
 	// /**
@@ -312,18 +328,18 @@ public class MediaActivity extends Activity {
 		else if (data != null) {
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-			if (!_reportSingleton.isIv1Done()) {
+			if (_reportSingleton.getWhichButton().equals("1")) {
 				iv1.setImageBitmap(photo);
 				SaveImage savefile = new SaveImage();
 				savefile.SavePic(this, photo);
 				_reportSingleton.setIv1Done(true);
-			} else if (!_reportSingleton.isIv2Done()) {
+			} else if (_reportSingleton.getWhichButton().equals("2")) {
 				iv2.setImageBitmap(photo);
 				SaveImage savefile = new SaveImage();
 				savefile.SavePic(this, photo);
 				_reportSingleton.setIv2Done(true);
 
-			} else if (!_reportSingleton.isIv3Done()) {
+			} else if (_reportSingleton.getWhichButton().equals("3")) {
 				iv3.setImageBitmap(photo);
 				SaveImage savefile = new SaveImage();
 				savefile.SavePic(this, photo);

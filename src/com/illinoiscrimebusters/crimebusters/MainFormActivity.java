@@ -47,6 +47,7 @@ public class MainFormActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		int theme = _reportSingleton.setTheme();
+		_reportSingleton.setName(_userName);
 		getWindow().setBackgroundDrawableResource(theme);
 		
 		String lang = _reportSingleton.getLanguage();
