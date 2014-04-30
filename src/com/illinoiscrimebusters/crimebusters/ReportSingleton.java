@@ -24,6 +24,12 @@ public class ReportSingleton {
 	private String whichButton;
 	
 	
+	public void clearImages(){
+		image1 = null;
+		image2 = null;
+		image3 = null;
+		
+	}
 	
 	private BufferedOutputStream bos;
 	private BufferedOutputStream audBos;

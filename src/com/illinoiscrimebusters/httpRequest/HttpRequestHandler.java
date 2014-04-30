@@ -124,6 +124,8 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		reportSingleton.clearImages();
 		return returnString;
 
 	}
