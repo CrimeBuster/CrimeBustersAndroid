@@ -30,6 +30,13 @@ public class RegisterUserActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_user);
 
+		setUserPreferences();
+	}
+
+	/**
+	 * This method sets the theme and language as per user preference
+	 */
+	private void setUserPreferences() {
 		int theme = reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 		

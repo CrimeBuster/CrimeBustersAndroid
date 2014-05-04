@@ -47,9 +47,8 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 		setContentView(R.layout.activity_update_profile);
 		_userName = getIntent().getStringExtra("userName");
 		
-		int theme= _reportSingleton.setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
-
+		setUserPreferences();
+		
 		spinnerLanguage = (Spinner) findViewById(R.id.spinnerlanguage);
 		
 		ArrayAdapter<String> adapter_language = new ArrayAdapter<String>(this,
@@ -62,6 +61,25 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 		
 		languagePreference();
 		
+	}
+
+	private void setUserPreferences() {
+		int theme= _reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
+
+		String lang = _reportSingleton.getLanguage();
+		if (lang!=null)
+		{
+			if (lang.equalsIgnoreCase("English"))
+				changeLocale("en");
+			
+			if (lang.equalsIgnoreCase("French"))
+				changeLocale("fr");
+			
+			if (lang.equalsIgnoreCase("Spanish"))
+				changeLocale("es");
+			
+		}
 	}
 
 	/**
@@ -136,11 +154,10 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	 */
 	protected void onResume() {
 		super.onResume();
-		languagePreference();
+		setUserPreferences();
 		initializeFields();
 		
 		spinnerLanguage.setSelection(_reportSingleton.getPosition(), false);
-		languagePreference();
 	}
 
 	/**

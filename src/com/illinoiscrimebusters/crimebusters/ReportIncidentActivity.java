@@ -56,21 +56,7 @@ public class ReportIncidentActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		int theme = reportSingleton.setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
-
-		String lang = reportSingleton.getLanguage();
-		if (lang != null) {
-			if (lang.equalsIgnoreCase("English"))
-				changeLocale("en");
-
-			if (lang.equalsIgnoreCase("French"))
-				changeLocale("fr");
-
-			if (lang.equalsIgnoreCase("Spanish"))
-				changeLocale("es");
-
-		}
+		setUserPreferences();
 
 		if (reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
@@ -86,6 +72,27 @@ public class ReportIncidentActivity extends Activity implements
 		GPS();
 		time();
 
+	}
+
+	/**
+	 * This method sets the theme and language as per user preference
+	 */
+	private void setUserPreferences() {
+		int theme = reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
+
+		String lang = reportSingleton.getLanguage();
+		if (lang != null) {
+			if (lang.equalsIgnoreCase("English"))
+				changeLocale("en");
+
+			if (lang.equalsIgnoreCase("French"))
+				changeLocale("fr");
+
+			if (lang.equalsIgnoreCase("Spanish"))
+				changeLocale("es");
+
+		}
 	}
 
 	/**
@@ -166,6 +173,8 @@ public class ReportIncidentActivity extends Activity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
+		setUserPreferences();
+		
 		locationManager.requestLocationUpdates(provider, 400, 1, this);
 		String tempDesc =  reportSingleton.getTemp_desc();
 		String tempLocation = reportSingleton.getTemp_desc();

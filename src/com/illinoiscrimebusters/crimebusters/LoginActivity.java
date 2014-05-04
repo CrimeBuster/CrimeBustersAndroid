@@ -33,6 +33,14 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		setUserPreferences();
+		setContentView(R.layout.activity_login);   
+	}
+
+	/**
+	 * This method sets the theme and language as per user preference
+	 */
+	private void setUserPreferences() {
 		int theme = _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
 		
@@ -49,7 +57,6 @@ public class LoginActivity extends Activity {
 				changeLocale("es");
 			
 		}
-		setContentView(R.layout.activity_login);   
 	}
 	
 	/**

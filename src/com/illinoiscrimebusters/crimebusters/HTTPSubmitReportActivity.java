@@ -27,22 +27,7 @@ public class HTTPSubmitReportActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		int theme = reportSingleton.setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
-
-		String lang = reportSingleton.getLanguage();
-		if (lang!=null)
-		{
-			if (lang.equalsIgnoreCase("English"))
-				changeLocale("en");
-			
-			if (lang.equalsIgnoreCase("French"))
-				changeLocale("fr");
-			
-			if (lang.equalsIgnoreCase("Spanish"))
-				changeLocale("es");
-			
-		}
+		setUserPreferences();
 		
 		setContentView(R.layout.activity_submit_report);
 		Intent intent = getIntent();
@@ -75,6 +60,28 @@ public class HTTPSubmitReportActivity extends Activity {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * This method sets the theme and language as per user preference
+	 */
+	private void setUserPreferences() {
+		int theme = reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
+
+		String lang = reportSingleton.getLanguage();
+		if (lang!=null)
+		{
+			if (lang.equalsIgnoreCase("English"))
+				changeLocale("en");
+			
+			if (lang.equalsIgnoreCase("French"))
+				changeLocale("fr");
+			
+			if (lang.equalsIgnoreCase("Spanish"))
+				changeLocale("es");
+			
+		}
 	}
 
 	@Override

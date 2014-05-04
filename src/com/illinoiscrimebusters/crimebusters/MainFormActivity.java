@@ -27,14 +27,7 @@ public class MainFormActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_form);
 		
-		int theme = _reportSingleton.setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
-
-		String lang = _reportSingleton.getLanguage();		
-		if (lang!=null)
-		{
-			changeLocale(lang);
-		}
+		setUserPreferences();
 		
 		TextView textView = (TextView) findViewById(R.id.main_activity_header);
 		textView.setTextSize(24);
@@ -45,17 +38,13 @@ public class MainFormActivity extends Activity {
 		}
 	}
 
-	
-	@Override
 	/**
-	 * This method is called when the user returns to an intent from a paused state
+	 * This method sets the theme and language as per user preference
 	 */
-	protected void onResume() {
-		super.onResume();
+	private void setUserPreferences() {
 		int theme = _reportSingleton.setTheme();
-		_reportSingleton.setName(_userName);
 		getWindow().setBackgroundDrawableResource(theme);
-		
+
 		String lang = _reportSingleton.getLanguage();
 		if (lang!=null)
 		{
@@ -69,6 +58,18 @@ public class MainFormActivity extends Activity {
 				changeLocale("es");
 			
 		}
+	}
+
+	
+	@Override
+	/**
+	 * This method is called when the user returns to an intent from a paused state
+	 */
+	protected void onResume() {
+		super.onResume();
+		
+		_reportSingleton.setName(_userName);
+		setUserPreferences();
 		onCreate(null);
 	}
 

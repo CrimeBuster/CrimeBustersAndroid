@@ -55,26 +55,13 @@ public class MediaActivity extends Activity {
 
 
 	@Override
+	/**
+	 * This is the method that is called when an intent is initialized for the first time
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		int theme = _reportSingleton.setTheme();
-		getWindow().setBackgroundDrawableResource(theme);
-
-		setContentView(R.layout.activity_media);
-
-		String lang = _reportSingleton.getLanguage();
-		if (lang != null) {
-			if (lang.equalsIgnoreCase("English"))
-				changeLocale("en");
-
-			if (lang.equalsIgnoreCase("French"))
-				changeLocale("fr");
-
-			if (lang.equalsIgnoreCase("Spanish"))
-				changeLocale("es");
-
-		}
+		setUserPreferences();
 
 		if (_reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
@@ -122,17 +109,47 @@ public class MediaActivity extends Activity {
 		}
 	}
 
-	// Video
+	/**
+	 * This method sets the theme and language as per user preference
+	 */
+	private void setUserPreferences() {
+		int theme = _reportSingleton.setTheme();
+		getWindow().setBackgroundDrawableResource(theme);
+
+		setContentView(R.layout.activity_media);
+
+		String lang = _reportSingleton.getLanguage();
+		if (lang != null) {
+			if (lang.equalsIgnoreCase("English"))
+				changeLocale("en");
+
+			if (lang.equalsIgnoreCase("French"))
+				changeLocale("fr");
+
+			if (lang.equalsIgnoreCase("Spanish"))
+				changeLocale("es");
+
+		}
+	}
+
+	/**
+	 * This method checks if the mobile has a camera feature or not
+	 * @return
+	 */
 	private boolean hasCamera() {
 		if (getPackageManager().hasSystemFeature(
-				PackageManager.FEATURE_CAMERA_ANY)) {
+				PackageManager.FEATURE_CAMERA)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	// Video
+	/**
+	 * This method is called when the video recording starts
+	 * 
+	 * @param view
+	 */
 	public void startRecording(View view) {
 		//File mediaFile = new File(Environment.getExternalStorageDirectory()
 		//		.getAbsolutePath() + "/myvideo.mp4");
@@ -148,7 +165,11 @@ public class MediaActivity extends Activity {
 
 	}
 
-	// Audio
+	/**
+	 * This method is called when the audio recording starts
+	 * 
+	 * @param view
+	 */
 	public void start(View view) {
 		try {
 			myAudioRecorder.prepare();
@@ -167,7 +188,11 @@ public class MediaActivity extends Activity {
 
 	}
 
-	// Audio
+	/**
+	 * This method is called when the audio recording stops
+	 * 
+	 * @param view
+	 */
 	public void stop(View view) {
 		myAudioRecorder.stop();
 		myAudioRecorder.release();
@@ -178,7 +203,15 @@ public class MediaActivity extends Activity {
 				Toast.LENGTH_LONG).show();
 	}
 
-	// Audio
+	/**
+	 * This method is called when the audio recording is played
+	 * 
+	 * @param view
+	 * @throws IllegalArgumentException
+	 * @throws SecurityException
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	public void play(View view) throws IllegalArgumentException,
 			SecurityException, IllegalStateException, IOException {
 
@@ -206,8 +239,7 @@ public class MediaActivity extends Activity {
 	}
 
 	/**
-	 * Event handler for the change language button
-	 * 
+	 * Method to be called while setting the language for the UI
 	 * @param language
 	 */
 	private void changeLocale(String language) {
@@ -230,6 +262,7 @@ public class MediaActivity extends Activity {
 	}
 
 	/**
+	 * This method is called when the "Return to Submission" button is clicked
 	 * @param v
 	 */
 	public void returnToSubmit(View v) {
@@ -238,6 +271,8 @@ public class MediaActivity extends Activity {
 	}
 
 	/**
+	 * This method is taken when the user clicks the button to take the first picture
+	 * 
 	 * @param v
 	 */
 	public void takePicture1(View v) {
@@ -246,44 +281,54 @@ public class MediaActivity extends Activity {
 		startActivityForResult(intent, 0);
 		_reportSingleton.setWhichButton("1");
 	}
+	
+	
+	/**
+	 * This method is taken when the user clicks the button to take the second picture
+	 * 
+	 * @param v
+	 */
 	public void takePicture2(View v) {
 		Intent intent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(intent, 0);
 		_reportSingleton.setWhichButton("2");
 	}
+	
+	
+	/**
+	 * This method is taken when the user clicks the button to take the third picture
+	 * 
+	 * @param v
+	 */
 	public void takePicture3(View v) {
 		Intent intent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(intent, 0);
 		_reportSingleton.setWhichButton("3");
 	}
-	
+
 	@Override
+	/**
+	 * 
+	 * This method is called after the camera captures a picture or records a video
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		// Video
 		if (requestCode == VIDEO_CAPTURE) {
 			if (resultCode == RESULT_OK) {
 				Uri videoUri = data.getData();
-		//		String path = videoUri.getPath();
-				
 				String path = saveVideo(videoUri);
 				
 				Toast.makeText(this, "Video has been saved to:\n" + path,
 						Toast.LENGTH_LONG).show();
-
 			
 				_reportSingleton.setVideoPath(getPath(videoUri));
 				_reportSingleton.setVideoPathDisplay(path);
-				
-				// / _reportSingleton.setVideoPath(data.getData().getPath());
-			
 
 				textView3 = (TextView) findViewById(R.id.textView3);
 				textView3.setText(path);
-				
-				//textView3.setText(data.getData().getPath());
 
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, "Video recording cancelled.",
@@ -319,7 +364,11 @@ public class MediaActivity extends Activity {
 
 	}
 	
-	
+	/**
+	 * 
+	 * @param contentUri
+	 * @return
+	 */
 	public String getPath(Uri contentUri) {
 	    String res = null;
 	    String[] proj = { MediaStore.Images.Media.DATA };
@@ -332,7 +381,11 @@ public class MediaActivity extends Activity {
 	    return res;
 	}
 	
-
+	/**
+	 * 
+	 * @param uri
+	 * @return
+	 */
 	public String getPath2(Uri uri) 
     {
         String[] projection = { MediaStore.Images.Media.DATA };
@@ -345,7 +398,11 @@ public class MediaActivity extends Activity {
         return s;
     }
 	
-	
+	/**
+	 * 
+	 * @param uri
+	 * @return
+	 */
 	private String saveVideo(Uri uri) {
 		String sourceFilename = uri.getPath();
 		String destinationFilename = android.os.Environment
@@ -395,6 +452,11 @@ public class MediaActivity extends Activity {
 	    return destinationFilename;
 	}
 
+	/**
+	 * 
+	 * @param outputFile
+	 * @return
+	 */
 	private String saveAudio(File outputFile) {
 		String sourceFilename = outputFile.getPath();
 		String destinationFilename = android.os.Environment
@@ -433,11 +495,14 @@ public class MediaActivity extends Activity {
 	}
 
 	/**
-	 * If the user has been authenticated before, redirect the user to the Main
-	 * Form
+	 * This method is called when the user returns to an intent from a paused state
+	 * If the user has been authenticated before, it redirects the user to the Main Form
+	 * 
 	 */
 	protected void onResume() {
 		super.onResume();
+		
+		setUserPreferences();
 		
 		iv1 = (ImageView) findViewById(R.id.imageView1);
 		iv2 = (ImageView) findViewById(R.id.imageView2);
@@ -466,6 +531,9 @@ public class MediaActivity extends Activity {
 	}
 
 	@Override
+	/**
+	 * It is triggered to specify the options menu for an acitivity
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.media, menu);
