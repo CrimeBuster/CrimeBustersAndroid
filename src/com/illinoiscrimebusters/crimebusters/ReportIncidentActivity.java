@@ -35,17 +35,14 @@ public class ReportIncidentActivity extends Activity implements
 	private LocationManager locationManager;
 	private String provider;
 	private ImageView iv;
-	private String ivString;
+	//private String ivString;
 
-	/**
-	 * @param v
-	 */
+
 	public void addMedia(View v) {
 		Intent intent = new Intent(this, MediaActivity.class);
 		startActivity(intent);
 		
-		String location = 	location = ((EditText) findViewById(R.id.location)).getText()
-				.toString();
+		String location = 	location = ((EditText) findViewById(R.id.location)).getText().toString();
 		
 		String message = message = ((EditText) findViewById(R.id.message)).getText().toString();
 		reportSingleton.setTemp_desc(message);
@@ -129,11 +126,11 @@ public class ReportIncidentActivity extends Activity implements
 
 	}
 
-	// GPS
-	// Get the location manager
-	// Define the criteria how to select the locatioin provider -> use
-	// default
-	// Initialize the location fields
+	/** GPS
+	 *  Get the location manager
+	 *  Define the criteria how to select the location provider -> use default
+	 *  Initialize the location fields
+	 */
 	public void GPS() {
 		latituteField = (TextView) findViewById(R.id.locationGPS_lat);
 		longitudeField = (TextView) findViewById(R.id.locationGPS_long);
@@ -217,6 +214,9 @@ public class ReportIncidentActivity extends Activity implements
 				Toast.LENGTH_SHORT).show();
 	}
 
+	/**
+	 * Grab Latitude and Longitude as float and set them as string
+	 */
 	@Override
 	public void onLocationChanged(Location location) {
 		float lat = (float) (location.getLatitude());

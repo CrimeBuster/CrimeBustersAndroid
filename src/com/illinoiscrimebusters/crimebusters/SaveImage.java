@@ -1,12 +1,7 @@
-/*
- * Within this class we will create a location for our images and store them
- * We will store the images in a designated folder in the gallery section 
- * as well as send the image to reportsingleton in order to transfer the data to webservices
- * */
-
 package com.illinoiscrimebusters.crimebusters;
 
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,8 +14,13 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
+
+/**
+ * Within this class we will create a location for our images and store them
+ * We will store the images in a designated folder in the gallery section 
+ * as well as send the image to reportsingleton in order to transfer the data to webservices
+ * */
 
 public class SaveImage {
 	
