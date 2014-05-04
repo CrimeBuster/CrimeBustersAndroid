@@ -30,15 +30,31 @@ public class User {
 	private SharedPreferences _preference;
 	private final String UPDATE_PROFILE_SERVICE = "http://illinoiscrimebusters.com/Services/UpdateProfile.ashx";
 	private final String USER_INFO_SERVICE = "http://illinoiscrimebusters.com/Services/GetUserInfo.ashx";
-	
+
 	public User() {
-	
+
 	}
-	
+
+	/**
+	 * Get usernane
+	 * 
+	 * @param userName
+	 */
 	public User(String userName) {
 		_userName = userName;
 	}
 
+	/**
+	 * Creates a new user
+	 * 
+	 * @param userName
+	 * @param firstName
+	 * @param lastName
+	 * @param gender
+	 * @param phoneNumber
+	 * @param address
+	 * @param zipCode
+	 */
 	public User(String userName, String firstName, String lastName,
 			String gender, String phoneNumber, String address, String zipCode) {
 		_userName = userName;
@@ -52,28 +68,31 @@ public class User {
 
 	/**
 	 * Updates the user profile.
-	 * @throws ExecutionException 
-	 * @throws InterruptedException 
+	 * 
+	 * @throws ExecutionException
+	 * @throws InterruptedException
 	 */
-	public String updateProfile(Activity activity) throws InterruptedException, ExecutionException {
+	public String updateProfile(Activity activity) throws InterruptedException,
+			ExecutionException {
 		AsyncTask<String, Void, String> task = new UpdateUserTask().execute(
 				_firstName, _lastName, _gender, _phoneNumber, _address,
 				_zipCode, _userName);
 		try {
 			JSONObject jsonObject = new JSONObject(task.get());
 			String result = jsonObject.getString("result");
-			
+
 			if (result.equals("success")) {
 				activity.getApplicationContext();
-				_preference = activity.getSharedPreferences("cbPreference", Context.MODE_PRIVATE);
+				_preference = activity.getSharedPreferences("cbPreference",
+						Context.MODE_PRIVATE);
 				_preference.edit().putString("firstName", _firstName)
-				.putString("lastName", _lastName)
-				.putString("phoneNumber", _phoneNumber)
-				.putString("address", _address)
-				.putString("zipCode", _zipCode)
-				.putString("gender", _gender).commit();
+						.putString("lastName", _lastName)
+						.putString("phoneNumber", _phoneNumber)
+						.putString("address", _address)
+						.putString("zipCode", _zipCode)
+						.putString("gender", _gender).commit();
 			}
-			
+
 			return result;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -84,16 +103,20 @@ public class User {
 
 	/**
 	 * Gets the user profile from the web service
-	 * @param userName UserName of the user.
+	 * 
+	 * @param userName
+	 *            UserName of the user.
 	 * @return
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
-	public void getUserProfile() throws InterruptedException, ExecutionException {
-		AsyncTask<String, Void, String> task = new GetUserTask().execute(_userName);
+	public void getUserProfile() throws InterruptedException,
+			ExecutionException {
+		AsyncTask<String, Void, String> task = new GetUserTask()
+				.execute(_userName);
 		try {
 			JSONObject jsonObject = new JSONObject(task.get());
-			
+
 			setFirstName(jsonObject.getString("FirstName"));
 			setLastName(jsonObject.getString("LastName"));
 			setGender(jsonObject.getString("Gender"));
@@ -105,11 +128,12 @@ public class User {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Updates the user profile asynchronously.
+	 * 
 	 * @author Chris
-	 *
+	 * 
 	 */
 	private class UpdateUserTask extends AsyncTask<String, Void, String> {
 		protected String doInBackground(String... params) {
@@ -131,11 +155,12 @@ public class User {
 			return client.getResponse();
 		}
 	}
-	
+
 	/**
 	 * Gets the user information asynchronously.
+	 * 
 	 * @author Chris
-	 *
+	 * 
 	 */
 	private class GetUserTask extends AsyncTask<String, Void, String> {
 		protected String doInBackground(String... params) {
@@ -201,6 +226,7 @@ public class User {
 
 	/**
 	 * Sets the user's last name
+	 * 
 	 * @param lastName
 	 */
 	public void setLastName(String lastName) {

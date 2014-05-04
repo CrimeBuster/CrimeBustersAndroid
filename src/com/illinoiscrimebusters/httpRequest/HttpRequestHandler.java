@@ -51,47 +51,53 @@ import com.illinoiscrimebusters.crimebusters.ReportSingleton;
 public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
 	private ReportSingleton reportSingleton = ReportSingleton.getInstance();
-	private String responseString =  "";
+	private String responseString = "";
 
+	/**
+	 * Gathers data, submits report form, returns http response string
+	 * @return returnString , an http response string from the server
+	 */
 	private String submitReport() {
 		// Get Data
 		HashMap<String, String> report = reportSingleton.copyReport();
 		// Get Report type
 		int reportType = reportSingleton.getReportType();
 		String username = reportSingleton.getName();
-		//username = "crime.buster";
+		// username = "crime.buster";
 		String reportTypeString = String.valueOf(reportType);
 		String url = reportSingleton.getUrl();
 
 		MultipartEntityBuilder multipartEntity = MultipartEntityBuilder
-				.create(); 
+				.create();
 		multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
-		if(reportSingleton.getImage1() != null){
-			multipartEntity.addPart("photo1", new FileBody(new File(reportSingleton.getImage1() )));
+		if (reportSingleton.getImage1() != null) {
+			multipartEntity.addPart("photo1", new FileBody(new File(
+					reportSingleton.getImage1())));
 		}
-		if(reportSingleton.getImage2() != null){
-			multipartEntity.addPart("photo2", new FileBody(new File(reportSingleton.getImage2() )));
+		if (reportSingleton.getImage2() != null) {
+			multipartEntity.addPart("photo2", new FileBody(new File(
+					reportSingleton.getImage2())));
 		}
-		if(reportSingleton.getImage3() != null){
-			multipartEntity.addPart("photo3", new FileBody(new File(reportSingleton.getImage3() )));
+		if (reportSingleton.getImage3() != null) {
+			multipartEntity.addPart("photo3", new FileBody(new File(
+					reportSingleton.getImage3())));
 		}
-		
-		
-		if(reportSingleton.getAudioPath() != null){
-			multipartEntity.addPart("audio", new FileBody(new File(reportSingleton.getAudioPath() )));
+
+		if (reportSingleton.getAudioPath() != null) {
+			multipartEntity.addPart("audio", new FileBody(new File(
+					reportSingleton.getAudioPath())));
 		}
-		if(reportSingleton.getVideoPath() != null){
-			multipartEntity.addPart("video", new FileBody(new File(reportSingleton.getVideoPath() )));
+		if (reportSingleton.getVideoPath() != null) {
+			multipartEntity.addPart("video", new FileBody(new File(
+					reportSingleton.getVideoPath())));
 		}
-		
+
 		for (String name : report.keySet()) {
-	
-			multipartEntity.addTextBody(name, report.get(name) );
+
+			multipartEntity.addTextBody(name, report.get(name));
 		}
-		
-	
-		
+
 		multipartEntity.addTextBody("reportTypeId", reportTypeString);
 		multipartEntity.addTextBody("userName", username);
 
@@ -110,11 +116,10 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		String returnString = "";
 		try {
-			returnString =  EntityUtils.toString(entity, "UTF-8");
+			returnString = EntityUtils.toString(entity, "UTF-8");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,14 +127,18 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		reportSingleton.clearImages();
 		reportSingleton.clearAudioVideoPaths();
 		return returnString;
 
 	}
-	
-	//Default android code
+	/**
+	 * Gathers data, submits report form, returns http response string
+	 * @return returnString , an http response string from the server
+	 * This method runs in the background
+	 */
+
 	@Override
 	protected String doInBackground(String... args) {
 		return submitReport();

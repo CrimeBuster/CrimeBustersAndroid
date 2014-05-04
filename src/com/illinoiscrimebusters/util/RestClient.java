@@ -22,156 +22,196 @@ import org.apache.http.protocol.HTTP;
 
 /**
  * Got this one from here
- * http://lukencode.com/2010/04/27/calling-web-services-in-android-using-httpclient/
+ * http://lukencode.com/2010/04/27/calling-web-services-in
+ * -android-using-httpclient/
  * 
- * I am not sure if this is the best implementation 
- * but it is well written.
+ * I am not sure if this is the best implementation but it is well written.
+ * 
  * @author Chris
- *
+ * 
  */
 public class RestClient {
 
-    private ArrayList <NameValuePair> params;
-    private ArrayList <NameValuePair> headers;
-    private String url;
-    private int responseCode;
-    private String message;
+	private ArrayList<NameValuePair> params;
+	private ArrayList<NameValuePair> headers;
+	private String url;
+	private int responseCode;
+	private String message;
 
-    private String response;
+	private String response;
 
-    public String getResponse() {
-        return response;
-    }
+	/**
+	 * @return http response
+	 */
+	public String getResponse() {
+		return response;
+	}
 
-    public String getErrorMessage() {
-        return message;
-    }
+	/**
+	 * @return http response error message
+	 */
+	public String getErrorMessage() {
+		return message;
+	}
 
-    public int getResponseCode() {
-        return responseCode;
-    }
+	/**
+	 * @return http response error code
+	 */
+	public int getResponseCode() {
+		return responseCode;
+	}
 
-    public RestClient(String url)
-    {
-        this.url = url;
-        params = new ArrayList<NameValuePair>();
-        headers = new ArrayList<NameValuePair>();
-    }
+	/**
+	 * Adds content elements to httprequest Constructs a new rest client based
+	 * on a rest url web service URL
+	 * 
+	 * @param url
+	 */
+	public RestClient(String url) {
+		this.url = url;
+		params = new ArrayList<NameValuePair>();
+		headers = new ArrayList<NameValuePair>();
+	}
 
-    public void AddParam(String name, String value)
-    {
-        params.add(new BasicNameValuePair(name, value));
-    }
+	/**
+	 * @param name
+	 *            key name
+	 * @param value
+	 *            value name
+	 */
+	public void AddParam(String name, String value) {
+		params.add(new BasicNameValuePair(name, value));
+	}
 
-    public void AddHeader(String name, String value)
-    {
-        headers.add(new BasicNameValuePair(name, value));
-    }
+	/**
+	 * Adds header elements to httprequest
+	 * 
+	 * @param name
+	 *            key name
+	 * @param value
+	 *            value name
+	 */
+	public void AddHeader(String name, String value) {
+		headers.add(new BasicNameValuePair(name, value));
+	}
 
-    public void Execute(RequestMethod method) throws Exception
-    {
-        switch(method) {
-            case GET:
-            {
-                //add parameters
-                String combinedParams = "";
-                if(!params.isEmpty()){
-                    combinedParams += "?";
-                    for(NameValuePair p : params)
-                    {
-                        String paramString = p.getName() + "=" + URLEncoder.encode(p.getValue(),"UTF-8");
-                        if(combinedParams.length() > 1)
-                        {
-                            combinedParams  +=  "&" + paramString;
-                        }
-                        else
-                        {
-                            combinedParams += paramString;
-                        }
-                    }
-                }
+	/**
+	 * Executes a request
+	 * 
+	 * @param method
+	 *            POST OR GET
+	 * @throws Exception
+	 */
+	public void Execute(RequestMethod method) throws Exception {
+		switch (method) {
+		case GET: {
+			// add parameters
+			String combinedParams = "";
+			if (!params.isEmpty()) {
+				combinedParams += "?";
+				for (NameValuePair p : params) {
+					String paramString = p.getName() + "="
+							+ URLEncoder.encode(p.getValue(), "UTF-8");
+					if (combinedParams.length() > 1) {
+						combinedParams += "&" + paramString;
+					} else {
+						combinedParams += paramString;
+					}
+				}
+			}
 
-                HttpGet request = new HttpGet(url + combinedParams);
+			HttpGet request = new HttpGet(url + combinedParams);
 
-                //add headers
-                for(NameValuePair h : headers)
-                {
-                    request.addHeader(h.getName(), h.getValue());
-                }
+			// add headers
+			for (NameValuePair h : headers) {
+				request.addHeader(h.getName(), h.getValue());
+			}
 
-                executeRequest(request, url);
-                break;
-            }
-            case POST:
-            {
-                HttpPost request = new HttpPost(url);
+			executeRequest(request, url);
+			break;
+		}
+		case POST: {
+			HttpPost request = new HttpPost(url);
 
-                //add headers
-                for(NameValuePair h : headers)
-                {
-                    request.addHeader(h.getName(), h.getValue());
-                }
+			// add headers
+			for (NameValuePair h : headers) {
+				request.addHeader(h.getName(), h.getValue());
+			}
 
-                if(!params.isEmpty()){
-                    request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-                }
+			if (!params.isEmpty()) {
+				request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			}
 
-                executeRequest(request, url);
-                break;
-            }
-        }
-    }
+			executeRequest(request, url);
+			break;
+		}
+		}
+	}
 
-    private void executeRequest(HttpUriRequest request, String url)
-    {
-        HttpClient client = new DefaultHttpClient();
+	/**
+	 * Executes a request based on a url
+	 * 
+	 * @param request
+	 *            -request element to be sent to url
+	 * @param url
+	 *            -rest service url
+	 */
+	private void executeRequest(HttpUriRequest request, String url) {
+		HttpClient client = new DefaultHttpClient();
 
-        HttpResponse httpResponse;
+		HttpResponse httpResponse;
 
-        try {
-            httpResponse = client.execute(request);
-            responseCode = httpResponse.getStatusLine().getStatusCode();
-            message = httpResponse.getStatusLine().getReasonPhrase();
+		try {
+			httpResponse = client.execute(request);
+			responseCode = httpResponse.getStatusLine().getStatusCode();
+			message = httpResponse.getStatusLine().getReasonPhrase();
 
-            HttpEntity entity = httpResponse.getEntity();
+			HttpEntity entity = httpResponse.getEntity();
 
-            if (entity != null) {
+			if (entity != null) {
 
-                InputStream instream = entity.getContent();
-                response = convertStreamToString(instream);
+				InputStream instream = entity.getContent();
+				response = convertStreamToString(instream);
 
-                // Closing the input stream will trigger connection release
-                instream.close();
-            }
+				// Closing the input stream will trigger connection release
+				instream.close();
+			}
 
-        } catch (ClientProtocolException e)  {
-            client.getConnectionManager().shutdown();
-            e.printStackTrace();
-        } catch (IOException e) {
-            client.getConnectionManager().shutdown();
-            e.printStackTrace();
-        }
-    }
+		} catch (ClientProtocolException e) {
+			client.getConnectionManager().shutdown();
+			e.printStackTrace();
+		} catch (IOException e) {
+			client.getConnectionManager().shutdown();
+			e.printStackTrace();
+		}
+	}
 
-    private static String convertStreamToString(InputStream is) {
+	/**
+	 * Converts input stream to string
+	 * 
+	 * @param is
+	 *            stream from web
+	 * @return input stream as string
+	 */
+	private static String convertStreamToString(InputStream is) {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
 
-        String line = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
-    }
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return sb.toString();
+	}
 }
