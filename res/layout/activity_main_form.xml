@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/settings"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/report_button"
         android:layout_alignParentBottom="true"
@@ -47,8 +47,8 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="63dp"
-        android:layout_height="65dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignLeft="@+id/main_activity_header"
         android:layout_alignTop="@+id/report_ongoing_incident"
         android:layout_weight="1"
