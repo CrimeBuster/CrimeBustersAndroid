@@ -59,10 +59,12 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 		spinnerLanguage.setOnItemSelectedListener(this);
 		spinnerLanguage.setSelection(_reportSingleton.getPosition(), false);
 		
-		languagePreference();
-		
 	}
 
+	/**
+	 * 
+	 * This method is called to set user preferences
+	 */
 	private void setUserPreferences() {
 		int theme= _reportSingleton.setTheme();
 		getWindow().setBackgroundDrawableResource(theme);
