@@ -258,40 +258,7 @@ public class MediaActivity extends Activity {
 		startActivityForResult(intent, 0);
 		_reportSingleton.setWhichButton("3");
 	}
-
-	// /**
-	// * @param v
-	// */
-	// public void takePicture1(View v) {
-	// Intent intent = new Intent(
-	// android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-	// startActivityForResult(intent, 0);
-	// }
-	//
-	// /**
-	// * @param v
-	// */
-	// public void takePicture2(View v) {
-	// Intent intent = new Intent(
-	// android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-	// startActivityForResult(intent, 0);
-	// }
-	//
-	// /**
-	// * @param v
-	// */
-	// public void takePicture3(View v) {
-	// Intent intent = new Intent(
-	// android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-	// startActivityForResult(intent, 0);
-	// }
-
-
 	
-	
-	
-	
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
