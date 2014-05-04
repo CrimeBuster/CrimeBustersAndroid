@@ -39,6 +39,9 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	private String[] language= {"English", "French", "Spanish"};
 	
 	@Override
+	/**
+	 * This is the method that is called when an intent is initialized for the first time
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update_profile);
@@ -61,6 +64,10 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 		
 	}
 
+	/**
+	 * This is the function that sets the language when it is modified or when the intent is activated
+	 * 
+	 */
 	private void languagePreference() {
 		String selLang = (String) spinnerLanguage.getSelectedItem();
 		if (selLang.equalsIgnoreCase("English"))
@@ -73,6 +80,10 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 			changeLocale("es");
 	}
 
+	/**
+	 * This method is called when a language is set from the language drop down
+	 * 
+	 */
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			   long id) 
 	{
@@ -91,6 +102,9 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	}
 	
 	 @Override
+	 /**
+	  * Empty auto generated stub for the abstract method onNothingSelected for OnItemSelectedListener
+	  */
 	 public void onNothingSelected(AdapterView<?> arg0) {
 	  // TODO Auto-generated method stub
 
@@ -98,11 +112,13 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 
 
 	 /**
-		 * Event handler for the Change Theme button
-		 * @param view The object that throws the event.
-		 * @throws InterruptedException
-		 * @throws ExecutionException
-     */
+	  * 
+	  * This method is called when the button Change Language is clicked
+	  * 
+	  * @param view
+	  * @throws InterruptedException
+	  * @throws ExecutionException
+	  */
 	public void changeLanguage(View view) throws InterruptedException, ExecutionException {
 		
 		languagePreference();
@@ -115,6 +131,9 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 		}
 	
 	@Override
+	/**
+	 * This method is called when the user returns to an intent from a paused state
+	 */
 	protected void onResume() {
 		super.onResume();
 		languagePreference();
@@ -125,7 +144,8 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	}
 
 	/**
-	 * Event handler for the Change Theme button
+	 * This method is called when the "Change Theme" button is clicked
+	 * 
 	 * @param view The object that throws the event.
 	 * @throws InterruptedException
 	 * @throws ExecutionException
@@ -155,7 +175,7 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	
 	
 	/**
-	 * Event handler for the change language button
+	 * This method is called when a new locale is created for a language
 	 * @param language
 	 * @param config
 	 */
@@ -215,6 +235,7 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 
 	/**
 	 * Initialize the values from the database
+	 * 
 	 * @param editFirstName FirstName Edit Text
 	 * @param editLastName LastNameName Edit Text
 	 * @param editPhoneNumber PhoneNumber Edit Text
@@ -241,6 +262,7 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 
 	/**
 	 * Initialize the values from the sharedPreference 
+	 * 
 	 * to eliminate the need to query the database everytime a user access the update profile.
 	 * @param editFirstName FirstName Edit Text
 	 * @param editLastName LastNameName Edit Text
@@ -269,7 +291,8 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	}
 	
 	/**
-	 * Event handler for the Update User button
+	 * This method is called when the user clicks on the "Update Profile" button, after modifying personal information
+	 * 
 	 * @param view The object that throws the event.
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
@@ -343,7 +366,7 @@ public class UpdateProfileActivity extends Activity implements OnItemSelectedLis
 	}
 	
 	/**
-	 * Event handler for the logout button.
+	 * This method is called when the user clicks on the "log Out" button.
 	 * @param view
 	 */
 	public void onLogoutClick(View view) {		

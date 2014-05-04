@@ -20,6 +20,9 @@ public class MainFormActivity extends Activity {
 	private String _userName;
 
 	@Override
+	/**
+	 * This is the method that is called when an intent is initialized for the first time
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_form);
@@ -44,6 +47,9 @@ public class MainFormActivity extends Activity {
 
 	
 	@Override
+	/**
+	 * This method is called when the user returns to an intent from a paused state
+	 */
 	protected void onResume() {
 		super.onResume();
 		int theme = _reportSingleton.setTheme();
@@ -68,6 +74,9 @@ public class MainFormActivity extends Activity {
 
 	
 	@Override
+	/**
+	 * It is triggered to specify the options menu for an acitivity
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_form, menu);
@@ -75,9 +84,8 @@ public class MainFormActivity extends Activity {
 	}
 	
 	/**
-	 * Event handler for the change language button
+	 * Method to be called while setting the language for the UI
 	 * @param language
-	 * @param config
 	 */
 	private void changeLocale(String language) {
 		
@@ -97,7 +105,11 @@ public class MainFormActivity extends Activity {
         
 	}
 
-	/** Called when the user clicks the Profile button */
+	/**
+	 * Called when the user clicks the Update Profile button, starts the UpdateProfile intent
+	 * 
+	 * @param view
+	 */
 	public void profile(View view) {
 		Intent intent = new Intent(this, UpdateProfileActivity.class);
 		intent.putExtra("userName", _userName);
@@ -105,14 +117,22 @@ public class MainFormActivity extends Activity {
 	}
 	
 	
-	/** Called when the user clicks the Incident button */
+	/**
+	 * Called when the user clicks the High Priority button, triggers the ReportIncident intent
+	 * 
+	 * @param view
+	 */
 	public void incident(View view) {
 		Intent intent = new Intent(this, ReportIncidentActivity.class);
 		_reportSingleton.setReportType(1); //high
 		startActivity(intent);
 	}
 
-	/** Called when the user clicks the Report button */
+	/**
+	 * Called when the user clicks the Low Priority button, triggers the ReportIncident intent
+	 * 
+	 * @param view
+	 */
 	public void report(View view) {
 		Intent intent = new Intent(this, ReportIncidentActivity.class);
 		_reportSingleton.setReportType(2); //low priority

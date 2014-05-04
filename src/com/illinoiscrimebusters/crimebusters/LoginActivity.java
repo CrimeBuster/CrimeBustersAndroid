@@ -27,6 +27,9 @@ public class LoginActivity extends Activity {
 	private SharedPreferences _preference;
 	
 	@Override
+	/**
+	 * This is the method that is called when an intent is initialized for the first time
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -50,7 +53,7 @@ public class LoginActivity extends Activity {
 	}
 	
 	/**
-	 * Event handler for the change language button
+	 * Method to be called while setting the language for the UI
 	 * @param language
 	 */
 	private void changeLocale(String language) {
@@ -72,14 +75,14 @@ public class LoginActivity extends Activity {
 	}
 	
 	/**
-	 * If the user has been authenticated before, 
-	 * redirect the user to the Main Form
+	 * This method is called when the user returns to an intent from a paused state
 	 */
 	protected void onResume() {
 		super.onResume();
 		_preference = getSharedPreferences("cbPreference", MODE_PRIVATE);
 		boolean isAuthenticated = _preference.getBoolean("isAuthenticated", false);
 				
+		//If the user has been authenticated before, redirect the user to the Main Form
 		if (isAuthenticated) {
 			String userName = _preference.getString("userName", "");
 			redirectToMainForm(userName);
@@ -89,6 +92,9 @@ public class LoginActivity extends Activity {
 	
 
 	@Override
+	/**
+	 * It is triggered to specify the options menu for an acitivity
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.login, menu);
@@ -97,6 +103,9 @@ public class LoginActivity extends Activity {
 	
 	/** 
 	 * Event handler for the login button 
+	 * 
+	 * It is triggered when the user logs in and authentication is performed 
+	 * 
 	 * @throws ExecutionException 
 	 * @throws InterruptedException */
 	public void loginUser(View view) throws InterruptedException, ExecutionException {	
@@ -160,7 +169,7 @@ public class LoginActivity extends Activity {
 	}
 
 	/**
-	 * Starts the create account activity
+	 * Starts the Register User activity
 	 * @param view
 	 */
 	public void createAccount(View view) {
