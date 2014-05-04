@@ -129,10 +129,9 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
 	}
 	
-
+	//Default android code
 	@Override
 	protected String doInBackground(String... args) {
-
 		return submitReport();
 
 	}
