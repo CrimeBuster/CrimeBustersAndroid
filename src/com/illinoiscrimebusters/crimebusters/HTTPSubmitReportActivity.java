@@ -14,6 +14,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+
+/**
+	Activity for generating the report. Scrape the android fields to get user input, send out the data
+	to report activity handler and send it.
+*/
+	 
 public class HTTPSubmitReportActivity extends Activity {
 	ReportSingleton reportSingleton = ReportSingleton.getInstance();
 
