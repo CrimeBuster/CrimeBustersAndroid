@@ -1,3 +1,9 @@
+/*
+ * Within this class we will create a location for our images and store them
+ * We will store the images in a designated folder in the gallery section 
+ * as well as send the image to reportsingleton in order to transfer the data to webservices
+ * */
+
 package com.illinoiscrimebusters.crimebusters;
 
 import java.io.File;
@@ -27,9 +33,6 @@ public class SaveImage {
 		String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder;
 		String CurrentDateAndTime= getCurrentDateAndTime();
 		
-		
-		
-		
 		File dir = new File(file_path);
 		if(!dir.exists()){
 			dir.mkdirs();
@@ -38,12 +41,14 @@ public class SaveImage {
 		File file = new File(dir, NameOfFile + CurrentDateAndTime + ".jpg");
 		String imageLocation = file_path + NameOfFile + CurrentDateAndTime + ".jpg";
 		
-	//	ReportSingleton.getInstance().setImageLocation(imageLocation);
+		//All images must be sent to ReportSingleton in order to send to webservices
+		//ReportSingleton.getInstance().setImageLocation(imageLocation);
 		
 		String image1 = ReportSingleton.getInstance().getImage1();
 		String image2 = ReportSingleton.getInstance().getImage2();
 		String image3 = ReportSingleton.getInstance().getImage3();
 
+		//Each image is associated to a specific button
 		String whichButton = ReportSingleton.getInstance().getWhichButton();
 		
 		if(whichButton == "1"){
@@ -57,8 +62,7 @@ public class SaveImage {
 		
 		}
 		
-		
-		
+		//We will use jpeg for our images
 		try{
 			FileOutputStream fOut = new FileOutputStream(file);
 			ImageToSave.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
@@ -103,21 +107,4 @@ public class SaveImage {
 	private void AbleToSave(){
 		Toast.makeText(TheThis, "Picture saved", Toast.LENGTH_SHORT).show();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
