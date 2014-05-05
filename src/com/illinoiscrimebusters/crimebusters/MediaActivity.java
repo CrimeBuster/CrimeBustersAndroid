@@ -48,8 +48,7 @@ public class MediaActivity extends Activity {
 
 	// Video
 	private static final int VIDEO_CAPTURE = 101;
-	private Uri fileUri;
-
+	
 	private static TextView textView2;
 	private static TextView textView3;
 
@@ -65,11 +64,9 @@ public class MediaActivity extends Activity {
 
 		if (_reportSingleton.getReportType() == 1) {
 			setContentView(R.layout.activity_high_priority_incident);
-			Intent intent = getIntent();
 
 		} else {
 			setContentView(R.layout.activity_media);
-			Intent intent = getIntent();
 			iv1 = (ImageView) findViewById(R.id.imageView1);
 			iv2 = (ImageView) findViewById(R.id.imageView2);
 			iv3 = (ImageView) findViewById(R.id.imageView3);
@@ -151,18 +148,9 @@ public class MediaActivity extends Activity {
 	 * @param view
 	 */
 	public void startRecording(View view) {
-		//File mediaFile = new File(Environment.getExternalStorageDirectory()
-		//		.getAbsolutePath() + "/myvideo.mp4");
-
 		Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-		// fileUri = Uri.fromFile(mediaFile);
-
 		intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 30);
-		// intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 		startActivityForResult(intent, VIDEO_CAPTURE);
-		
-		
-
 	}
 
 	/**
@@ -224,7 +212,6 @@ public class MediaActivity extends Activity {
 		File audFile = new File(outputFile);
 		saveAudio(audFile);
 
-		// textView2.invalidate();
 		textView2 = (TextView) findViewById(R.id.textView2);
 		textView2.setText(outputFile);
 		_reportSingleton.setAudioPathDisplay(outputFile);
@@ -365,6 +352,7 @@ public class MediaActivity extends Activity {
 	}
 	
 	/**
+	 * This method is called when the path for video is retrieved from the Uri
 	 * 
 	 * @param contentUri
 	 * @return
@@ -382,23 +370,8 @@ public class MediaActivity extends Activity {
 	}
 	
 	/**
+	 * This method is called when the user creates a video reocrding and it needs to be saved
 	 * 
-	 * @param uri
-	 * @return
-	 */
-	public String getPath2(Uri uri) 
-    {
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        if (cursor == null) return null;
-        int column_index =             cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String s=cursor.getString(column_index);
-        cursor.close();
-        return s;
-    }
-	
-	/**
 	 * 
 	 * @param uri
 	 * @return
@@ -410,9 +383,6 @@ public class MediaActivity extends Activity {
 				+ File.separatorChar
 				+ "cb_vid.mp4";
 		
-		
-	
-
 		String NameOfFolder = "/CB_Folder/";
 		String file_path = Environment.getExternalStorageDirectory().getAbsolutePath()+NameOfFolder + "cb_vid.mp4";
 		 
@@ -453,7 +423,8 @@ public class MediaActivity extends Activity {
 	}
 
 	/**
-	 * 
+	 * This method is called when an audio file is created by the user and is to be saved
+	 *  
 	 * @param outputFile
 	 * @return
 	 */
@@ -532,7 +503,7 @@ public class MediaActivity extends Activity {
 
 	@Override
 	/**
-	 * It is triggered to specify the options menu for an acitivity
+	 * It is triggered to specify the options menu for an activity
 	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
