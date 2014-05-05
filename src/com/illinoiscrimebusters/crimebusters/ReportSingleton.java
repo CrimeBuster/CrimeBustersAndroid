@@ -11,10 +11,10 @@ import android.widget.ImageView;
 public class ReportSingleton {
 	private String url = "http://illinoiscrimebusters.com/services/PostReport.ashx";
 
-//	private String  url ="http://sadkhin.net/crimebusters/test_post.php";
-	private String username ="test";
+	// private String url ="http://sadkhin.net/crimebusters/test_post.php";
+	private String username = "test";
 	private int reportType = 0;
-	private String imageLocation; 
+	private String imageLocation;
 	private String image1;
 	private String image2;
 	private String image3;
@@ -23,6 +23,7 @@ public class ReportSingleton {
 
 	private String audioPathDisplay;
 	private String videoPathDisplay;
+
 	public String getAudioPathDisplay() {
 		return audioPathDisplay;
 	}
@@ -41,31 +42,27 @@ public class ReportSingleton {
 
 	private String temp_desc;
 	private String temp_location;
-	
-	
+
 	private String whichButton;
-	
-	
-	public void clearImages(){
+
+	public void clearImages() {
 		image1 = null;
 		image2 = null;
 		image3 = null;
-		
+
 	}
-	
-	
-	public void clearAudioVideoPaths()
-	{
-		
+
+	public void clearAudioVideoPaths() {
+
 		audioPath = null;
 		videoPath = null;
 		audioPathDisplay = null;
 		videoPathDisplay = null;
 	}
+
 	private BufferedOutputStream bos;
 	private BufferedOutputStream audBos;
 
-	
 	public BufferedOutputStream getBos() {
 		return bos;
 	}
@@ -85,7 +82,7 @@ public class ReportSingleton {
 	private boolean iv1Done = false;
 	private boolean iv2Done = false;
 	private boolean iv3Done = false;
-	
+
 	public boolean isIv1Done() {
 		return iv1Done;
 	}
@@ -111,10 +108,9 @@ public class ReportSingleton {
 	}
 
 	private String language;
-	
+
 	public String getLanguage() {
-		if (language == null)
-		{
+		if (language == null) {
 			language = "English";
 		}
 		return language;
@@ -126,7 +122,6 @@ public class ReportSingleton {
 
 	public int position;
 
-
 	public int getPosition() {
 		return position;
 	}
@@ -135,67 +130,59 @@ public class ReportSingleton {
 		this.position = position;
 	}
 
-	private HashMap<String,String> report = new HashMap<String,String>();
-	
-	private int themeNumber ;
+	private HashMap<String, String> report = new HashMap<String, String>();
 
-    public int getThemeNumber() {
-        return themeNumber;
-    }
+	private int themeNumber;
 
-    public void setThemeNumber(int themeNumber) {
-        this.themeNumber = themeNumber;
-    }
+	public int getThemeNumber() {
+		return themeNumber;
+	}
 
-    public int setTheme()
-    {
-    	
-    	int th = 0;
-    	if (themeNumber==0)
-    	{
-    		themeNumber = R.style.MyTheme;
-    	}
-    	
-    	if (themeNumber==R.style.MyTheme)
-		{
+	public void setThemeNumber(int themeNumber) {
+		this.themeNumber = themeNumber;
+	}
+
+	public int setTheme() {
+
+		int th = 0;
+		if (themeNumber == 0) {
+			themeNumber = R.style.MyTheme;
+		}
+
+		if (themeNumber == R.style.MyTheme) {
 			th = R.drawable.c8;
-			
+
 		}
-		
-		else if (themeNumber==R.style.MyTheme2)
-		{
+
+		else if (themeNumber == R.style.MyTheme2) {
 			th = R.drawable.b6;
-			
+
 		}
-	    
-		else if (themeNumber==R.style.MyTheme3)
-		{
+
+		else if (themeNumber == R.style.MyTheme3) {
 			th = R.drawable.orange;
 		}
-	    
-    	return th;
-    }
-	
-	public String returnKey(String key){
-		return report.get(key);
-		
+
+		return th;
 	}
-	public void setKey(String key, String value){
+
+	public String returnKey(String key) {
+		return report.get(key);
+
+	}
+
+	public void setKey(String key, String value) {
 		report.put(key, value);
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return username;
-		
+
 	}
-	
-	
-	public HashMap<String, String> copyReport(){
+
+	public HashMap<String, String> copyReport() {
 		return this.report;
 	}
-	
-	
-	
 
 	// http://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents//
 	// keyword horse//
@@ -212,34 +199,40 @@ public class ReportSingleton {
 		}
 		return instance;
 	}
+
 	/**
 	 * @return the url
 	 */
 	public String getUrl() {
 		return url;
 	}
+
 	/**
 	 * @return the reportType
 	 */
 	public int getReportType() {
 		return reportType;
 	}
+
 	/**
-	 * @param reportType the reportType to set
+	 * @param reportType
+	 *            the reportType to set
 	 */
 	public void setReportType(int reportType) {
 		this.reportType = reportType;
 	}
+
 	public String getImageLocation() {
 		return imageLocation;
 	}
+
 	public void setImageLocation(String imageLocation) {
 		this.imageLocation = imageLocation;
 	}
 
 	public void setName(String username2) {
 		username = username2;
-		
+
 	}
 
 	public String getAudioPath() {
@@ -305,7 +298,5 @@ public class ReportSingleton {
 	public void setTemp_location(String temp_location) {
 		this.temp_location = temp_location;
 	}
-
-	
 
 }

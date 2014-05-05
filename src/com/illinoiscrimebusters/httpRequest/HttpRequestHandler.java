@@ -55,6 +55,7 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 
 	/**
 	 * Gathers data, submits report form, returns http response string
+	 * 
 	 * @return returnString , an http response string from the server
 	 */
 	private String submitReport() {
@@ -133,10 +134,12 @@ public class HttpRequestHandler extends AsyncTask<String, Void, String> {
 		return returnString;
 
 	}
+
 	/**
 	 * Gathers data, submits report form, returns http response string
-	 * @return returnString , an http response string from the server
-	 * This method runs in the background
+	 * 
+	 * @return returnString , an http response string from the server This
+	 *         method runs in the background
 	 */
 
 	@Override

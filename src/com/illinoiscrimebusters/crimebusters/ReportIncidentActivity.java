@@ -38,6 +38,9 @@ public class ReportIncidentActivity extends Activity implements
 	//private String ivString;
 
 
+	/** start add media activity and save already filled strings
+	 *
+	 */
 	public void addMedia(View v) {
 		Intent intent = new Intent(this, MediaActivity.class);
 		startActivity(intent);
@@ -116,6 +119,9 @@ public class ReportIncidentActivity extends Activity implements
 
 	}
 
+	/**
+	 * Set time
+	 */
 	private void time() {
 		Time now = new Time();
 		now.setToNow();
@@ -156,6 +162,9 @@ public class ReportIncidentActivity extends Activity implements
 		return true;
 	}
 
+	/** Submit report and clear out media
+	 * 
+	 */
 	public void submitReport(View view) {
 		populateReport();
 		reportSingleton.setIv1Done(false);
@@ -226,6 +235,9 @@ public class ReportIncidentActivity extends Activity implements
 
 	}
 
+	/**Method to populate the data singleton with user inputted data
+	 * 
+	 */
 	public void populateReport() {
 
 		reportSingleton.setKey("message",
