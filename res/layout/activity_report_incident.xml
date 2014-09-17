@@ -12,10 +12,11 @@
 
     <EditText
         android:id="@+id/locationGPS_lat"
-        android:layout_width="125dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:editable="false"
         android:ems="10"
+<<<<<<< HEAD
        android:hint="long"
         android:textSize="24dp"
         android:textStyle="bold" />
@@ -44,6 +45,64 @@
         android:text="Submit Report"
         android:textSize="24dp"
         android:paddingLeft="0dp"
+=======
+        android:hint="@string/location_gps"
+        android:text="@string/default_latitude"
+        android:textColorHint="#200772"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+     <EditText
+         android:id="@+id/locationGPS_long"
+         android:layout_width="wrap_content"
+         android:layout_height="50dp"
+         android:layout_alignLeft="@+id/locationGPS_lat"
+         android:layout_below="@+id/locationGPS_lat"
+         android:editable="false"
+         android:ems="10"
+         android:hint="@string/location_gps"
+         android:text="@string/default_longitude"
+         android:textColorHint="#200772"
+         android:textSize="24dp"
+         android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/addMedia"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_toRightOf="@+id/imageView1"
+        android:onClick="addMedia"
+        android:text="@string/add_media"
+        android:textSize="18dp"
+        android:paddingLeft="0dp"
+        android:gravity="center"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/submitReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentBottom="true"
+        android:onClick="submitReport"
+        android:text="@string/submit_report"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/location"
+        android:layout_below="@+id/location"
+        android:ems="10"
+        android:hint="@string/desc"
+        android:inputType="textMultiLine"
+        android:textColorHint="#200772"
+        android:textSize="24dp"
+>>>>>>> origin/iteration6
         android:textStyle="bold" />
 
     <EditText
@@ -55,6 +114,7 @@
         android:ems="10"
         android:hint="@string/location_human"
         android:inputType="textPostalAddress"
+<<<<<<< HEAD
         android:textSize="24dp"
         android:textStyle="bold" />
 
@@ -69,10 +129,14 @@
         android:hint="@string/time"
         android:textColor="#000000"
         android:textColorHighlight="#000000"
+=======
+        android:textColorHint="#200772"
+>>>>>>> origin/iteration6
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <EditText
+<<<<<<< HEAD
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -81,6 +145,20 @@
         android:ems="10"
         android:hint="@string/desc"
         android:inputType="textMultiLine"
+=======
+        android:id="@+id/editText_currentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/locationGPS_long"
+        android:layout_below="@+id/locationGPS_long"
+        android:layout_marginTop="16dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/time"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#200772"
+>>>>>>> origin/iteration6
         android:textSize="24dp"
         android:textStyle="bold" />
 
@@ -93,6 +171,7 @@
         android:src="@drawable/ic_launcher"
         android:textSize="24dp"
         android:textStyle="bold" />
+<<<<<<< HEAD
 
     <EditText
         android:id="@+id/locationGPS_long"
@@ -106,5 +185,7 @@
  
         android:textSize="24dp"
         android:textStyle="bold" />
+=======
+>>>>>>> origin/iteration6
 
 </RelativeLayout>

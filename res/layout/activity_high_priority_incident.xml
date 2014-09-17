@@ -12,10 +12,11 @@
 
     <EditText
         android:id="@+id/locationGPS_lat"
-        android:layout_width="125dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:editable="false"
         android:ems="10"
+<<<<<<< HEAD
 
         android:text="lat"
         android:textSize="24dp"
@@ -30,10 +31,16 @@
         android:layout_marginBottom="20dp"
         android:onClick="submitReport"
         android:text="Submit Report"
+=======
+        android:hint="@string/location_gps"
+        android:text="Latitude"
+        android:textColorHint="#200772"
+>>>>>>> origin/iteration6
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <EditText
+<<<<<<< HEAD
         android:id="@+id/editText_currentTime"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -56,31 +63,86 @@
         android:hint="@string/location_human"
         android:inputType="textPostalAddress"
         android:textColor="#FFFFFF"
+=======
+        android:id="@+id/locationGPS_long"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_above="@+id/editText_currentTime"
+        android:layout_alignLeft="@+id/editText_currentTime"
+        android:layout_marginBottom="16dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/location_gps"
+        android:text="Longitude"
+        android:textColorHint="#200772"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/submitReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/message"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:onClick="submitReport"
+        android:text="@string/submit_report"
+>>>>>>> origin/iteration6
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/message"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_alignLeft="@+id/location"
-        android:layout_below="@+id/location"
+        android:layout_above="@+id/submitReport"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:hint="@string/desc"
         android:inputType="textMultiLine"
+<<<<<<< HEAD
+=======
+        android:textColorHint="#200772"
+>>>>>>> origin/iteration6
         android:textSize="24dp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/locationGPS_long"
-        android:layout_width="125dp"
+        android:id="@+id/editText_currentTime"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
+<<<<<<< HEAD
         android:layout_alignRight="@+id/location"
         android:layout_alignTop="@+id/locationGPS_lat"
         android:layout_marginRight="16dp"
         android:editable="false"
         android:ems="10"
         android:hint="long"
+=======
+        android:layout_above="@+id/location"
+        android:layout_alignLeft="@+id/location"
+        android:layout_marginBottom="16dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="@string/time"
+        android:textColor="#000000"
+        android:textColorHint="#200772"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/submitReport"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="@string/location_human"
+        android:inputType="textPostalAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#200772"
+>>>>>>> origin/iteration6
         android:textSize="24dp"
         android:textStyle="bold" />
 

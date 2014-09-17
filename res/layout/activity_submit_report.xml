@@ -10,8 +10,12 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Waiting for report" />
+        android:layout_marginTop="80dp"
+        android:text="@string/wait_report"
+        android:textSize="32dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
 </RelativeLayout>

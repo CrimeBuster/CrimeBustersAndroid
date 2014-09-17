@@ -6,48 +6,84 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainFormActivity" >
+	tools:context=".MainFormActivity" >
 
     <TextView
         android:id="@+id/main_activity_header"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity_header" />
-
+        android:layout_marginTop="10dp"
+        android:text="@string/welcome"
+        android:textSize="24dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+    
     <Button
         android:id="@+id/settings"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/report_button"
         android:layout_alignParentBottom="true"
         android:layout_weight="1"
         android:onClick="profile"
-        android:text="Update Your Profile" />
+        android:text="@string/update_profile"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/report_button"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/settings"
-        android:layout_alignLeft="@+id/report_ongoing_incident"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="60dp"
+        android:layout_toRightOf="@+id/imageView1"
         android:layout_weight="1"
         android:onClick="report"
-        android:text="Report Crime " />
+        android:text="@string/low_priority"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_alignLeft="@+id/main_activity_header"
+        android:layout_alignTop="@+id/report_ongoing_incident"
+        android:layout_weight="1"
+        android:src="@drawable/hightry" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignTop="@+id/report_button"
+        android:layout_weight="1"
+        android:src="@drawable/lowtry" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignTop="@+id/settings"
+        android:layout_weight="1"
+        android:src="@drawable/profiletry" />
 
     <Button
         android:id="@+id/report_ongoing_incident"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/report_button"
-        android:layout_alignLeft="@+id/main_activity_header"
-        android:layout_marginBottom="61dp"
+        android:layout_alignLeft="@+id/report_button"
+        android:layout_marginBottom="60dp"
         android:layout_weight="1"
         android:onClick="incident"
-        
-        android:text="Report Ongoing Incident" />
+        android:text="@string/high_priority"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
